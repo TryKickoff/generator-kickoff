@@ -1,0 +1,329 @@
+/* ==========================================================================
+   Components:
+   * Embedded content
+   * Block grids
+   * Centred list
+   * Floated lists
+   * Wells
+   * Alerts
+   ========================================================================== */
+
+/*
+   Embedded content
+   ========================================================================== */
+img {
+	font-style:italic;
+	color:#c00;
+	border: 0;
+	-ms-interpolation-mode: bicubic;
+
+	&.img--left {
+		margin:0 20px 0 0;
+	}
+
+	&.img--right {
+		margin:0 0 0 20px;
+	}
+}
+
+svg:not(:root) { overflow: hidden; }
+
+// Images, Flash & video
+img, object, embed, video{
+	max-width:100%;
+}
+
+
+/*
+   Block grids
+   These are 2-up, 3-up, 4-up and 5-up ULs, suited for repeating blocks of content. Add 'mobile' to them to switch them just like the layout grid (one item per line) on phones. For IE7/8 compatibility blockGrid items need to be the same height. You can optionally uncomment the lines below to support arbitrary height, but know that IE7/8 do not support :nth-child.
+
+   Usage:
+   <ul class="l-blockGrid l-blockGrid--twoUp">
+       <li></li>
+   </ul>
+   ========================================================================== */
+.l-blockGrid {
+	display: block;
+	list-style-type: none;
+	@include clearfix;
+
+	& li {
+		display: block;
+		height: auto;
+		float: left;
+	}
+
+	&.l-blockGrid--twoUp {
+		margin-left: -4%;
+
+		& li {
+			margin-left: 4%;
+			width: 46%;
+			margin-bottom: 4%;
+			//&:nth-child(2n+1) {clear: left;}
+		}
+	}
+
+	&.l-blockGrid--threeUp {
+		margin-left: -2%;
+
+		& li {
+			margin-left: 2%;
+			width: 31.3%;
+			margin-bottom: 2%;
+			//&:nth-child(3n+1) {clear: left;}
+		}
+	}
+
+	&.l-blockGrid--fourUp {
+		margin-left: -2%;
+
+		& li {
+			margin-left: 2%;
+			width: 23%;
+			margin-bottom: 2%;
+			//&:nth-child(4n+1) {clear: left;}
+		}
+	}
+
+	&.l-blockGrid--fiveUp {
+		margin-left: -1.5%;
+
+		& li {
+			margin-left: 1.5%;
+			width: 18.5%;
+			margin-bottom: 1.5%;
+			//&:nth-child(5n+1) {clear: left;}
+		}
+	}
+}
+
+
+/*
+   Centred lists
+
+   <ul class="l-list--centred">
+   	<li></li>
+   </ul>
+   ========================================================================== */
+.l-list--centred, .l-list--centered {
+	text-align: center;
+
+	& li {
+		display: inline;
+	}
+}
+
+
+/*
+   Floated lists
+
+   <ul class="l-list--floated">
+   	<li></li>
+   </ul>
+   ========================================================================== */
+.l-list--floated {
+	@include clearfix;
+
+	& li {
+		float: left;
+		display: inline-block;
+	}
+}
+
+
+/*
+   Wells
+
+   Use the well as a simple effect on an element to give it an inset effect
+   <div class="well"></div>
+   ========================================================================== */
+.well {
+	min-height: 20px;
+	padding: 19px;
+	margin-bottom: 20px;
+	background-color: #f5f5f5;
+	border: 1px solid #eee;
+	border: 1px solid rgba(0,0,0,.05);
+	@include border-radius(4px);
+	@include box-shadow(inset 0 1px 1px rgba(0,0,0,.05));
+
+	& blockquote {
+		border-color: #ddd;
+		border-color: rgba(0,0,0,.15);
+	}
+}
+
+// Sizes
+.well--large {
+	padding: 24px;
+	@include border-radius(6px);
+}
+.well--small {
+	padding: 9px;
+	@include border-radius(3px);
+}
+
+
+/*
+   Tabs
+   ========================================================================== */
+.tabs {
+	@include clearfix;
+	@extend .unstyled;
+	margin-bottom: $base-line-height + px;
+	border-bottom: 2px solid $active-tab;
+
+	&.tabs--alignRight {
+		& li {
+			float: right;
+		}
+	}
+
+	&.tabs--alignCentre,
+	&.tabs--alignCenter {
+		text-align: center;
+
+		& > li {
+			display: inline;
+			float: none;
+		}
+	}
+
+	& > li {
+		float: left;
+		margin: 0 5px;
+	}
+
+	a {
+		background-color: $inactive-tab;
+		@extend .btn;
+		@include border-radius(4px 4px 0 0);
+		color: #fff;
+
+		&.is-active {
+			background-color: $active-tab;
+		}
+	}
+}
+
+.l-tabsContent {
+	@extend .unstyled;
+	& > li {
+		display: none;
+	}
+
+	& > li.is-active {
+		display: block;
+	}
+}
+
+
+
+/*
+   Alerts
+   ========================================================================== */
+.alert {
+	padding: 8px 35px 8px 14px;
+	margin-bottom: $base-line-height + px;
+	text-shadow: 0 1px 0 rgba(255,255,255,.5);
+	background-color: $warning-background;
+	border: 1px solid $warning-border;
+	@include border-radius(4px);
+
+	&,
+	h4 {
+		// Specified for the h4 to prevent conflicts of changing $headings-color
+		color: $warning-text;
+	}
+	h4 {
+		margin: 0;
+	}
+
+	// Adjust close link position
+	.alertClose {
+		position: relative;
+		top: -2px;
+		right: -21px;
+		line-height: $base-leading;
+	}
+}
+
+
+// Alternate styles
+.alert--success {
+	background-color: $success-background;
+	border-color: $success-border;
+	color: $success-text;
+
+	h4 {
+		color: $success-text;
+	}
+}
+.alert--error {
+	background-color: $error-background;
+	border-color: $error-border;
+	color: $error-text;
+
+	h4 {
+		color: $error-text;
+	}
+}
+.alert--info {
+	background-color: $info-background;
+	border-color: $info-border;
+	color: $info-text;
+
+	h4 {
+		color: $info-text;
+	}
+}
+
+
+// Block alerts
+.alert--block {
+	padding-top: 14px;
+	padding-bottom: 14px;
+
+	> p,
+	> ul {
+		margin-bottom: 0;
+	}
+	p + p {
+		margin-top: 5px;
+	}
+}
+
+/*
+   Close buttons
+   ========================================================================== */
+
+.alertClose {
+	float: right;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: $base-leading;
+	color: #000;
+	text-shadow: 0 1px 0 rgba(255,255,255,1);
+	@include opacity(20);
+
+	&:hover,
+	&:focus {
+		color: #000;
+		text-decoration: none;
+		cursor: pointer;
+		@include opacity(40);
+	}
+}
+
+// Additional properties for button version
+// iOS requires the button element instead of an anchor tag.
+// If you want the anchor version, it requires `href="#"`.
+button.alertClose {
+	padding: 0;
+	cursor: pointer;
+	background: transparent;
+	border: 0;
+	-webkit-appearance: none;
+}

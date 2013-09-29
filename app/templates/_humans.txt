@@ -1,0 +1,21 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+
+# <%= projectName %>
+
+## Developers:
+<%= devNames %>
+
+
+# KICKOFF TEAM
+
+ * Zander Martineau -- Creative Technologist -- http://twitter.com/MrMartineau
+ * Ashley Nolan -- Creative Technologist -- http://twitter.com/dragongraphics
+
+
+# TECHNOLOGY COLOPHON
+
+ * HTML5, CSS3
+ * Normalize.css, jQuery, Modernizr
+ * Sublime Text
