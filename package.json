@@ -1,6 +1,6 @@
 {
   "name": "generator-kickoff",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A generator for Yeoman",
   "keywords": [
     "yeoman-generator"
@@ -21,7 +21,8 @@
     "test": "mocha"
   },
   "dependencies": {
-    "yeoman-generator": "~0.13.0"
+    "yeoman-generator": "~0.13.0",
+    "chalk": "~0.2.1"
   },
   "devDependencies": {
     "mocha": "~1.12.0"
