@@ -1,11 +1,6 @@
-generator-kickoff
-=================
+# generator-kickoff [![Build Status](https://secure.travis-ci.org/tmwagency/generator-kickoff.png?branch=master)](https://travis-ci.org/mrmartineau/generator-kickoff)
 
-Simple Yeoman generator for the Kickoff framework
-
-# generator-kickoff [![Build Status](https://secure.travis-ci.org/mrmartineau/generator-kickoff.png?branch=master)](https://travis-ci.org/mrmartineau/generator-kickoff)
-
-A generator for [Yeoman](http://yeoman.io).
+Simple [Yeoman](http://yeoman.io) generator for the Kickoff framework
 
 
 ## Getting Started
@@ -14,7 +9,7 @@ A generator for [Yeoman](http://yeoman.io).
 
 Trick question. It's not a thing. It's this guy:
 
-![](http://i.imgur.com/JHaAlBJ.png)
+![](https://github-camo.global.ssl.fastly.net/10c0f69d03b7ac184d77e8aaba4358a2d4791823/687474703a2f2f79656f6d616e2e696f2f6d656469612f79656f6d616e2d6d617374686561642e706e67)
 
 Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
 
