@@ -2,7 +2,7 @@ module.exports = function (grunt) {
 
 	'use strict';
 
-	/* 
+	/*
 	   Javascript settings - Edit this section
 	   ========================================================================== */
 	/**
@@ -11,6 +11,11 @@ module.exports = function (grunt) {
 	var jsFileList = [
 		'js/helpers/helpers.js',
 		'js/helpers/console.js',
+		<% if (jsLibs == 'jquery') {%>'js/libs/jquery/jquery-1.10.2.js',<% } %>
+		<% if (jsLibs == 'micro') {%>'bower_components/bean/bean.js',
+		'bower_components/bonzo/bonzo.js',
+		'bower_components/domready/domready.js',
+		'bower_components/qwery/qwery.js',<% } %>
 		'js/script.js'
 	];
 
@@ -18,7 +23,7 @@ module.exports = function (grunt) {
 	 * Specify your output directory
 	 */
 	var distDir = 'js/dist/';
-	
+
 	/**
 	 * Specify the name of your compiled JS file
 	 * which will be placed in the directory you define above
@@ -189,6 +194,31 @@ module.exports = function (grunt) {
 
 			}
 		}
+
+		<% if (jsLibs == 'jquery') {%>,
+
+		/**
+		 * Custom jQuery builder
+		 * Check build numbers at jquery.com
+		 */
+		jquery: {
+			build: {
+				options: {
+					prefix: "jquery-",
+					minify: true
+				},
+				output: "js/libs/jquery",
+				versions: {
+					// Add items to the below arrays to remove them from the build
+					// Remove everything we don't need from 2.x versions
+					"2.0.3": [ "deprecated", "dimensions", "offset", "wrap"],
+
+					// We can't remove sizzle from 1.x versions, so let's not specify it
+					"1.10.2": [ "deprecated", "dimensions", "offset", "wrap"]
+				}
+			}
+		}
+		<% } %>
 	});
 
 	// Load some stuff
@@ -198,6 +228,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-autoprefixer');
 	grunt.loadNpmTasks('grunt-csso');
+	<% if (jsLibs == 'jquery') {%>grunt.loadNpmTasks("grunt-jquery-builder");<% } %>
 
 
 	/**
@@ -206,6 +237,7 @@ module.exports = function (grunt) {
 	   * grunt watch  : run sass:dev, uglify and livereload
 	   * grunt dev    : run jshint, uglify and sass:dev
 	   * grunt deploy : run jshint, uglify and sass:production
+	   * grunt jquery : build custom version of jquery
 	 */
 
 	/**
@@ -215,7 +247,7 @@ module.exports = function (grunt) {
 	// Default task
 	grunt.registerTask('default', ['jshint', 'uglify', 'sass:dev']);
 
-	
+
 	/**
 	 * A task for development
 	 * run jshint, uglify and sass:dev

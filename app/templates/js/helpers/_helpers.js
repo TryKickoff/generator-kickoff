@@ -66,3 +66,11 @@ if (!Array.prototype.map) {
 		return results;
 	};
 }
+
+
+<% if (jsLibs == 'micro') {%>
+// Use dollar with bonzo
+function $(selector) {
+	return bonzo(qwery(selector));
+}
+<% } %>

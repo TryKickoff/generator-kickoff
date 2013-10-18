@@ -2,7 +2,13 @@
   "name": "<%= projectName %>",
   "version": "0.0.0",
   "dependencies": {
-    "kickoff": "~3.0.0"
+    <% if (jsLibs == 'micro') {%>
+      "bean": "*",
+      "bonzo": "*",
+      "qwery": "*",
+      "lodash": "*",
+      "domready": "*"
+    <% } %>
   },
   "devDependencies": {}
 }

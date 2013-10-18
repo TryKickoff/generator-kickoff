@@ -1,4 +1,5 @@
 {
+	"asi": true,
     "camelcase":  true,
     "curly": true,
     "debug":  true,
@@ -13,5 +14,7 @@
     "trailing":  true,
     "unused":  true,
     "white": false,
-    "jquery": true
+    "browser": true,
+    "devel": true
+    <% if (jsLibs == 'jquery') {%>,"jquery": true<% } %>
 }
