@@ -14,7 +14,7 @@ module.exports = function (grunt) {
 		<% if (jsLibs == 'jquery') {%>'js/libs/jquery/jquery-1.10.2.js',<% } %>
 		<% if (jsLibs == 'micro') {%>'bower_components/bean/bean.js',
 		'bower_components/bonzo/bonzo.js',
-		'bower_components/domready/domready.js',
+		'bower_components/domready/ready.js',
 		'bower_components/qwery/qwery.js',<% } %>
 		'js/script.js'
 	];

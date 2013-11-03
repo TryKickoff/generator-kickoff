@@ -13,7 +13,7 @@
 	   * Qwery   : CSS Selector engine - https://github.com/ded/qwery
 	   * domReady: Obvious             - https://github.com/ded/domready
 	   * lodash  : Utility library     - http://lodash.com/
-	    
+
 	   * Ajax not included. Consider adding https://github.com/ded/Reqwest
 	     bower install reqwest
 	   ========================================================================== */<% } %>
@@ -21,7 +21,7 @@
 ;(function (<%= jsNamespace %>) {
 <% } %>
 
-	<% if (jsLibs == 'jquery') {%>$(function() {<% } else if(jsLibs == 'micro') { %>$.domReady(function () {<% } %>
+	<% if (jsLibs == 'jquery') {%>$(function() {<% } else if(jsLibs == 'micro') { %>domready(function () {<% } %>
 		// Any globals go here in CAPS (but avoid if possible)
 
 		// follow a singleton pattern
