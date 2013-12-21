@@ -59,7 +59,7 @@ KickoffGenerator.prototype.askFor = function askFor() {
 					value: 'jquery'
 				},
 				{
-					name: 'Micro libraries',
+					name: 'Micro libraries (experimental)',
 					value: 'micro'
 				},
 				{
@@ -89,12 +89,15 @@ KickoffGenerator.prototype.app = function app() {
 	this.directory('js/libs', 'js/libs');
 	this.directory('js/dist', 'js/dist');
 	this.copy('js/helpers/_helpers.js', 'js/helpers/helpers.js');
+	this.copy('js/helpers/_getViewportDimensions.js', 'js/helpers/getViewportDimensions.js');
 	this.copy('js/helpers/console.js', 'js/helpers/console.js');
 	this.copy('js/helpers/cookies.js', 'js/helpers/cookies.js');
+	this.copy('js/helpers/log.js', 'js/helpers/log.js');
 
 	this.copy('_Gruntfile.js', 'Gruntfile.js');
 	this.copy('_package.json', 'package.json');
 	this.copy('_bower.json', 'bower.json');
+	this.copy('_docs/_styleguide.html', '_docs/styleguide.html');
 
 	this.template('_humans.txt', 'humans.txt');
 	this.copy('_jshintrc', '.jshintrc');
