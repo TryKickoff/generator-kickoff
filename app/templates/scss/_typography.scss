@@ -9,7 +9,7 @@
    * Quotes
    * Links
    * Helper classes
-   
+
    Body font size, leadings etc have been set in _variables.scss.
    The default typography has been built using gridlover.net with these settings:
    * Body font size    : 16
@@ -35,7 +35,6 @@ body {
 	@include font-size($base-font-size);
 	line-height: $base-leading;
 	color: $color-text;
-	background-color: $color-background;
 
 	// Two ways to smoothen type, they are disabled by default
 	// Enable only one of them if you need them
@@ -49,7 +48,7 @@ body {
 	// @include opacity(99);
 }
 
-/* 
+/*
    Paragraphs
    ========================================================================== */
 p {
@@ -70,9 +69,6 @@ p {
 /*
    Headings
    ========================================================================== */
-
-
-
 h1, h2, h3, h4, h5, h6 {
 	margin: 0;
 	font-family: $headings-font-family;
@@ -101,7 +97,7 @@ h2, .h2, .beta {
 h3, .h3, .gamma {
 	@include font-size($h3-size);
 	margin-top: 0;
-	margin-bottom: 0px;
+	margin-bottom: 0;
 }
 
 h4, .h4, .delta,
@@ -129,8 +125,8 @@ h6, .h6, .zeta {
 * + h3, * + .h3, * + .gamma,
 * + h4, * + .h4, * + .delta,
 * + h5, * + .h5, * + .epsilon,
-* + h6, * + .h6, * + .zeta, {
-  margin-top: $base-line-height + px;
+* + h6, * + .h6, * + .zeta {
+	margin-top: $base-line-height + px;
 }
 
 /*
@@ -202,7 +198,7 @@ nav ul, nav ol {
 }
 
 
-/* 
+/*
    Definition lists
    ========================================================================== */
 dl {
@@ -231,7 +227,7 @@ dd {
 }
 
 
-/* 
+/*
    Miscellaneous rules
    ========================================================================== */
 // Horizontal rules
@@ -263,7 +259,7 @@ abbr.initialism {
 	text-transform: uppercase;
 }
 
-/* 
+/*
    Blockquotes
    ========================================================================== */
 blockquote {
@@ -353,7 +349,7 @@ samp {
 }
 
 
-/* 
+/*
    Utilities
    ========================================================================== */
 .text-centre, .text-center { text-align: center;}
