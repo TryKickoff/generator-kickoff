@@ -1,12 +1,12 @@
 {
   "name": "generator-kickoff",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A generator for Yeoman",
   "keywords": [
     "yeoman-generator"
   ],
-  "homepage": "https://github.com/mrmartineau/generator-kickoff",
-  "bugs": "https://github.com/mrmartineau/generator-kickoff/issues",
+  "homepage": "https://github.com/tmwagency/generator-kickoff",
+  "bugs": "https://github.com/tmwagency/generator-kickoff/issues",
   "author": {
     "name": "Zander Martineau",
     "email": "",
@@ -15,7 +15,7 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mrmartineau/generator-kickoff.git"
+    "url": "git://github.com/tmwagency/generator-kickoff.git"
   },
   "scripts": {
     "test": "mocha"
