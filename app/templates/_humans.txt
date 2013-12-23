@@ -16,6 +16,7 @@
 
 # TECHNOLOGY COLOPHON
 
- * HTML5, CSS3
+ * HTML, CSS
+ * Grunt.js
  * Normalize.css, jQuery, Modernizr
  * Sublime Text
