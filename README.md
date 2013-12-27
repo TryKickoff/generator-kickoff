@@ -2,7 +2,7 @@
 ### Simple [Yeoman](http://yeoman.io) generator for the [Kickoff framework](https://github.com/tmwagency/kickoff/)
 [![NPM](https://nodei.co/npm/generator-kickoff.png?downloads=true&stars=true)](https://nodei.co/npm/generator-kickoff/)
 
-
+[![NPM version](https://badge.fury.io/js/generator-kickoff.png)](http://badge.fury.io/js/generator-kickoff) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/tmwagency/generator-kickoff/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 ## Getting Started
 
