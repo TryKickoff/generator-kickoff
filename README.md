@@ -1,7 +1,8 @@
-# generator-kickoff [![Build Status](https://secure.travis-ci.org/tmwagency/generator-kickoff.png?branch=master)](https://travis-ci.org/mrmartineau/generator-kickoff)
+# generator-kickoff
+### Simple [Yeoman](http://yeoman.io) generator for the [Kickoff framework](https://github.com/tmwagency/kickoff/)
+[![NPM](https://nodei.co/npm/generator-kickoff.png?downloads=true&stars=true)](https://nodei.co/npm/generator-kickoff/)
 
-Simple [Yeoman](http://yeoman.io) generator for the Kickoff framework
-
+[![NPM version](https://badge.fury.io/js/generator-kickoff.png)](http://badge.fury.io/js/generator-kickoff) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/tmwagency/generator-kickoff/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 ## Getting Started
 
@@ -47,5 +48,5 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
 
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/tmwagency/generator-kickoff/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
 
