@@ -70,8 +70,8 @@ module.exports = function (grunt) {
 					sourcemap : true
 				},
 				files: {
-					'css/kickoff.css': 'scss/kickoff.scss',
-					'css/kickoff-old-ie.css': 'scss/kickoff-old-ie.scss'
+					'css/<%=pkg.name%>.css': 'scss/kickoff.scss',
+					'css/<%=pkg.name%>-old-ie.css': 'scss/kickoff-old-ie.scss'
 				}
 			},
 			production: {
@@ -81,8 +81,8 @@ module.exports = function (grunt) {
 					sourcemap : true
 				},
 				files: {
-					'css/kickoff.css': 'scss/kickoff.scss',
-					'css/kickoff-old-ie.css': 'scss/kickoff-old-ie.scss'
+					'css/<%=pkg.name%>.css': 'scss/kickoff.scss',
+					'css/<%=pkg.name%>-old-ie.css': 'scss/kickoff-old-ie.scss'
 				}
 			},
 			styleguide: {
@@ -117,16 +117,13 @@ module.exports = function (grunt) {
 				report: 'gzip',
 
 				// sourceMap: @string. The location of the source map, relative to the project
-				sourceMap: jsFile + '.map',
+				sourceMap: distDir + jsFile + '.map',
 
 				// sourceMappingURL: @string. The string that is printed to the final file
-				sourceMappingURL: '../../'+ jsFile +'.map'
+				sourceMappingURL: jsFile +'.map',
 
 				// sourceMapRoot: @string. The location where your source files can be found. This sets the sourceRoot field in the source map.
-				// sourceMapRoot: 'js',
-
-				// sourceMapPrefix: @integer. The number of directories to drop from the path prefix when declaring files in the source map.
-				// sourceMapPrefix: 1,
+				sourceMapRoot: '../../'
 
 			},
 
@@ -171,6 +168,22 @@ module.exports = function (grunt) {
 
 
 		/**
+		 * Connect
+		 * https://github.com/gruntjs/grunt-contrib-connect
+		 * Start a static web server
+		 */
+		connect: {
+			server: {
+				options: {
+					// port: 9001,
+					open: true,
+					livereload: true
+				}
+			}
+		},
+
+
+		/**
 		 * Autoprefixer
 		 * https://github.com/ai/autoprefixer
 		 * Auto prefixes your CSS using caniuse data
@@ -184,8 +197,8 @@ module.exports = function (grunt) {
 					browsers: ['last 2 versions', '> 1%', 'ie 8', 'ie 7']
 				},
 				files: {
-					'css/kickoff.prefixed.css': 'css/kickoff.css',
-					'css/kickoff-old-ie.prefixed.css': 'css/kickoff-old-ie.css'
+					'css/<%=pkg.name%>.prefixed.css': 'css/<%=pkg.name%>.css',
+					'css/<%=pkg.name%>-old-ie.prefixed.css': 'css/<%=pkg.name%>-old-ie.css'
 				}
 			}
 		},
@@ -199,8 +212,8 @@ module.exports = function (grunt) {
 		csso: {
 			dist: {
 				files: {
-					'css/kickoff.min.css': ['css/kickoff.prefixed.css'],
-					'css/kickoff-old-ie.min.css': ['css/kickoff-old-ie.prefixed.css']
+					'css/<%=pkg.name%>.min.css': ['css/<%=pkg.name%>.prefixed.css'],
+					'css/<%=pkg.name%>-old-ie.min.css': ['css/<%=pkg.name%>-old-ie.prefixed.css']
 				},
 
 			}
@@ -232,14 +245,8 @@ module.exports = function (grunt) {
 		<% } %>
 	});
 
-	// Load some stuff
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-sass');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-autoprefixer');
-	grunt.loadNpmTasks('grunt-csso');
-	<% if (jsLibs == 'jquery') {%>grunt.loadNpmTasks("grunt-jquery-builder");<% } %>
+	// Load all the grunt tasks
+	require('load-grunt-tasks')(grunt);
 
 
 	/**
@@ -271,5 +278,12 @@ module.exports = function (grunt) {
 	 */
 	grunt.registerTask('deploy', ['jshint', 'uglify', 'sass:production']);
 	// grunt.registerTask('production', ['jshint', 'uglify', 'sass:production', 'autoprefixer', 'csso']);
+
+
+	/**
+	 * A task for for a static server with a watch
+	 * run connect and watch
+	 */
+	grunt.registerTask("serve", ["connect", "watch"]);
 
 };
