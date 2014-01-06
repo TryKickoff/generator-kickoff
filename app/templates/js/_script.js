@@ -3,9 +3,9 @@
 	Authors: <%= devNames %>
 */
 
-// Create a closure to maintain scope of the '$' and <%= jsNamespace %>
+// Create a closure to maintain scope of the '$' and <%= jsNamespace.toUpperCase() %>
 <% if (jsLibs == 'jquery' || jsLibs == 'micro') {%>
-;(function (<%= jsNamespace %>, $) {
+;(function (<%= jsNamespace.toUpperCase() %>, $) {
 	<% if (jsLibs == 'micro') {%>/* ==========================================================================
 	   Micro libraries
 	   * Bean    : Events API          - https://github.com/fat/bean
@@ -18,7 +18,7 @@
 	     bower install reqwest
 	   ========================================================================== */<% } %>
 <% } else { %>
-;(function (<%= jsNamespace %>) {
+;(function (<%= jsNamespace.toUpperCase() %>) {
 <% } %>
 
 	<% if (jsLibs == 'jquery') {%>$(function() {<% } else if(jsLibs == 'micro') { %>domready(function () {<% } %>
@@ -27,12 +27,12 @@
 		// follow a singleton pattern
 		// (http://addyosmani.com/resources/essentialjsdesignpatterns/book/#singletonpatternjavascript)
 
-		<%= jsNamespace %>.Config.init();
+		<%= jsNamespace.toUpperCase() %>.Config.init();
 
 	});// END DOC READY
 
 
-	<%= jsNamespace %>.Config = {
+	<%= jsNamespace.toUpperCase() %>.Config = {
 		variableX : '', // please don't keep me - only for example syntax!
 
 		init : function () {
@@ -42,9 +42,9 @@
 
 	// Example module
 	/*
-	<%= jsNamespace %>.Ui = {
+	<%= jsNamespace.toUpperCase() %>.Ui = {
 		init : function() {
-			<%= jsNamespace %>.Ui.modal();
+			<%= jsNamespace.toUpperCase() %>.Ui.modal();
 		},
 
 		modal : function() {
@@ -54,9 +54,9 @@
 	*/
 
 <% if (jsLibs == 'micro') {%>
-})(window.<%= jsNamespace %> = window.<%= jsNamespace %> || {}, bonzo);
+})(window.<%= jsNamespace.toUpperCase() %> = window.<%= jsNamespace.toUpperCase() %> || {}, bonzo);
 <% } else if (jsLibs == 'jquery') { %>
-})(window.<%= jsNamespace %> = window.<%= jsNamespace %> || {}, jQuery);
+})(window.<%= jsNamespace.toUpperCase() %> = window.<%= jsNamespace.toUpperCase() %> || {}, jQuery);
 <% } else { %>
-})(window.<%= jsNamespace %> = window.<%= jsNamespace %> || {});
+})(window.<%= jsNamespace.toUpperCase() %> = window.<%= jsNamespace.toUpperCase() %> || {});
 <% } %>

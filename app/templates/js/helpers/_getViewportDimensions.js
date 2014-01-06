@@ -6,12 +6,12 @@
    partially support position: fixed like iOS4 and such...
 
    Usage:
-   * $('.spotlight').css( <%= jsNamespace %>.getViewportDimensions() );
-   * $('.spotlight').css('height', <%= jsNamespace %>.getViewportDimensions().height);
-   * var viewportwidth = <%= jsNamespace %>.getViewportDimensions.width;
+   * $('.spotlight').css( <%= jsNamespace.toUpperCase() %>.getViewportDimensions() );
+   * $('.spotlight').css('height', <%= jsNamespace.toUpperCase() %>.getViewportDimensions().height);
+   * var viewportwidth = <%= jsNamespace.toUpperCase() %>.getViewportDimensions.width;
    ========================================================================== */
-;(function (<%= jsNamespace %>) {
-	<%= jsNamespace %>.getViewportDimensions = function getViewportDimensions(){
+;(function (<%= jsNamespace.toUpperCase() %>) {
+	<%= jsNamespace.toUpperCase() %>.getViewportDimensions = function getViewportDimensions(){
 		var test = document.createElement( "div" );
 
 		test.style.cssText = "position: fixed;top: 0;left: 0;bottom: 0;right: 0;";
@@ -22,4 +22,4 @@
 
 		return dims;
 	};
-})(window.<%= jsNamespace %> = window.<%= jsNamespace %> || {});
+})(window.<%= jsNamespace.toUpperCase() %> = window.<%= jsNamespace.toUpperCase() %> || {});

@@ -70,8 +70,8 @@ module.exports = function (grunt) {
 					sourcemap : true
 				},
 				files: {
-					'css/<%=pkg.name%>.css': 'scss/kickoff.scss',
-					'css/<%=pkg.name%>-old-ie.css': 'scss/kickoff-old-ie.scss'
+					'css/<%= _.slugify(projectName) %>.css': 'scss/kickoff.scss',
+					'css/<%= _.slugify(projectName) %>-old-ie.css': 'scss/kickoff-old-ie.scss'
 				}
 			},
 			production: {
@@ -81,8 +81,8 @@ module.exports = function (grunt) {
 					sourcemap : true
 				},
 				files: {
-					'css/<%=pkg.name%>.css': 'scss/kickoff.scss',
-					'css/<%=pkg.name%>-old-ie.css': 'scss/kickoff-old-ie.scss'
+					'css/<%= _.slugify(projectName) %>.css': 'scss/kickoff.scss',
+					'css/<%= _.slugify(projectName) %>-old-ie.css': 'scss/kickoff-old-ie.scss'
 				}
 			},
 			styleguide: {
@@ -197,8 +197,8 @@ module.exports = function (grunt) {
 					browsers: ['last 2 versions', '> 1%', 'ie 8', 'ie 7']
 				},
 				files: {
-					'css/<%=pkg.name%>.prefixed.css': 'css/<%=pkg.name%>.css',
-					'css/<%=pkg.name%>-old-ie.prefixed.css': 'css/<%=pkg.name%>-old-ie.css'
+					'css/<%= _.slugify(projectName) %>.prefixed.css': 'css/<%= _.slugify(projectName) %>.css',
+					'css/<%= _.slugify(projectName) %>-old-ie.prefixed.css': 'css/<%= _.slugify(projectName) %>-old-ie.css'
 				}
 			}
 		},
@@ -212,8 +212,8 @@ module.exports = function (grunt) {
 		csso: {
 			dist: {
 				files: {
-					'css/<%=pkg.name%>.min.css': ['css/<%=pkg.name%>.prefixed.css'],
-					'css/<%=pkg.name%>-old-ie.min.css': ['css/<%=pkg.name%>-old-ie.prefixed.css']
+					'css/<%= _.slugify(projectName) %>.min.css': ['css/<%= _.slugify(projectName) %>.prefixed.css'],
+					'css/<%= _.slugify(projectName) %>-old-ie.min.css': ['css/<%= _.slugify(projectName) %>-old-ie.prefixed.css']
 				},
 
 			}

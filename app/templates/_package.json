@@ -1,5 +1,5 @@
 {
-  "name": "kickoff",
+  "name": "<%= _.slugify(projectName) %>",
   "title": "Kickoff",
   "description": "A lightweight front-end framework for creating scalable, responsive sites",
   "version": "3.3.0",
@@ -28,10 +28,9 @@
     "grunt-contrib-uglify": "~0.2.7",
     "grunt": "~0.4.2",
     "grunt-csso": "~0.5.2",
-    "load-grunt-tasks": "~0.2.1",
     "grunt-contrib-connect": "~0.5.0",
-    "load-grunt-tasks": "~0.2.1",
-    <% if (jsLibs == 'jquery') {%>,"grunt-jquery-builder": "~0.1.1"<% } %>
+    "load-grunt-tasks": "~0.2.1"<% if (jsLibs == 'jquery') {%>,
+    "grunt-jquery-builder": "~0.1.1"<% } %>
   },
   "keywords": []
 }
