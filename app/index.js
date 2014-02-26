@@ -36,38 +36,42 @@ KickoffGenerator.prototype.askFor = function askFor() {
 	var logger = chalk.magenta('\n\n   ##  ## ######  ####  ##  ##  ####  ###### ######\n   ## ##    ##   ##  ## ## ##  ##  ## ##     ##\n   ####     ##   ##     ####   ##  ## ####   ####\n   ## ##    ##   ##  ## ## ##  ##  ## ##     ##\n   ##  ## ######  ####  ##  ##  ####  ##     ##') + '\n\n   Created by ' + chalk.yellow('@MrMartineau') + ' & ' + chalk.cyan('@AshNolan_') + '\n   http://tmwagency.github.io/kickoff/\n';
 	console.log(logger);
 
-	var prompts =
-	[
+	var prompts = [
 		{
 			name: 'projectName',
-			message: 'Name this project'
+			message: 'Name this project',
+			default: 'Kickoff'
 		},
 		{
 			name: 'devNames',
-			message: 'What are the project developer\'s names?'
+			message: 'What are the project developer\'s names?',
+			default: 'The Kickoff Team'
 		},
 		{
 			name: 'jsNamespace',
-			message: 'What javascript namespace would you like to use?'
+			message: 'Choose your javascript namespace',
+			default: 'KO'
 		},
 		{
 			name: 'jsLibs',
 			type: 'list',
-			message: 'Which Javascript library do you want to use?',
+			message: 'Which Javascript library would you like to use?',
 			choices: [
 				{
 					name: 'jQuery',
 					value: 'jquery'
 				},
 				{
-					name: 'Micro libraries (experimental)',
-					value: 'micro'
-				},
-				{
 					name: 'None',
 					value: 'none'
 				}
 			]
+		},
+		{
+			name: 'jsMobileDev',
+			type: 'confirm',
+			message: 'Do you need any dependencies for mobile?',
+			default: true
 		}
 	];
 
@@ -76,6 +80,7 @@ KickoffGenerator.prototype.askFor = function askFor() {
 		this.devNames = props.devNames;
 		this.jsNamespace = props.jsNamespace;
 		this.jsLibs = props.jsLibs;
+		this.jsMobileDev = props.jsMobileDev;
 
 		cb();
 	}.bind(this));
