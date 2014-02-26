@@ -87,26 +87,27 @@ KickoffGenerator.prototype.askFor = function askFor() {
 };
 
 KickoffGenerator.prototype.app = function app() {
-	this.copy('_index.html', 'index.html');
+	this.template('_index.html', 'index.html');
+	this.template('_docs/_styleguide.html', '_docs/styleguide.html');
 
 	this.directory('scss', 'scss');
 
-	this.copy('js/_script.js', 'js/script.js');
+	this.template('js/_script.js', 'js/script.js');
 	this.directory('js/libs', 'js/libs');
 	this.directory('js/dist', 'js/dist');
-	this.copy('js/helpers/_helpers.js', 'js/helpers/helpers.js');
-	this.copy('js/helpers/_getViewportDimensions.js', 'js/helpers/getViewportDimensions.js');
+	this.template('js/helpers/_helpers.js', 'js/helpers/helpers.js');
+	this.template('js/helpers/_getViewportDimensions.js', 'js/helpers/getViewportDimensions.js');
 	this.copy('js/helpers/console.js', 'js/helpers/console.js');
-	this.copy('js/helpers/cookies.js', 'js/helpers/cookies.js');
+	this.template('js/helpers/_cookies.js', 'js/helpers/cookies.js');
+	this.template('js/helpers/_trak.js', 'js/helpers/trak.js');
 	this.copy('js/helpers/log.js', 'js/helpers/log.js');
 
-	this.copy('_Gruntfile.js', 'Gruntfile.js');
-	this.copy('_package.json', 'package.json');
-	this.copy('_bower.json', 'bower.json');
-	this.copy('_docs/_styleguide.html', '_docs/styleguide.html');
+	this.template('_Gruntfile.js', 'Gruntfile.js');
+	this.template('_package.json', 'package.json');
+	this.template('_bower.json', 'bower.json');
 
 	this.template('_humans.txt', 'humans.txt');
-	this.copy('_jshintrc', '.jshintrc');
+	this.template('_jshintrc', '.jshintrc');
 	this.copy('editorconfig', '.editorconfig');
 	this.copy('gitignore', '.gitignore');
 };
