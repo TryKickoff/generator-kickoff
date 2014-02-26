@@ -1,14 +1,8 @@
 {
-  "name": "<%= projectName %>",
-  "version": "0.0.1",
+  "name": "<%= _.slugify(projectName) %>",
+  "version": "1.0.0",
   "dependencies": {
-    <% if (jsLibs == 'micro') {%>
-      "bean": "*",
-      "bonzo": "*",
-      "qwery": "*",
-      "lodash": "*",
-      "domready": "*"
-    <% } %>
+    <% if (jsMobileDev == true) {%>"swiftclick": "*",<% } %>
   },
   "devDependencies": {}
 }
