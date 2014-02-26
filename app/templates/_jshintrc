@@ -1,20 +1,19 @@
 {
-	"asi": true,
-    "camelcase":  true,
-    "curly": true,
-    "debug":  true,
-    "forin": true,
-    "latedef":  true,
-    "laxcomma":  true,
-    "maxerr": "50",
-    "noarg": true,
-    "noempty": true,
-    "smarttabs": false,
-    "strict": false,
-    "trailing":  true,
-    "unused":  true,
-    "white": false,
-    "browser": true,
-    "devel": true
-    <% if (jsLibs == 'jquery') {%>,"jquery": true<% } %>
+	"camelcase":  true,
+	"curly": true,
+	"debug":  true,
+	"forin": true,
+	"latedef":  true,
+	"laxcomma":  true,
+	"maxerr": "50",
+	"noarg": true,
+	"noempty": true,
+	"smarttabs": false,
+	"strict": false,
+	"trailing":  true,
+	"unused":  true,
+	"white": false,
+	"browser": true,
+	"devel": true
+	<% if (jsLibs == 'jquery') {%>,"jquery": true<% } %>
 }
