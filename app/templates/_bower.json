@@ -2,7 +2,7 @@
   "name": "<%= _.slugify(projectName) %>",
   "version": "1.0.0",
   "dependencies": {
-    <% if (jsMobileDev == true) {%>"swiftclick": "*",<% } %>
+    <% if (jsMobileDev == true) {%>"swiftclick": "*"<% } %>
   },
   "devDependencies": {}
 }
