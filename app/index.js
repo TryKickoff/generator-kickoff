@@ -12,17 +12,16 @@ var KickoffGenerator = module.exports = function KickoffGenerator(args, options,
 
 	this.on('end', function () {
 		this.installDependencies({ skipInstall: options['skip-install'],
-		callback: function() {
+		callback: function () {
 			// Emit a new event - dependencies installed
 			this.emit('dependenciesInstalled');
 		}.bind(this) });
 	});
 
 	// Now you can bind to the dependencies installed event
-	this.on('dependenciesInstalled', function() {
-		if (this.jsLibs == 'jquery') { this.spawnCommand('grunt', ['jquery']); }
-		this.spawnCommand('grunt', ['sass:dev', 'uglify']);
-		this.spawnCommand('grunt', ['watch']);
+	this.on('dependenciesInstalled', function () {
+		if (this.jsLibs === 'jquery') { this.spawnCommand('grunt', ['jquery']); }
+		this.spawnCommand('grunt', ['serve']);
 	});
 };
 
@@ -31,10 +30,10 @@ util.inherits(KickoffGenerator, yeoman.generators.Base);
 KickoffGenerator.prototype.askFor = function askFor() {
 	var cb = this.async();
 
-	// have Yeoman greet the user.
+	// Have Yeoman greet the user.
 	// console.log(this.yeoman);
-	var logger = chalk.magenta('\n\n   ##  ## ######  ####  ##  ##  ####  ###### ######\n   ## ##    ##   ##  ## ## ##  ##  ## ##     ##\n   ####     ##   ##     ####   ##  ## ####   ####\n   ## ##    ##   ##  ## ## ##  ##  ## ##     ##\n   ##  ## ######  ####  ##  ##  ####  ##     ##') + '\n\n   Created by ' + chalk.yellow('@MrMartineau') + ' & ' + chalk.cyan('@AshNolan_') + '\n   http://tmwagency.github.io/kickoff/\n';
-	console.log(logger);
+	var kickoffWelcome = chalk.magenta('\n\n   ##  ## ######  ####  ##  ##  ####  ###### ######\n   ## ##    ##   ##  ## ## ##  ##  ## ##     ##\n   ####     ##   ##     ####   ##  ## ####   ####\n   ## ##    ##   ##  ## ## ##  ##  ## ##     ##\n   ##  ## ######  ####  ##  ##  ####  ##     ##') + '\n\n   Created by ' + chalk.yellow('@MrMartineau') + ' & ' + chalk.cyan('@AshNolan_') + '\n   http://tmwagency.github.io/kickoff/\n';
+	console.log(kickoffWelcome);
 
 	var prompts = [
 		{
