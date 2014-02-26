@@ -247,9 +247,9 @@ module.exports = function (grunt) {
 			options: {
 				config: ".jscs.json"
 			}
-		},
+		}
 
-		<% if (jsLibs == 'jquery') {%>,
+		<% if (jsLibs === 'jquery') {%>,
 		/**
 		 * Custom jQuery builder
 		 * Check build numbers at jquery.com
