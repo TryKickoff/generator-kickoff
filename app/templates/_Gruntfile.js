@@ -6,7 +6,7 @@ module.exports = function (grunt) {
 	 */
 	grunt.initConfig({
 		pkg: require('./package'), // <%%= pkg.name %>
-
+		<% if (statix == true) {%>site: grunt.file.readYAML('src/data/site.yml'),<% } %>
 		/**
 		 * Config - Edit this section
 		 * ==========================
@@ -42,25 +42,44 @@ module.exports = function (grunt) {
 		watch: {
 			scss: {
 				files: ['scss/**/*.scss'],
+				<% if (statix == true) {%>
+				tasks: ['sass:kickoff', 'sass:styleguide', 'autoprefixer:dist', 'copy:css']
+				<% } else { %>
 				tasks: ['sass:kickoff', 'sass:styleguide', 'autoprefixer:dist']
+				<% } %>
 			},
 
 			js: {
 				files: ['<%%= config.js.fileList %>', 'Gruntfile.js'],
+				<% if (statix == true) {%>
+				tasks: ['uglify', 'copy:js']
+				<% } else { %>
 				tasks: ['uglify']
+				<% } %>
 			},
 
 			livereload: {
 				options: { livereload: true },
-				files: [
-					'css/*.css'
-				]
+				<% if (statix == true) {%>
+				files: ['dist/css/*.css']
+				<% } else { %>
+				files: ['css/*.css']
+				<% } %>
 			},
 
 			grunticon : {
 				files: ['img/src/*.svg', 'img/src/*.png'],
 				tasks: ['svgmin', 'grunticon']
 			}
+
+			<% if (statix === true) {%>,
+			assemble : {
+				files: ['src/templates/**/*.hbs', 'src/templates/**/*.md'],
+				tasks: ['clean', 'assemble', 'newer:copy'],
+				options: {
+					livereload: true
+				}
+			}<% } %>
 		},
 
 
@@ -219,6 +238,9 @@ module.exports = function (grunt) {
 					// hostname: 'mysite.local',
 					open: true,
 					livereload: true
+					<% if (statix == true) {%>
+					,base: 'dist'
+					<% } %>
 				}
 			}
 		},
@@ -272,10 +294,89 @@ module.exports = function (grunt) {
 			}
 		}
 		<% } %>
+
+
+		<% if (statix === true) {%>,
+		/**
+		 * Assemble
+		 * http://assemble.io/
+		 * Static site generator
+		 */
+		assemble: {
+			options: {
+				data: 'src/**/*.{json,yml}',
+				assets: '<%%= site.destination %>/assets',
+				helpers: ['helper-moment', 'handlebars-helper-eachitems', 'src/helpers/helper-*.js'],
+
+				partials: ['src/templates/includes/**/*.hbs'],
+				flatten: false,
+
+				layout: 'default.hbs',
+				layoutdir: 'src/templates/layouts'
+			},
+
+			default: {
+				files: [{
+					cwd: './src/templates/pages/',
+					dest: '<%%= site.destination %>',
+					expand: true,
+					src: ['**/*.hbs']
+				}]
+			}
+		},
+
+
+		/**
+		 * Copy
+		 * https://github.com/gruntjs/grunt-contrib-copy
+		 * Copy files and folders.
+		 */
+		copy: {
+			dist: {
+				files: [
+					{ expand: true, cwd: './css', src: ['./**/*.*'], dest: 'dist/assets/css' },
+					{ expand: true, cwd: './js', src: ['./**/*.*'], dest: 'dist/assets/js' },
+					{ expand: true, cwd: './img', src: ['./**/*.*'], dest: 'dist/assets/img' },
+					{ expand: true, cwd: './fonts', src: ['./**/*.*'], dest: 'dist/assets/fonts' }
+				]
+			},
+			css: {
+				files: [
+					{ expand: true, cwd: './css', src: ['./**/*.*'], dest: 'dist/assets/css' }
+				]
+			},
+			img: {
+				files: [
+					{ expand: true, cwd: './img', src: ['./**/*.*'], dest: 'dist/assets/img' }
+				]
+			},
+			fonts: {
+				files: [
+					{ expand: true, cwd: './fonts', src: ['./**/*.*'], dest: 'dist/assets/fonts' }
+				]
+			},
+			js: {
+				files: [
+					{ expand: true, cwd: './js', src: ['./**/*.*'], dest: 'dist/assets/js' }
+				]
+			}
+		},
+
+
+		/**
+		 * Clean
+		 * https://github.com/gruntjs/grunt-contrib-clean
+		 * Clear files and folders.
+		 */
+		clean: {
+			all: ['dist/**/*.html']
+		}
+		<% } %>
 	});
 
 	// Load all the grunt tasks
 	require('load-grunt-tasks')(grunt);
+	<% if (statix === true) {%>grunt.loadNpmTasks('assemble');<% } %>
 
 
 	/* ==========================================================================
@@ -294,41 +395,83 @@ module.exports = function (grunt) {
 	 * run jshint, uglify and sass:kickoff
 	 */
 	// Default task
+	<% if (statix === true) {%>
 	grunt.registerTask('default', [
-		'jshint',
+		'uglify',
+		'sass:kickoff',
+		'autoprefixer:dist',
+		'copy',
+		'assemble'
+	]);
+	<% } else { %>
+	grunt.registerTask('default', [
 		'uglify',
 		'sass:kickoff',
 		'autoprefixer:dist'
 	]);
+	<% } %>
 
 
 	/**
 	 * GRUNT DEV * A task for development
 	 * run jshint, uglify and sass:kickoff
 	 */
+	<% if (statix === true) {%>
+	grunt.registerTask('dev', [
+		'uglify',
+		'sass:kickoff',
+		'autoprefixer:dist',
+		'copy',
+		'assemble'
+	]);
+	<% } else { %>
 	grunt.registerTask('dev', [
 		'uglify',
 		'sass:kickoff',
 		'autoprefixer:dist'
 	]);
+	<% } %>
 
 
 	/**
 	 * GRUNT DEPLOY * A task for your production environment
 	 * run jshint, uglify and sass:production
 	 */
+	<% if (statix === true) {%>
+	grunt.registerTask('deploy', [
+		'uglify',
+		'sass:kickoff',
+		'autoprefixer:dist',
+		'csso',
+		'copy',
+		'assemble'
+	]);
+	<% } else { %>
 	grunt.registerTask('deploy', [
 		'uglify',
 		'sass:kickoff',
 		'autoprefixer:dist',
 		'csso'
 	]);
+	<% } %>
 
 
 	/**
 	 * GRUNT SERVE * A task for for a static server with a watch
 	 * run connect and watch
 	 */
+	<% if (statix === true) {%>
+	grunt.registerTask("serve", [
+		'uglify',
+		'sass:kickoff',
+		'sass:styleguide',
+		'autoprefixer:dist',
+		'copy',
+		'assemble',
+		'connect',
+		'watch'
+	]);
+	<% } else { %>
 	grunt.registerTask("serve", [
 		'uglify',
 		'sass:kickoff',
@@ -337,6 +480,7 @@ module.exports = function (grunt) {
 		'connect',
 		'watch'
 	]);
+	<% } %>
 
 	/**
 	 * TODO:

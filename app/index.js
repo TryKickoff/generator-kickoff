@@ -38,7 +38,7 @@ KickoffGenerator.prototype.askFor = function askFor() {
 	var prompts = [
 		{
 			name: 'projectName',
-			message: 'Name this project',
+			message: 'Project name',
 			default: 'Kickoff'
 		},
 		{
@@ -50,6 +50,12 @@ KickoffGenerator.prototype.askFor = function askFor() {
 			name: 'jsNamespace',
 			message: 'Choose your javascript namespace',
 			default: 'KO'
+		},
+		{
+			name: 'statix',
+			type: 'confirm',
+			message: 'Do you want to use Kickoff Statix?',
+			default: false
 		},
 		{
 			name: 'jsLibs',
@@ -74,11 +80,16 @@ KickoffGenerator.prototype.askFor = function askFor() {
 		}
 	];
 
+	/**
+	 * If you add a prompt above, make sure you add it below here as well
+	 * e.g this.newName = props.newName;
+	 */
 	this.prompt(prompts, function (props) {
 		this.projectName = props.projectName;
-		this.devNames = props.devNames;
+		this.devNames    = props.devNames;
 		this.jsNamespace = props.jsNamespace;
-		this.jsLibs = props.jsLibs;
+		this.statix      = props.statix;
+		this.jsLibs      = props.jsLibs;
 		this.jsMobileDev = props.jsMobileDev;
 
 		cb();
@@ -109,4 +120,9 @@ KickoffGenerator.prototype.app = function app() {
 	this.template('_jshintrc', '.jshintrc');
 	this.copy('editorconfig', '.editorconfig');
 	this.copy('gitignore', '.gitignore');
+
+	if ( this.statix ) {
+		this.directory('src', 'src');
+		this.directory('dist', 'dist');
+	}
 };
