@@ -120,6 +120,8 @@ KickoffGenerator.prototype.app = function app() {
 	this.template('_jshintrc', '.jshintrc');
 	this.copy('editorconfig', '.editorconfig');
 	this.copy('gitignore', '.gitignore');
+	this.copy('bowerrc', '.bowerrc');
+	this.copy('jscs.json', '.jscs.json');
 
 	if ( this.statix ) {
 		this.directory('src', 'src');
