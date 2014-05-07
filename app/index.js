@@ -123,8 +123,9 @@ KickoffGenerator.prototype.app = function app() {
 	this.copy('bowerrc', '.bowerrc');
 	this.copy('jscs.json', '.jscs.json');
 
-	if ( this.statix ) {
+	if (this.statix) {
 		this.directory('src', 'src');
 		this.directory('dist', 'dist');
+		this.template('src/templates/includes/_html_start.hbs', 'src/templates/includes/html_start.hbs');
 	}
 };

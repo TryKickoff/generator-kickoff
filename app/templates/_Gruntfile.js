@@ -136,7 +136,7 @@ module.exports = function (grunt) {
 				files: {
 					'css/<%= _.slugify(projectName) %>.css'       : 'css/kickoff.css',
 					'css/<%= _.slugify(projectName) %>-old-ie.css': 'css/kickoff-old-ie.css',
-					'css/styleguide.css'    : 'css/styleguide.css'
+					'css/styleguide.css'                          : 'css/styleguide.css'
 				}
 			}
 		},
@@ -334,30 +334,30 @@ module.exports = function (grunt) {
 		copy: {
 			dist: {
 				files: [
-					{ expand: true, cwd: './css', src: ['./**/*.*'], dest: 'dist/assets/css' },
-					{ expand: true, cwd: './js', src: ['./**/*.*'], dest: 'dist/assets/js' },
-					{ expand: true, cwd: './img', src: ['./**/*.*'], dest: 'dist/assets/img' },
-					{ expand: true, cwd: './fonts', src: ['./**/*.*'], dest: 'dist/assets/fonts' }
+					{ expand: true, cwd: './css', src: ['./**/*.*'], dest: '<%%= site.destination %>/assets/css' },
+					{ expand: true, cwd: './js', src: ['./**/*.*'], dest: '<%%= site.destination %>/assets/js' },
+					{ expand: true, cwd: './img', src: ['./**/*.*'], dest: '<%%= site.destination %>/assets/img' },
+					{ expand: true, cwd: './fonts', src: ['./**/*.*'], dest: '<%%= site.destination %>/assets/fonts' }
 				]
 			},
 			css: {
 				files: [
-					{ expand: true, cwd: './css', src: ['./**/*.*'], dest: 'dist/assets/css' }
+					{ expand: true, cwd: './css', src: ['./**/*.*'], dest: '<%%= site.destination %>/assets/css' }
 				]
 			},
 			img: {
 				files: [
-					{ expand: true, cwd: './img', src: ['./**/*.*'], dest: 'dist/assets/img' }
+					{ expand: true, cwd: './img', src: ['./**/*.*'], dest: '<%%= site.destination %>/assets/img' }
 				]
 			},
 			fonts: {
 				files: [
-					{ expand: true, cwd: './fonts', src: ['./**/*.*'], dest: 'dist/assets/fonts' }
+					{ expand: true, cwd: './fonts', src: ['./**/*.*'], dest: '<%%= site.destination %>/assets/fonts' }
 				]
 			},
 			js: {
 				files: [
-					{ expand: true, cwd: './js', src: ['./**/*.*'], dest: 'dist/assets/js' }
+					{ expand: true, cwd: './js', src: ['./**/*.*'], dest: '<%%= site.destination %>/assets/js' }
 				]
 			}
 		},
@@ -369,7 +369,7 @@ module.exports = function (grunt) {
 		 * Clear files and folders.
 		 */
 		clean: {
-			all: ['dist/**/*.html']
+			all: ['<%%= site.destination %>/**/*.html']
 		}
 		<% } %>
 	});
