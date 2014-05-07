@@ -134,8 +134,8 @@ module.exports = function (grunt) {
 					map: true
 				},
 				files: {
-					'css/<%= _.slugify(projectName) %>.css'       : 'css/kickoff.css',
-					'css/<%= _.slugify(projectName) %>-old-ie.css': 'css/kickoff-old-ie.css',
+					'css/<%= _.slugify(projectName) %>.css'       : 'css/<%= _.slugify(projectName) %>.css',
+					'css/<%= _.slugify(projectName) %>-old-ie.css': 'css/<%= _.slugify(projectName) %>-old-ie.css',
 					'css/styleguide.css'                          : 'css/styleguide.css'
 				}
 			}
