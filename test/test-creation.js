@@ -1,9 +1,7 @@
-/*global describe, beforeEach, it*/
+/*global describe, beforeEach, it */
 'use strict';
-
-var path    = require('path');
+var path = require('path');
 var helpers = require('yeoman-generator').test;
-
 
 describe('kickoff generator', function () {
   beforeEach(function (done) {
@@ -31,7 +29,7 @@ describe('kickoff generator', function () {
     });
     this.app.options['skip-install'] = true;
     this.app.run({}, function () {
-      helpers.assertFiles(expected);
+      helpers.assertFile(expected);
       done();
     });
   });

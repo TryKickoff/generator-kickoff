@@ -2,8 +2,9 @@
   "name": "<%= _.slugify(projectName) %>",
   "version": "1.0.0",
   "dependencies": {
-    <% if (jsMobileDev == true) {%>"swiftclick": "*"<% } %>
-  },
-  "devDependencies": {}
+    <% if (jsLibs.indexOf('swiftclick') != -1) {%>"swiftclick": "*",<% } %>
+    <% if (jsLibs.indexOf('trak') != -1) {%>"trak": "*",<% } %>
+    <% if (jsLibs.indexOf('cookies') != -1) {%>"cookies-js": "*"<% } %>
+  }
 }
 

@@ -5,39 +5,35 @@
   "keywords": [
     "yeoman-generator"
   ],
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "tmwagency/generator-kickoff",
   "homepage": "https://github.com/tmwagency/generator-kickoff",
   "bugs": "https://github.com/tmwagency/generator-kickoff/issues",
   "author": {
     "name": "Zander Martineau",
-    "email": "",
     "url": "https://github.com/mrmartineau"
   },
-  "main": "app/index.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/tmwagency/generator-kickoff.git"
+  "engines": {
+    "node": ">=0.10.0"
   },
   "scripts": {
     "test": "mocha"
   },
+  "files": [
+    "app"
+  ],
   "dependencies": {
-    "yeoman-generator": "~0.14.0",
-    "chalk": "~0.3.0",
-    "underscore.string": "~2.3.3"
+    "chalk": "~0.4.0",
+    "underscore.string": "~2.3.3",
+    "update-notifier": "^0.1.10",
+    "yeoman-generator": "~0.17.0",
+    "yosay": "^0.3.0"
   },
   "devDependencies": {
-    "mocha": "~1.14.0"
+    "mocha": "*"
   },
   "peerDependencies": {
-    "yo": ">=1.0.0-rc.1"
-  },
-  "engines": {
-    "node": ">=0.8.0",
-    "npm": ">=1.2.10"
-  },
-  "licenses": [
-    {
-      "type": "MIT"
-    }
-  ]
+    "yo": ">=1.0.0"
+  }
 }

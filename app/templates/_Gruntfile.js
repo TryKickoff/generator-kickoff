@@ -26,9 +26,12 @@ module.exports = function (grunt) {
 				fileList : [
 					'js/helpers/helpers.js',
 					'js/helpers/console.js',
-					<% if (jsLibs == 'jquery') {%>'js/libs/jquery/jquery-1.10.2.js',<% } %>
-					<% if (jsMobileDev == true) {%>'/bower_components/swiftclick/js/dist/swiftclick.min.js',<% } %>
-					'js/script.js',
+					<% if (jsLibs.indexOf('jquery1') != -1) {%>'js/libs/jquery/jquery-1.11.1.js',<% } %>
+					<% if (jsLibs.indexOf('jquery2') != -1) {%>'js/libs/jquery/jquery-2.11.1.js',<% } %>
+					<% if (jsLibs.indexOf('swiftclick') != -1) {%>'bower_components/swiftclick/js/libs/swiftclick.js',<% } %>
+					<% if (jsLibs.indexOf('trak') != -1) {%>'bower_components/trak/dist/trak.js',<% } %>
+					<% if (jsLibs.indexOf('cookies') != -1) {%>'bower_components/cookies-js/src/cookies.js',<% } %>
+					'js/script.js'
 				]
 			}
 		},
@@ -271,7 +274,7 @@ module.exports = function (grunt) {
 			}
 		}
 
-		<% if (jsLibs === 'jquery') {%>,
+		<% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>,
 		/**
 		 * Custom jQuery builder
 		 * Check build numbers at jquery.com
@@ -289,7 +292,13 @@ module.exports = function (grunt) {
 					//"2.0.3": [ "deprecated", "dimensions", "offset", "wrap"],
 
 					// We can't remove sizzle from 1.x versions, so let's not specify it
-					"1.10.2": [ "deprecated"]
+					<% if (jsLibs.indexOf('jquery1') != -1) {%>
+						"1.11.1": [ "deprecated"]
+					<% } %>
+					<% if (jsLibs.indexOf('jquery1') != -1 && jsLibs.indexOf('jquery2') != -1) {%>,<% } %>
+					<% if (jsLibs.indexOf('jquery2') != -1) {%>
+						"2.1.1": [ "deprecated"]
+					<% } %>
 				}
 			}
 		}
