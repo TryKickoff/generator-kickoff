@@ -1,4 +1,3 @@
-# generator-kickoff
 ## [Yeoman](http://yeoman.io) generator for the [Kickoff framework](https://github.com/tmwagency/kickoff/)
 ###The generator asks for:
 * The project's name
