@@ -15,5 +15,5 @@
 	"white": false,
 	"browser": true,
 	"devel": true
-	<% if (jsLibs == 'jquery') {%>,"jquery": true<% } %>
+	<% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>,"jquery": true<% } %>
 }
