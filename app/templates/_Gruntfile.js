@@ -54,12 +54,12 @@ module.exports = function (grunt) {
 						'http://localhost:3000/_docs/styleguide.html'
 					]
 				}
-			}
-		},
+			}<% if (statix === true) {%>,
 
-		statix : {
-			dir : 'statix' // <%%= config.statix.dir%>
-		}
+			statix : {
+				dir : 'statix' // <%%= config.statix.dir%>
+			}<% } %>
+		},
 	};
 
 	// Load grunt tasks automatically
