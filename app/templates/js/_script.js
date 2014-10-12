@@ -4,13 +4,13 @@
 */
 
 // Create a closure to maintain scope of the '$' and <%= jsNamespace.toUpperCase() %>
-;(function (<%= jsNamespace.toUpperCase() %><% if (jsLibs == 'jquery') {%>, $<% } %>) {
+;(function (<%= jsNamespace.toUpperCase() %><% if jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>, $<% } %>) {
 
-	<% if (jsLibs == 'jquery') {%>$(function() {<% } %>
+	<% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>$(function() {<% } %>
 
 		<%= jsNamespace.toUpperCase() %>.Config.init();
 
-	<% if (jsLibs == 'jquery') {%>});<% } %>
+	<% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>});<% } %>
 
 
 
@@ -37,4 +37,4 @@
 
 
 
-})(window.<%= jsNamespace.toUpperCase() %> = window.<%= jsNamespace.toUpperCase() %> || {}<% if (jsLibs == 'jquery') { %>, jQuery<% } %>);
+})(window.<%= jsNamespace.toUpperCase() %> = window.<%= jsNamespace.toUpperCase() %> || {}<% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) { %>, jQuery<% } %>);
