@@ -2,8 +2,10 @@
   "name": "<%= _.slugify(projectName) %>",
   "version": "1.0.0",
   "dependencies": {
-    <% if (jsLibs.indexOf('swiftclick') != -1) {%>"swiftclick": "*",<% } %>
-    <% if (jsLibs.indexOf('trak') != -1) {%>"trak": "*",<% } %>
+    <% if (jsLibs.indexOf('swiftclick') != -1) {%>"swiftclick": "*"<% } %>
+    <% if (jsLibs.indexOf('swiftclick') != -1 && jsLibs.indexOf('trak') != -1) {%>,<% } %>
+    <% if (jsLibs.indexOf('trak') != -1) {%>"trak": "*"<% } %>
+    <% if ( ( jsLibs.indexOf('swiftclick') != -1 || jsLibs.indexOf('trak') != -1 ) && jsLibs.indexOf('cookies') != -1) {%>,<% } %>
     <% if (jsLibs.indexOf('cookies') != -1) {%>"cookies-js": "*"<% } %>
   }
 }
