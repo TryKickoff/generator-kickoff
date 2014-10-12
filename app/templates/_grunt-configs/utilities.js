@@ -7,6 +7,7 @@ module.exports.tasks = {
 	 */
 	clean: {
 		icons: ['img/icons']
+		<% if (statix === true) {%>,all: ['<%%= config.statix.dir%>/dist/**/*.html']<% } %>
 	},
 
 
@@ -63,15 +64,5 @@ module.exports.tasks = {
 				{ expand: true, cwd: './fonts', src: ['./**/*.*'], dest: '<%%= config.statix.dir%>/dist/assets/fonts' }
 			]
 		}
-	}
-
-
-	/**
-	 * Clean
-	 * https://github.com/gruntjs/grunt-contrib-clean
-	 * Clear files and folders.
-	 */
-	clean: {
-		all: ['<%%= config.statix.dir%>/dist/**/*.html']
 	}<% } %>
 };

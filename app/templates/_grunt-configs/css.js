@@ -13,11 +13,11 @@ module.exports.tasks = {
 				lineNumbers: false,
 				debugInfo : false,
 				precision : 8,
-				loadPath : '<%=config.css.scssDir%>/'
+				loadPath : '<%%=config.css.scssDir%>/'
 			},
 			files: {
-				'<%=config.css.distDir%>/temp/<%= _.slugify(projectName) %>.css' : '<%=config.css.scssDir%>/<%=config.css.srcFile%>.scss',
-				'<%=config.css.distDir%>/temp/<%= _.slugify(projectName) %>-old-ie.css': '<%=config.css.scssDir%>/<%=config.css.srcFile%>-old-ie.scss'
+				'<%%=config.css.distDir%>/temp/<%%= _.slugify(projectName) %>.css' : '<%%=config.css.scssDir%>/<%%=config.css.srcFile%>.scss',
+				'<%%=config.css.distDir%>/temp/<%%= _.slugify(projectName) %>-old-ie.css': '<%%=config.css.scssDir%>/<%%=config.css.srcFile%>-old-ie.scss'
 			}
 		},
 		styleguide: {
@@ -25,10 +25,10 @@ module.exports.tasks = {
 				unixNewlines: true,
 				style: 'compressed',
 				precision : 8,
-				loadPath : '<%=config.css.scssDir%>/'
+				loadPath : '<%%=config.css.scssDir%>/'
 			},
 			files: {
-				'<%=config.css.distDir%>/styleguide.css': '<%=config.css.scssDir%>/styleguide.scss'
+				'<%%=config.css.distDir%>/styleguide.css': '<%%=config.css.scssDir%>/styleguide.scss'
 			}
 		}
 	},
@@ -51,13 +51,13 @@ module.exports.tasks = {
 		kickoff: {
 			expand: true,
 			flatten: true,
-			src: '<%=config.css.distDir%>/temp/*.css',
-			dest: '<%=config.css.distDir%>/'
+			src: '<%%=config.css.distDir%>/temp/*.css',
+			dest: '<%%=config.css.distDir%>/'
 		},
 
 		styleguide : {
-			src: '<%=config.css.distDir%>/styleguide.css',
-			dest: '<%=config.css.distDir%>/styleguide.css'
+			src: '<%%=config.css.distDir%>/styleguide.css',
+			dest: '<%%=config.css.distDir%>/styleguide.css'
 		}
 	},
 
@@ -73,8 +73,8 @@ module.exports.tasks = {
 				restructure: false //turns structural optimisations off as can mess up fallbacks http://bem.info/tools/optimizers/csso/description/
 			},
 			files: {
-				'<%=config.css.distDir%>/<%= _.slugify(projectName) %>.css' : '<%=config.css.distDir%>/<%= _.slugify(projectName) %>.css',
-				'<%=config.css.distDir%>/<%= _.slugify(projectName) %>-old-ie.css': '<%=config.css.distDir%>/<%= _.slugify(projectName) %>-old-ie.css'
+				'<%%=config.css.distDir%>/<%%= _.slugify(projectName) %>.css' : '<%%=config.css.distDir%>/<%%= _.slugify(projectName) %>.css',
+				'<%%=config.css.distDir%>/<%%= _.slugify(projectName) %>-old-ie.css': '<%%=config.css.distDir%>/<%%= _.slugify(projectName) %>-old-ie.css'
 			},
 		}
 	}

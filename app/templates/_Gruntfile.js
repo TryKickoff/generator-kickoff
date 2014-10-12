@@ -2,7 +2,7 @@ module.exports = function (grunt) {
 	'use strict';
 
 	var options = {
-		pkg: require('./package'), // <%=pkg.name%>
+		pkg: require('./package'), // <%%=pkg.name%>
 
 		<% if (statix == true) {%>site: grunt.file.readYAML('statix/src/data/site.yml'),<% } %>
 
@@ -11,19 +11,19 @@ module.exports = function (grunt) {
 		 * Many of the Grunt tasks use these vars
 		 */
 		config : {
-			src: "_grunt-configs/*.js",
+			src : '_grunt-configs/*.js',
 
 			css : {
-				distDir : 'css',     // <%=config.css.distDir%>
-				srcFile : 'kickoff', // <%=config.css.srcFile%>
-				scssDir : 'scss'     // <%=config.css.scssDir%>
+				distDir : 'css',     // <%%=config.css.distDir%>
+				srcFile : 'kickoff', // <%%=config.css.srcFile%>
+				scssDir : 'scss'     // <%%=config.css.scssDir%>
 			},
 
 			js : {
-				distDir  : 'js/dist/',   // <%=config.js.distDir%>
-				distFile : 'app.min.js', // <%=config.js.distFile%>
+				distDir  : 'js/dist/',   // <%%=config.js.distDir%>
+				distFile : 'app.min.js', // <%%=config.js.distFile%>
 
-				// <%=config.js.fileList%>
+				// <%%=config.js.fileList%>
 				fileList : [
 					// if you would like to remove jQuery from your concatenated JS, comment out the line below
 					<% if (jsLibs.indexOf('jquery1') != -1) {%>'js/libs/jquery/jquery-1.11.1.js',<% } %>
@@ -42,13 +42,13 @@ module.exports = function (grunt) {
 				]
 			},
 
-			localserver: 'kickoff.dev', // <%=config.localserver%>
+			localserver: 'kickoff.dev', // <%%=config.localserver%>
 
 			testing: {
 				visual : {
-					sizes: [ '600', '1000', '1200' ], // <%=config.testing.visual.sizes%>
+					sizes: [ '600', '1000', '1200' ], // <%%=config.testing.visual.sizes%>
 
-					// <%=config.testing.visual.urls%>
+					// <%%=config.testing.visual.urls%>
 					urls : [
 						'http://localhost:3000',
 						'http://localhost:3000/_docs/',
@@ -59,10 +59,9 @@ module.exports = function (grunt) {
 		},
 
 		statix : {
-			dir : 'statix' // <%= config.statix.dir%>
+			dir : 'statix' // <%%= config.statix.dir%>
 		}
 	};
-
 
 	// Load grunt tasks automatically
 	require('load-grunt-tasks')(grunt);
@@ -81,9 +80,10 @@ module.exports = function (grunt) {
 		* grunt watch  : run sass:kickoff, uglify and livereload
 		* grunt dev    : run jshint, uglify and sass:kickoff
 		* grunt deploy : run jshint, uglify, sass:kickoff and csso
-		* grunt jquery : build custom version of jquery
 		* grunt serve  : watch js & scss and run a local server
-		* grunt availabletasks : view all available tasks
+	 * grunt icons      : generate the icons. uses svgmin and grunticon
+	 * grunt check      : run jshint
+	 * grunt styleguide : watch js & scss, run a local server for editing the styleguide
 		 ========================================================================== */
 
 	/**
@@ -185,6 +185,22 @@ module.exports = function (grunt) {
 		'watch'
 	]);
 	<% } %>
+
+
+	/**
+	 * GRUNT STYLEGUIDE * A task for the styleguide
+	 * run uglify, sass:kickoff, sass:styleguide, autoprefixer:kickoff, autoprefixer:styleguide, connect:styleguide & watch
+	 */
+	grunt.registerTask('styleguide', [
+		'shimly',
+		'uglify',
+		'sass:kickoff',
+		'sass:styleguide',
+		'autoprefixer:kickoff',
+		'autoprefixer:styleguide',
+		'connect:styleguide',
+		'watch'
+	]);
 
 
 	/**
