@@ -30,7 +30,6 @@ module.exports = function (grunt) {
 
 					<% if (shims === true) {%>'js/helpers/shims.js',<% } %>
 
-
 					'js/helpers/console.js',
 					<% if (jsLibs.indexOf('swiftclick') != -1) {%>'js/bower/swiftclick/js/libs/swiftclick.js',<% } %>
 					<% if (jsLibs.indexOf('trak') != -1) {%>'js/bower/trak/dist/trak.js',<% } %>
@@ -79,6 +78,7 @@ module.exports = function (grunt) {
 		* grunt dev    : run jshint, uglify and sass:kickoff
 		* grunt deploy : run jshint, uglify, sass:kickoff and csso
 		* grunt serve  : watch js & scss and run a local server
+		* grunt start      : run this before starting development
 		* grunt icons      : generate the icons. uses svgmin and grunticon
 		* grunt check      : run jshint
 		* grunt styleguide : watch js & scss, run a local server for editing the styleguide
@@ -191,6 +191,23 @@ module.exports = function (grunt) {
 		'watch'
 	]);
 	<% } %>
+
+
+	/**
+	 * GRUNT START * Run this to
+	 * run jquery builder, uglify, sass and autoprefixer
+	 */
+	grunt.registerTask('start', [
+		<% if (shims === true) {%>'shimly',<% } %>
+		'dofilesexist:js',
+		'uglify',
+		'sass:kickoff',
+		'sass:styleguide',
+		'autoprefixer:kickoff',
+		'autoprefixer:styleguide',
+		'connect:start',
+		'watch'
+	]);
 
 
 	/**

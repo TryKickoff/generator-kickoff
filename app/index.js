@@ -24,7 +24,7 @@ var KickoffGenerator = yeoman.generators.Base.extend({
 
     // Now you can bind to the dependencies installed event
     this.on('dependenciesInstalled', function () {
-      this.spawnCommand('grunt', ['serve']);
+      this.spawnCommand('grunt', ['start']);
     });
   },
 
