@@ -7,6 +7,10 @@
     <% if (jsLibs.indexOf('trak') != -1) {%>"trak": "*"<% } %>
     <% if ( ( jsLibs.indexOf('swiftclick') != -1 || jsLibs.indexOf('trak') != -1 ) && jsLibs.indexOf('cookies') != -1) {%>,<% } %>
     <% if (jsLibs.indexOf('cookies') != -1) {%>"cookies-js": "*"<% } %>
+    <% if ( ( jsLibs.indexOf('swiftclick') != -1 || jsLibs.indexOf('trak') != -1 || jsLibs.indexOf('cookies') != -1) && jsLibs.indexOf('jquery1') != -1) {%>,<% } %>
+    <% if (jsLibs.indexOf('jquery1') != -1) {%>"jquery": "1.11.1"<% } %>
+    <% if ( ( jsLibs.indexOf('swiftclick') != -1 || jsLibs.indexOf('trak') != -1 || jsLibs.indexOf('cookies') != -1 || jsLibs.indexOf('jquery1') != -1) && jsLibs.indexOf('jquery2') != -1) {%>,<% } %>
+    <% if (jsLibs.indexOf('jquery2') != -1) {%>"jquery": "2.1.1"<% } %>
   }
 }
 
