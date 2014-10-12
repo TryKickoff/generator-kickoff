@@ -24,9 +24,6 @@ var KickoffGenerator = yeoman.generators.Base.extend({
 
     // Now you can bind to the dependencies installed event
     this.on('dependenciesInstalled', function () {
-      if (this.jsLibs.indexOf('jquery1') != -1 || this.jsLibs.indexOf('jquery2') != -1) {
-        this.spawnCommand('grunt', ['jquery']);
-      }
       this.spawnCommand('grunt', ['serve']);
     });
   },
@@ -36,7 +33,7 @@ var KickoffGenerator = yeoman.generators.Base.extend({
 
   	var notifier = updateNotifier({
 	    packageName: 'generator-kickoff',
-	    packageVersion: '0.7.4'
+	    packageVersion: '0.8.0'
 	});
 
     if (notifier.update) {
@@ -76,11 +73,11 @@ var KickoffGenerator = yeoman.generators.Base.extend({
         message: 'Which Javascript libraries would you like to use?',
         choices: [
           {
-            name: 'jQuery 1.x',
+            name: 'jQuery 1.x - only choose one jQuery version',
             value: 'jquery1'
           },
           {
-            name: 'jQuery 2.x',
+            name: 'jQuery 2.x - only choose one jQuery version',
             value: 'jquery2'
           },
           {
@@ -113,18 +110,25 @@ var KickoffGenerator = yeoman.generators.Base.extend({
   app: function () {
     this.template('_index.html', 'index.html');
     this.template('_docs/_styleguide.html', '_docs/styleguide.html');
+    this.template('_docs/_index.html', '_docs/index.html');
 
     this.directory('scss', 'scss');
+
+    // Grunt configs
+    this.template('_grunt-configs/_css.js', '_grunt-configs/css.js');
+    this.template('_grunt-configs/_icons.js', '_grunt-configs/icons.js');
+    this.template('_grunt-configs/_javascript.js', '_grunt-configs/javascript.js');
+    this.template('_grunt-configs/_server.js', '_grunt-configs/server.js');
+    this.template('_grunt-configs/_utilities.js', '_grunt-configs/utilities.js');
+    this.template('_grunt-configs/_watch.js', '_grunt-configs/watch.js');
 
     this.template('js/_script.js', 'js/script.js');
     this.directory('js/libs', 'js/libs');
     this.directory('js/dist', 'js/dist');
     this.template('js/helpers/_helpers.js', 'js/helpers/helpers.js');
-    this.template('js/helpers/_getViewportDimensions.js', 'js/helpers/getViewportDimensions.js');
     this.copy('js/helpers/console.js', 'js/helpers/console.js');
-    this.template('js/helpers/_cookies.js', 'js/helpers/cookies.js');
-    this.template('js/helpers/_trak.js', 'js/helpers/trak.js');
     this.copy('js/helpers/log.js', 'js/helpers/log.js');
+    this.copy('js/helpers/shims.js', 'js/helpers/shims.js');
 
     this.template('_Gruntfile.js', 'Gruntfile.js');
     this.template('_package.json', 'package.json');
@@ -138,9 +142,9 @@ var KickoffGenerator = yeoman.generators.Base.extend({
     this.copy('jscs.json', '.jscs.json');
 
     if (this.statix) {
-      this.directory('src', 'src');
-      this.directory('dist', 'dist');
-      this.template('src/templates/includes/_html_start.hbs', 'src/templates/includes/html_start.hbs');
+      this.directory('statix/src', 'statix/src');
+      this.directory('statix/dist', 'statix/dist');
+      this.template('statix/src/templates/includes/_html_start.hbs', 'statix/src/templates/includes/html_start.hbs');
     }
   }
 });
