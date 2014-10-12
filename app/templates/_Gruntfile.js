@@ -26,8 +26,7 @@ module.exports = function (grunt) {
 				// <%%=config.js.fileList%>
 				fileList : [
 					// if you would like to remove jQuery from your concatenated JS, comment out the line below
-					<% if (jsLibs.indexOf('jquery1') != -1) {%>'js/libs/jquery/jquery-1.11.1.js',<% } %>
-					<% if (jsLibs.indexOf('jquery2') != -1) {%>'js/libs/jquery/jquery-2.11.1.js',<% } %>
+					<% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>'js/bower/jquery/dist/jquery.js',<% } %>
 
 					// if you would like some basic JS shims (when not using jQuery),
 					// uncomment the line below to compile Shimly output
@@ -81,9 +80,9 @@ module.exports = function (grunt) {
 		* grunt dev    : run jshint, uglify and sass:kickoff
 		* grunt deploy : run jshint, uglify, sass:kickoff and csso
 		* grunt serve  : watch js & scss and run a local server
-	 * grunt icons      : generate the icons. uses svgmin and grunticon
-	 * grunt check      : run jshint
-	 * grunt styleguide : watch js & scss, run a local server for editing the styleguide
+		* grunt icons      : generate the icons. uses svgmin and grunticon
+		* grunt check      : run jshint
+		* grunt styleguide : watch js & scss, run a local server for editing the styleguide
 		 ========================================================================== */
 
 	/**
@@ -94,18 +93,20 @@ module.exports = function (grunt) {
 	<% if (statix === true) {%>
 	grunt.registerTask('default', [
 		'shimly',
+		'dofilesexist:js',
 		'uglify',
 		'sass:kickoff',
-		'autoprefixer:dist',
+		'autoprefixer:kickoff',
 		'copy',
 		'assemble'
 	]);
 	<% } else { %>
 	grunt.registerTask('default', [
 		'shimly',
+		'dofilesexist:js',
 		'uglify',
 		'sass:kickoff',
-		'autoprefixer:dist'
+		'autoprefixer:kickoff'
 	]);
 	<% } %>
 
@@ -117,18 +118,20 @@ module.exports = function (grunt) {
 	<% if (statix === true) {%>
 	grunt.registerTask('dev', [
 		'shimly',
+		'dofilesexist:js',
 		'uglify',
 		'sass:kickoff',
-		'autoprefixer:dist',
+		'autoprefixer:kickoff',
 		'copy',
 		'assemble'
 	]);
 	<% } else { %>
 	grunt.registerTask('dev', [
 		'shimly',
+		'dofilesexist:js',
 		'uglify',
 		'sass:kickoff',
-		'autoprefixer:dist'
+		'autoprefixer:kickoff'
 	]);
 	<% } %>
 
@@ -140,9 +143,10 @@ module.exports = function (grunt) {
 	<% if (statix === true) {%>
 	grunt.registerTask('deploy', [
 		'shimly',
+		'dofilesexist:js',
 		'uglify',
 		'sass:kickoff',
-		'autoprefixer:dist',
+		'autoprefixer:kickoff',
 		'csso',
 		'copy',
 		'assemble'
@@ -150,9 +154,10 @@ module.exports = function (grunt) {
 	<% } else { %>
 	grunt.registerTask('deploy', [
 		'shimly',
+		'dofilesexist:js',
 		'uglify',
 		'sass:kickoff',
-		'autoprefixer:dist',
+		'autoprefixer:kickoff',
 		'csso'
 	]);
 	<% } %>
@@ -164,11 +169,12 @@ module.exports = function (grunt) {
 	 */
 	<% if (statix === true) {%>
 	grunt.registerTask("serve", [
-
+		'shimly',
+		'dofilesexist:js',
 		'uglify',
 		'sass:kickoff',
 		'sass:styleguide',
-		'autoprefixer:dist',
+		'autoprefixer:kickoff',
 		'copy',
 		'assemble',
 		'browserSync:serve',
@@ -177,10 +183,11 @@ module.exports = function (grunt) {
 	<% } else { %>
 	grunt.registerTask("serve", [
 		'shimly',
+		'dofilesexist:js',
 		'uglify',
 		'sass:kickoff',
 		'sass:styleguide',
-		'autoprefixer:dist',
+		'autoprefixer:kickoff',
 		'browserSync:serve',
 		'watch'
 	]);
