@@ -50,19 +50,49 @@ module.exports.tasks = {
 	copy: {
 		dist: {
 			files: [
-				{ expand: true, cwd: './img', src: ['./**/*.*'], dest: '<%%= config.statix.dir%>/dist/assets/img' },
-				{ expand: true, cwd: './fonts', src: ['./**/*.*'], dest: '<%%= config.statix.dir%>/dist/assets/fonts' }
+				{
+					expand: true,
+					cwd: './img',
+					src: ['./**/*.*'],
+					dest: '<%%=config.statix.dir%>/dist/assets/img'
+				},
+				{
+					expand: true,
+					cwd: './js',
+					src: ['./**/*.*'],
+					dest: '<%%=config.statix.dir%>/dist/assets/js'
+				},
+				{
+					expand: true,
+					cwd: './<%%=config.css.distDir%>',
+					src: ['./*.{css,map}'],
+					dest: '<%%= config.statix.dir%>/dist/assets/css'
+				}
 			]
+		},
+		css: {
+			files: [{
+				expand: true,
+				cwd: './<%%=config.css.distDir%>',
+				src: ['./*.{css,map}'],
+				dest: '<%%= config.statix.dir%>/dist/assets/css'
+			}]
 		},
 		img: {
-			files: [
-				{ expand: true, cwd: './img', src: ['./**/*.*'], dest: '<%%= config.statix.dir%>/dist/assets/img' }
-			]
+			files: [{
+				expand: true,
+				cwd: './img',
+				src: ['./**/*.*'],
+				dest: '<%%= config.statix.dir%>/dist/assets/img'
+			}]
 		},
-		fonts: {
-			files: [
-				{ expand: true, cwd: './fonts', src: ['./**/*.*'], dest: '<%%= config.statix.dir%>/dist/assets/fonts' }
-			]
+		js: {
+			files: [{
+				expand: true,
+				cwd: './js',
+				src: ['./**/*.*'],
+				dest: '<%%= config.statix.dir%>/dist/assets/js'
+			}]
 		}
 	}<% } %>
 };

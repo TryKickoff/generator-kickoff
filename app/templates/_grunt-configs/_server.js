@@ -11,7 +11,7 @@ module.exports.tasks = {
 				open: true,
 				livereload: true
 				<% if (statix == true) {%>,
-					base: '<%%= config.statix.dir%>'
+					base: '<%%= config.statix.dir%>/dist'
 				<% } %>
 			}
 		},
@@ -48,21 +48,11 @@ module.exports.tasks = {
 				watchTask: true,
 				server: {
 					<% if (statix == true) {%>
-						baseDir: './<%%= config.statix.dir%>'
+						baseDir: './<%%= config.statix.dir%>/dist'
 					<% } else { %>
 						baseDir: './'
 					<% } %>
 				}
-			}
-		},
-
-		watch: {
-			bsFiles: {
-				src: ['css/*.css', '<%%=config.js.distDir%>/*.js']
-			},
-			options: {
-				watchTask: true,
-				proxy: '<%%=config.localserver%>'
 			}
 		}
 	}<% if (statix === true) {%>,

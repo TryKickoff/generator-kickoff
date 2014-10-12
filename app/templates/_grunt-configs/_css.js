@@ -16,8 +16,8 @@ module.exports.tasks = {
 				loadPath : '<%%=config.css.scssDir%>/'
 			},
 			files: {
-				'<%%=config.css.distDir%>/temp/<%%= _.slugify(projectName) %>.css' : '<%%=config.css.scssDir%>/<%%=config.css.srcFile%>.scss',
-				'<%%=config.css.distDir%>/temp/<%%= _.slugify(projectName) %>-old-ie.css': '<%%=config.css.scssDir%>/<%%=config.css.srcFile%>-old-ie.scss'
+				'<%%=config.css.distDir%>/temp/<%= _.slugify(projectName) %>.css' : '<%%=config.css.scssDir%>/<%%=config.css.srcFile%>.scss',
+				'<%%=config.css.distDir%>/temp/<%= _.slugify(projectName) %>-old-ie.css': '<%%=config.css.scssDir%>/<%%=config.css.srcFile%>-old-ie.scss'
 			}
 		},
 		styleguide: {
@@ -73,8 +73,8 @@ module.exports.tasks = {
 				restructure: false //turns structural optimisations off as can mess up fallbacks http://bem.info/tools/optimizers/csso/description/
 			},
 			files: {
-				'<%%=config.css.distDir%>/<%%= _.slugify(projectName) %>.css' : '<%%=config.css.distDir%>/<%%= _.slugify(projectName) %>.css',
-				'<%%=config.css.distDir%>/<%%= _.slugify(projectName) %>-old-ie.css': '<%%=config.css.distDir%>/<%%= _.slugify(projectName) %>-old-ie.css'
+				'<%%=config.css.distDir%>/<%= _.slugify(projectName) %>.css' : '<%%=config.css.distDir%>/<%= _.slugify(projectName) %>.css',
+				'<%%=config.css.distDir%>/<%= _.slugify(projectName) %>-old-ie.css': '<%%=config.css.distDir%>/<%= _.slugify(projectName) %>-old-ie.css'
 			},
 		}
 	}

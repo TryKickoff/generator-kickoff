@@ -7,7 +7,7 @@ module.exports.tasks = {
 	*/
 	watch: {
 		scss: {
-			files: ['scss/**/*.scss', '!scss/styleguide.scss'],
+			files: ['<%%=config.css.scssDir%>/**/*.scss', '!<%%=config.css.scssDir%>/styleguide.scss'],
 			<% if (statix == true) {%>
 			tasks: ['sass:kickoff', 'autoprefixer:dist', 'copy:css']
 			<% } else { %>
@@ -16,7 +16,7 @@ module.exports.tasks = {
 		},
 
 		"styleguide_scss": {
-			files: ['scss/styleguide.scss'],
+			files: ['<%%=config.css.scssDir%>/styleguide.scss'],
 			tasks: [
 				'sass:styleguide',
 				'autoprefixer:styleguide'
@@ -24,7 +24,7 @@ module.exports.tasks = {
 		},
 
 		js: {
-			files: ['<%=config.js.fileList%>', 'Gruntfile.js'],
+			files: ['<%%=config.js.fileList%>', 'Gruntfile.js'],
 			<% if (statix == true) {%>
 			tasks: ['uglify', 'copy:js']
 			<% } else { %>
@@ -34,13 +34,10 @@ module.exports.tasks = {
 
 		livereload: {
 			options: { livereload: true },
-			files: [
-				'css/*.css'
-			]
 			<% if (statix == true) {%>
-			files: ['<%= config.statix.dir%>/dist/css/*.css']
+			files: ['<%%= config.statix.dir%>/dist/css/*.css']
 			<% } else { %>
-			files: ['css/*.css']
+			files: ['<%%=config.css.distDir%>/*.css']
 			<% } %>
 		},
 
@@ -55,7 +52,7 @@ module.exports.tasks = {
 
 			<% if (statix === true) {%>,
 			assemble : {
-				files: ['<%= config.statix.dir%>/src/templates/**/*.hbs', '<%= config.statix.dir%>/src/templates/**/*.md'],
+				files: ['<%%= config.statix.dir%>/src/templates/**/*.hbs', '<%%= config.statix.dir%>/src/templates/**/*.md'],
 				tasks: ['clean', 'assemble', 'newer:copy'],
 				options: {
 					livereload: true
