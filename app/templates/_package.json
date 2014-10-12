@@ -2,12 +2,22 @@
   "name": "<%= _.slugify(projectName) %>",
   "title": "Kickoff",
   "description": "A lightweight front-end framework for creating scalable, responsive sites",
-  "version": "3.4.1",
+  "version": "4.0.0",
   "homepage": "http://tmwagency.github.io/kickoff/",
-  "author": {
-    "name": "Zander Martineau",
-    "url": "http://martineau.tv"
-  },
+  "authors": [
+    {
+      "name": "Zander Martineau",
+      "url": "http://martineau.tv"
+    },
+    {
+      "name": "Ashley Nolan",
+      "url": "http://ashleynolan.co.uk"
+    },
+    {
+      "name": "Contributors",
+      "url": "https://github.com/tmwagency/kickoff/graphs/contributors"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/tmwagency/kickoff.git"
@@ -33,7 +43,6 @@
     "grunt-contrib-watch": "~0.6.1",
     "grunt-csso": "~0.6.3",
     "grunt-grunticon": "~1.2.13",
-    "grunt-jquery-builder": "~0.1.1",
     "grunt-newer": "~0.7.0",
     "grunt-photobox": "^0.8.0",
     "grunt-shell": "^1.1.1",
@@ -41,7 +50,7 @@
     "grunt-svgmin": "~1.0.0",
     "load-grunt-configs": "~0.4.0",
     "load-grunt-tasks": "~0.6.0"
-    <% if (statix == true) {%>,"grunt-newer": "~0.7.0",
+    <% if (statix == true) {%>,
     "assemble": "~0.4.40",
     "grunt-contrib-copy": "~0.6.0"<% } %>
     <% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>,"grunt-jquery-builder": "~0.1.1"<% } %>
