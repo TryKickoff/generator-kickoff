@@ -4,7 +4,7 @@
 */
 
 // Create a closure to maintain scope of the '$' and <%= jsNamespace.toUpperCase() %>
-;(function (<%= jsNamespace.toUpperCase() %><% if jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>, $<% } %>) {
+;(function (<%= jsNamespace.toUpperCase() %><% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>, $<% } %>) {
 
 	<% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>$(function() {<% } %>
 
