@@ -26,14 +26,14 @@ module.exports = function (grunt) {
 				// <%%=config.js.fileList%>
 				fileList : [
 					// if you would like to remove jQuery from your concatenated JS, comment out the line below
-					<% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>'js/bower/jquery/dist/jquery.js',<% } %>
+					<% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>'bower_modules/jquery/dist/jquery.js',<% } %>
 
 					<% if (shims === true) {%>'js/helpers/shims.js',<% } %>
 
 					'js/helpers/console.js',
-					<% if (jsLibs.indexOf('swiftclick') != -1) {%>'js/bower/swiftclick/js/libs/swiftclick.js',<% } %>
-					<% if (jsLibs.indexOf('trak') != -1) {%>'js/bower/trak/dist/trak.js',<% } %>
-					<% if (jsLibs.indexOf('cookies') != -1) {%>'js/bower/cookies-js/src/cookies.js',<% } %>
+					<% if (jsLibs.indexOf('swiftclick') != -1) {%>'bower_modules/swiftclick/js/libs/swiftclick.js',<% } %>
+					<% if (jsLibs.indexOf('trak') != -1) {%>'bower_modules/trak/dist/trak.js',<% } %>
+					<% if (jsLibs.indexOf('cookies') != -1) {%>'bower_modules/cookies-js/src/cookies.js',<% } %>
 
 					'js/script.js'
 				]
