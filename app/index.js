@@ -68,6 +68,12 @@ var KickoffGenerator = yeoman.generators.Base.extend({
         default: false
       },
       {
+        name: 'browserify',
+        type: 'confirm',
+        message: 'Do you want to use Browserify?',
+        default: false
+      },
+      {
         name: 'jsLibs',
         type: 'checkbox',
         message: 'Which Javascript libraries would you like to use?',
@@ -109,6 +115,7 @@ var KickoffGenerator = yeoman.generators.Base.extend({
       this.statix      = props.statix;
       this.jsLibs      = props.jsLibs;
       this.shims       = props.shims;
+      this.browserify  = props.browserify;
 
       done();
     }.bind(this));
@@ -147,6 +154,10 @@ var KickoffGenerator = yeoman.generators.Base.extend({
     this.copy('gitignore', '.gitignore');
     this.copy('bowerrc', '.bowerrc');
     this.copy('jscs.json', '.jscs.json');
+
+    if (this.browserify) {
+      this.directory('js/modules', 'js/modules');
+    }
 
     if (this.statix) {
       this.directory('statix/src', 'statix/src');

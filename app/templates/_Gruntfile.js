@@ -22,6 +22,7 @@ module.exports = function (grunt) {
 			js : {
 				distDir  : 'js/dist/',   // <%%=config.js.distDir%>
 				distFile : 'app.min.js', // <%%=config.js.distFile%>
+				<% if (browserify === true) {%>srcFile : 'js/script.js',/* <%%=config.js.srcFile%> */<% } %>
 
 				// <%%=config.js.fileList%>
 				fileList : [
@@ -89,108 +90,87 @@ module.exports = function (grunt) {
 	 * run jshint, uglify and sass:kickoff
 	 */
 	// Default task
-	<% if (statix === true) {%>
 	grunt.registerTask('default', [
 		<% if (shims === true) {%>'shimly',<% } %>
+		<% if (browserify === true) {%>
+		'newer:browserify:prod',
+		<% } else { %>
 		'dofilesexist:js',
 		'uglify',
-		'sass:kickoff',
-		'autoprefixer:kickoff',
-		'copy',
-		'assemble'
-	]);
-	<% } else { %>
-	grunt.registerTask('default', [
-		<% if (shims === true) {%>'shimly',<% } %>
-		'dofilesexist:js',
-		'uglify',
+		<% } %>
 		'sass:kickoff',
 		'autoprefixer:kickoff'
+		<% if (statix === true) {%>
+		,'copy',
+		'assemble'
+		<% } %>
 	]);
-	<% } %>
 
 
 	/**
 	 * GRUNT DEV * A task for development
 	 * run jshint, uglify and sass:kickoff
 	 */
-	<% if (statix === true) {%>
 	grunt.registerTask('dev', [
 		<% if (shims === true) {%>'shimly',<% } %>
+		<% if (browserify === true) {%>
+		'newer:browserify:dev',
+		<% } else { %>
 		'dofilesexist:js',
 		'uglify',
-		'sass:kickoff',
-		'autoprefixer:kickoff',
-		'copy',
-		'assemble'
-	]);
-	<% } else { %>
-	grunt.registerTask('dev', [
-		<% if (shims === true) {%>'shimly',<% } %>
-		'dofilesexist:js',
-		'uglify',
+		<% } %>
 		'sass:kickoff',
 		'autoprefixer:kickoff'
+		<% if (statix === true) {%>
+		,'copy',
+		'assemble'
+		<% } %>
 	]);
-	<% } %>
 
 
 	/**
 	 * GRUNT DEPLOY * A task for your production environment
 	 * run jshint, uglify and sass:production
 	 */
-	<% if (statix === true) {%>
 	grunt.registerTask('deploy', [
 		<% if (shims === true) {%>'shimly',<% } %>
+		<% if (browserify === true) {%>
+		'newer:browserify:prod',
+		<% } else { %>
 		'dofilesexist:js',
 		'uglify',
-		'sass:kickoff',
-		'autoprefixer:kickoff',
-		'csso',
-		'copy',
-		'assemble'
-	]);
-	<% } else { %>
-	grunt.registerTask('deploy', [
-		<% if (shims === true) {%>'shimly',<% } %>
-		'dofilesexist:js',
-		'uglify',
+		<% } %>
 		'sass:kickoff',
 		'autoprefixer:kickoff',
 		'csso'
+		<% if (statix === true) {%>
+		,'copy',
+		'assemble'
+		<% } %>
 	]);
-	<% } %>
 
 
 	/**
 	 * GRUNT SERVE * A task for for a static server with a watch
 	 * run connect and watch
 	 */
-	<% if (statix === true) {%>
 	grunt.registerTask("serve", [
 		<% if (shims === true) {%>'shimly',<% } %>
+		<% if (browserify === true) {%>
+		'newer:browserify:prod',
+		<% } else { %>
 		'dofilesexist:js',
 		'uglify',
+		<% } %>
 		'sass:kickoff',
-		'sass:styleguide',
 		'autoprefixer:kickoff',
+		<% if (statix === true) {%>
 		'copy',
 		'assemble',
+		<% } %>
 		'browserSync:serve',
 		'watch'
 	]);
-	<% } else { %>
-	grunt.registerTask("serve", [
-		<% if (shims === true) {%>'shimly',<% } %>
-		'dofilesexist:js',
-		'uglify',
-		'sass:kickoff',
-		'sass:styleguide',
-		'autoprefixer:kickoff',
-		'browserSync:serve',
-		'watch'
-	]);
-	<% } %>
 
 
 	/**
@@ -199,12 +179,20 @@ module.exports = function (grunt) {
 	 */
 	grunt.registerTask('start', [
 		<% if (shims === true) {%>'shimly',<% } %>
+		<% if (browserify === true) {%>
+		'newer:browserify:prod',
+		<% } else { %>
 		'dofilesexist:js',
 		'uglify',
+		<% } %>
 		'sass:kickoff',
 		'sass:styleguide',
 		'autoprefixer:kickoff',
 		'autoprefixer:styleguide',
+		<% if (statix === true) {%>
+		'copy',
+		'assemble',
+		<% } %>
 		'connect:start',
 		'watch'
 	]);
@@ -216,11 +204,18 @@ module.exports = function (grunt) {
 	 */
 	grunt.registerTask('styleguide', [
 		<% if (shims === true) {%>'shimly',<% } %>
+		'dofilesexist:js',
+		<% if (browserify === true) {%>
+		'newer:browserify:prod',
+		<% } else { %>
 		'uglify',
-		'sass:kickoff',
+		<% } %>
 		'sass:styleguide',
-		'autoprefixer:kickoff',
 		'autoprefixer:styleguide',
+		<% if (statix === true) {%>
+		'copy',
+		'assemble',
+		<% } %>
 		'connect:styleguide',
 		'watch'
 	]);

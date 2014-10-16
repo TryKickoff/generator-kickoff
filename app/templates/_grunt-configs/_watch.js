@@ -25,11 +25,14 @@ module.exports.tasks = {
 
 		js: {
 			files: ['<%%=config.js.fileList%>', 'Gruntfile.js'],
-			<% if (statix == true) {%>
-			tasks: ['uglify', 'copy:js']
-			<% } else { %>
-			tasks: ['uglify']
-			<% } %>
+			tasks: [
+				<% if (browserify == true) {%>
+				'browserify:dev',
+				<% } else { %>
+				'uglify',
+				<% } %>
+				<% if (statix == true) {%>,'copy:js'<% } %>
+			]
 		},
 
 		livereload: {

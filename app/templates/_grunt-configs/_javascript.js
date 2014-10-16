@@ -1,5 +1,36 @@
 module.exports.tasks = {
+<% if (browserify === true) {%>
+	/**
+	 * Browserify
+	 * https://github.com/jmreidy/grunt-browserify
+	 * Grunt task for node-browserify – allows CommonJS-style JS code and packages it for use in the browser
+	 */
 
+	browserify: {
+		dev: {
+			src: ['<%%=config.js.srcFile%>'],
+			dest: '<%%=config.js.distDir%><%%=config.js.distFile%>',
+			options : {
+				bundleOptions : {
+					debug: true
+				}
+			}
+		},
+		prod: {
+			src: ['<%%=config.js.srcFile%>'],
+			dest: '<%%=config.js.distDir%><%%=config.js.distFile%>',
+			options : {
+				transform: [
+					[
+						'uglifyify', {
+							"global" : true
+						}
+					]
+				],
+			}
+		}
+	},
+<% } else { %>
 	/**
 	 * Uglify
 	 * https://github.com/gruntjs/grunt-contrib-uglify
@@ -26,6 +57,7 @@ module.exports.tasks = {
 			dest: '<%%=config.js.distDir%><%%=config.js.distFile%>'
 		}
 	},
+<% }%>
 
 
 	/**

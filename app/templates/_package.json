@@ -54,6 +54,9 @@
     "assemble": "~0.4.40",
     "grunt-contrib-copy": "~0.6.0"<% } %>
     <% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>,"grunt-jquery-builder": "~0.1.1"<% } %>
+    <% if (browserify == true) {%>,
+    "grunt-browserify": "~2.1.2",
+    "uglifyify": "~2.4.0"<% } %>
   },
   "keywords": []
 }
