@@ -1,5 +1,5 @@
 ## [Yeoman](http://yeoman.io) generator for the [Kickoff framework](https://github.com/tmwagency/kickoff/)
-Using our Yeoman Generator is the best and fastest way to get Kickoff each time you want to start a new project. It will ask you a few questions and then build a custom version of [Kickoff version 4.0.0](https://github.com/tmwagency/kickoff/releases/tag/4.0.0) for your needs.
+Using our Yeoman Generator is the best and fastest way to get Kickoff each time you want to start a new project. It will ask you a few questions and then build a custom version of [Kickoff version 4.0.1](https://github.com/tmwagency/kickoff/releases/tag/4.0.1) for your needs.
 
 ## What is Yeoman?
 Yeoman helps you kickstart new projects, prescribing best practices and tools to help you stay productive. Yeoman is open-source but is maintained by a number of people from Google.
