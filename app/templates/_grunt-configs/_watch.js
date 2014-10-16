@@ -24,7 +24,7 @@ module.exports.tasks = {
 		},
 
 		js: {
-			files: ['<%%=config.js.fileList%>', 'Gruntfile.js'],
+			files: ['<%%=config.js.fileList%>'],
 			tasks: [
 				<% if (browserify == true) {%>
 				'browserify:dev',
@@ -51,15 +51,18 @@ module.exports.tasks = {
 				'svgmin',
 				'grunticon'
 			]
-		}
+		},
 
-			<% if (statix === true) {%>,
-			assemble : {
-				files: ['<%%= config.statix.dir%>/src/templates/**/*.hbs', '<%%= config.statix.dir%>/src/templates/**/*.md'],
-				tasks: ['clean', 'assemble', 'newer:copy'],
-				options: {
-					livereload: true
-				}
-			},<% } %>
+		grunt: {
+			files: ['_grunt-configs/*.js', 'Gruntfile.js']
+		}<% if (statix === true) {%>,
+
+		assemble : {
+			files: ['<%%= config.statix.dir%>/src/templates/**/*.hbs', '<%%= config.statix.dir%>/src/templates/**/*.md'],
+			tasks: ['clean', 'assemble', 'newer:copy'],
+			options: {
+				livereload: true
+			}
+		},<% } %>
 	}
 };
