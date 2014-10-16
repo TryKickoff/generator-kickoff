@@ -24,15 +24,22 @@ module.exports.tasks = {
 		},
 
 		js: {
-			files: ['<%%=config.js.fileList%>'],
+			<% if (browserify == true) {%>
+			files: [
+				'js/**/*.js',
+				'!js/dist/**/*.js'
+			],
 			tasks: [
-				<% if (browserify == true) {%>
 				'browserify:dev',
-				<% } else { %>
-				'uglify',
-				<% } %>
 				<% if (statix == true) {%>,'copy:js'<% } %>
 			]
+			<% } else { %>
+			files: ['<%%=config.js.fileList%>'],
+			tasks: [
+				'uglify',
+				<% if (statix == true) {%>,'copy:js'<% } %>
+			]
+			<% } %>
 		},
 
 		livereload: {

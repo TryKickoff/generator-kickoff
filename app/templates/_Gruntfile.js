@@ -22,8 +22,8 @@ module.exports = function (grunt) {
 			js : {
 				distDir  : 'js/dist/',   // <%%=config.js.distDir%>
 				distFile : 'app.min.js', // <%%=config.js.distFile%>
-				<% if (browserify === true) {%>srcFile : 'js/script.js',/* <%%=config.js.srcFile%> */<% } %>
-
+				<% if (browserify === true) {%>srcFile : 'js/script.js',// <%%=config.js.srcFile%>
+				<% } else { %>
 				// <%%=config.js.fileList%>
 				fileList : [
 					// if you would like to remove jQuery from your concatenated JS, comment out the line below
@@ -38,6 +38,7 @@ module.exports = function (grunt) {
 
 					'js/script.js'
 				]
+				<% } %>
 			},
 
 			localserver: 'kickoff.dev', // <%%=config.localserver%>
