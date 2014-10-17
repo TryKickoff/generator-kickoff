@@ -74,14 +74,14 @@ module.exports = function (grunt) {
 
 	/* ==========================================================================
 		Available tasks:
-		* grunt        : run jshint, uglify and sass:kickoff
-		* grunt watch  : run sass:kickoff, uglify and livereload
-		* grunt dev    : run jshint, uglify and sass:kickoff
-		* grunt deploy : run jshint, uglify, sass:kickoff and csso
-		* grunt serve  : watch js & scss and run a local server
+		* grunt            : run jshint, uglify and sass:kickoff
+		* grunt watch      : run sass:kickoff, uglify and livereload
+		* grunt dev        : run jshint, uglify and sass:kickoff
+		* grunt deploy     : run jshint, uglify, sass:kickoff and csso
+		* grunt serve      : watch js & scss and run a local server
 		* grunt start      : run this before starting development
 		* grunt icons      : generate the icons. uses svgmin and grunticon
-		* grunt check      : run jshint
+		* grunt checks     : run jshint
 		* grunt styleguide : watch js & scss, run a local server for editing the styleguide
 		 ========================================================================== */
 
