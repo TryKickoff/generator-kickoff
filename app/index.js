@@ -109,13 +109,9 @@ var KickoffGenerator = yeoman.generators.Base.extend({
     ];
 
     this.prompt(prompts, function (props) {
-      this.projectName = props.projectName;
-      this.devNames    = props.devNames;
-      this.jsNamespace = props.jsNamespace;
-      this.statix      = props.statix;
-      this.jsLibs      = props.jsLibs;
-      this.shims       = props.shims;
-      this.browserify  = props.browserify;
+			for (var key in props) {
+				this[key] = props[key];
+			}
 
       done();
     }.bind(this));
