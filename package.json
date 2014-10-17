@@ -3,7 +3,10 @@
   "version": "0.8.2",
   "description": "A Yeoman generator for the Kickoff front-end framework",
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "yeoman",
+    "yo",
+    "kickoff"
   ],
   "license": "MIT",
   "main": "app/index.js",
