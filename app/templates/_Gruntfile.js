@@ -26,8 +26,7 @@ module.exports = function (grunt) {
 				<% } else { %>
 				// <%%=config.js.fileList%>
 				fileList : [
-					// if you would like to remove jQuery from your concatenated JS, comment out the line below
-					<% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>'bower_modules/jquery/dist/jquery.js',<% } %>
+					<% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>'bower_modules/jquery/dist/jquery.js',<% if (jsLibs.indexOf('jquery1') != -1) {%> /* jQuery v1.x */<% } %><% if (jsLibs.indexOf('jquery2') != -1) {%> /* jQuery v2.x */<% } %><% } %>
 
 					<% if (shims === true) {%>'js/helpers/shims.js',<% } %>
 
