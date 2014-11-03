@@ -9,9 +9,9 @@ module.exports.tasks = {
 		scss: {
 			files: ['<%%=config.css.scssDir%>/**/*.scss', '!<%%=config.css.scssDir%>/styleguide.scss'],
 			<% if (statix == true) {%>
-			tasks: ['sass:kickoff', 'autoprefixer:dist', 'copy:css']
+			tasks: ['sass:kickoff', 'autoprefixer:kickoff', 'copy:css']
 			<% } else { %>
-			tasks: ['sass:kickoff', 'autoprefixer:dist']
+			tasks: ['sass:kickoff', 'autoprefixer:kickoff']
 			<% } %>
 		},
 
