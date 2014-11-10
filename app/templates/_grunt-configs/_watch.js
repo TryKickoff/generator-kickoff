@@ -28,13 +28,17 @@ module.exports.tasks = {
 			files: [
 				'js/**/*.js',
 				'!js/dist/**/*.js'
+				<% if (statix == true) {%>,'!statix/assets/js/dist/**/*.js'<% } %>
 			],
 			tasks: [
 				'browserify:dev',
 				<% if (statix == true) {%>,'copy:js'<% } %>
 			]
 			<% } else { %>
-			files: ['<%%=config.js.fileList%>'],
+			files: [
+				'<%%=config.js.fileList%>'
+				<% if (statix == true) {%>,'!statix/assets/js/dist/**/*.js'<% } %>
+			],
 			tasks: [
 				'uglify',
 				<% if (statix == true) {%>,'copy:js'<% } %>
