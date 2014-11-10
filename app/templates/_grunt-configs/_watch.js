@@ -27,21 +27,21 @@ module.exports.tasks = {
 			<% if (browserify == true) {%>
 			files: [
 				'js/**/*.js',
-				'!js/dist/**/*.js'
-				<% if (statix == true) {%>,'!<%%= config.statix.dir%>/assets/js/dist/**/*.js'<% } %>
+				'!js/dist/**/*.js'<% if (statix == true) {%>,
+				'!<%%= config.statix.dir%>/assets/js/dist/**/*.js'<% } %>
 			],
 			tasks: [
-				'browserify:dev',
-				<% if (statix == true) {%>,'copy:js'<% } %>
+				'browserify:dev'<% if (statix == true) {%>,
+				'copy:js'<% } %>
 			]
 			<% } else { %>
 			files: [
-				'<%%=config.js.fileList%>'
-				<% if (statix == true) {%>,'!<%%= config.statix.dir%>/assets/js/dist/**/*.js'<% } %>
+				'<%%=config.js.fileList%>'<% if (statix == true) {%>,
+				'!<%%= config.statix.dir%>/assets/js/dist/**/*.js'<% } %>
 			],
 			tasks: [
-				'uglify',
-				<% if (statix == true) {%>,'copy:js'<% } %>
+				'uglify'<% if (statix == true) {%>,
+				'copy:js'<% } %>
 			]
 			<% } %>
 		},
@@ -70,7 +70,7 @@ module.exports.tasks = {
 
 		assemble : {
 			files: ['<%%= config.statix.dir%>/src/templates/**/*.hbs', '<%%= config.statix.dir%>/src/templates/**/*.md'],
-			tasks: ['clean', 'assemble', 'newer:copy'],
+			tasks: ['assemble', 'newer:copy:dist'],
 			options: {
 				livereload: true
 			}

@@ -92,6 +92,7 @@ module.exports = function (grunt) {
 	// Default task
 	grunt.registerTask('default', [
 		<% if (shims === true) {%>'shimly',<% } %>
+		<% if (statix === true) {%>'clean:all',<% } %>
 		<% if (browserify === true) {%>
 		'newer:browserify:prod',
 		<% } else { %>
@@ -113,6 +114,7 @@ module.exports = function (grunt) {
 	 */
 	grunt.registerTask('dev', [
 		<% if (shims === true) {%>'shimly',<% } %>
+		<% if (statix === true) {%>'clean:all',<% } %>
 		<% if (browserify === true) {%>
 		'newer:browserify:dev',
 		<% } else { %>
@@ -134,6 +136,7 @@ module.exports = function (grunt) {
 	 */
 	grunt.registerTask('deploy', [
 		<% if (shims === true) {%>'shimly',<% } %>
+		<% if (statix === true) {%>'clean:all',<% } %>
 		<% if (browserify === true) {%>
 		'newer:browserify:prod',
 		<% } else { %>
@@ -156,6 +159,7 @@ module.exports = function (grunt) {
 	 */
 	grunt.registerTask("serve", [
 		<% if (shims === true) {%>'shimly',<% } %>
+		<% if (statix === true) {%>'clean:all',<% } %>
 		<% if (browserify === true) {%>
 		'newer:browserify:prod',
 		<% } else { %>
@@ -179,6 +183,7 @@ module.exports = function (grunt) {
 	 */
 	grunt.registerTask('start', [
 		<% if (shims === true) {%>'shimly',<% } %>
+		<% if (statix === true) {%>'clean:all',<% } %>
 		<% if (browserify === true) {%>
 		'newer:browserify:prod',
 		<% } else { %>

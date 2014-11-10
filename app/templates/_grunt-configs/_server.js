@@ -42,16 +42,26 @@ module.exports.tasks = {
 	browserSync: {
 		serve: {
 			bsFiles: {
-				src: ['css/*.css', '<%%=config.js.distDir%>/*.js', '*.html']
+				src: [
+				<% if (statix == true) {%>
+					'<%%= config.statix.dir%>/dist/assets/css/*.css',
+					'<%%= config.statix.dir%>/dist/**/*.html',
+					'<%%=config.js.distDir%>/**/*.js'
+				<% } else { %>
+					'css/*.css',
+					'<%%=config.js.distDir%>/*.js',
+					'*.html'
+				<% } %>
+				]
 			},
 			options: {
 				watchTask: true,
 				server: {
-					<% if (statix == true) {%>
-						baseDir: './<%%= config.statix.dir%>/dist'
-					<% } else { %>
-						baseDir: './'
-					<% } %>
+				<% if (statix == true) {%>
+					baseDir: './<%%= config.statix.dir%>/dist'
+				<% } else { %>
+					baseDir: './'
+				<% } %>
 				}
 			}
 		}
