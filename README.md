@@ -1,4 +1,5 @@
 ## [Yeoman](http://yeoman.io) generator for the [Kickoff framework](https://github.com/tmwagency/kickoff/)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/tmwagency/generator-kickoff?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Using our Yeoman Generator is the best and fastest way to get Kickoff each time you want to start a new project. It will ask you a few questions and then build a custom version of [Kickoff version 4.0.1](https://github.com/tmwagency/kickoff/releases/tag/4.0.1) for your needs.
 
 ## What is Yeoman?
