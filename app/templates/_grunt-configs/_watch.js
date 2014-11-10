@@ -28,7 +28,7 @@ module.exports.tasks = {
 			files: [
 				'js/**/*.js',
 				'!js/dist/**/*.js'
-				<% if (statix == true) {%>,'!statix/assets/js/dist/**/*.js'<% } %>
+				<% if (statix == true) {%>,'!<%%= config.statix.dir%>/assets/js/dist/**/*.js'<% } %>
 			],
 			tasks: [
 				'browserify:dev',
@@ -37,7 +37,7 @@ module.exports.tasks = {
 			<% } else { %>
 			files: [
 				'<%%=config.js.fileList%>'
-				<% if (statix == true) {%>,'!statix/assets/js/dist/**/*.js'<% } %>
+				<% if (statix == true) {%>,'!<%%= config.statix.dir%>/assets/js/dist/**/*.js'<% } %>
 			],
 			tasks: [
 				'uglify',
