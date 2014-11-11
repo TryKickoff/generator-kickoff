@@ -40,6 +40,10 @@ module.exports = function (grunt) {
 				<% } %>
 			},
 
+			img : {
+				dir : 'img' // <%%=config.img.dir%>
+			},
+
 			localserver: 'kickoff.dev', // <%%=config.localserver%>
 
 			testing: {

@@ -56,7 +56,7 @@ module.exports.tasks = {
 		},
 
 		grunticon : {
-			files: ['img/src/*.svg', 'img/src/*.png'],
+			files: ['<%%=config.img.dir%>/src/*.svg', '<%%=config.img.dir%>/src/*.png'],
 			tasks: [
 				'clean:icons',
 				'svgmin',
