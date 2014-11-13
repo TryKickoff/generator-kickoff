@@ -133,6 +133,7 @@ var KickoffGenerator = yeoman.generators.Base.extend({
 		this.template('_grunt-configs/_server.js', '_grunt-configs/server.js');
 		this.template('_grunt-configs/_utilities.js', '_grunt-configs/utilities.js');
 		this.template('_grunt-configs/_watch.js', '_grunt-configs/watch.js');
+		this.template('_grunt-configs/_tests.js', '_grunt-configs/tests.js');
 
 		this.template('js/_script.js', 'js/script.js');
 		this.directory('js/libs', 'js/libs');
@@ -152,6 +153,7 @@ var KickoffGenerator = yeoman.generators.Base.extend({
 		this.copy('gitignore', '.gitignore');
 		this.copy('bowerrc', '.bowerrc');
 		this.copy('jscs.json', '.jscs.json');
+		this.copy('scss-lint.yml', '.scss-lint.yml');
 
 		if (this.browserify) {
 			this.directory('js/modules', 'js/modules');
