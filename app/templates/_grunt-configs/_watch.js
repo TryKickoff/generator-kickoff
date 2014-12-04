@@ -55,7 +55,7 @@ module.exports.tasks = {
 			<% } %>
 		},
 
-		grunticon : {
+		<% if (grunticon == true) {%>grunticon : {
 			files: ['<%%=config.img.dir%>/src/*.svg', '<%%=config.img.dir%>/src/*.png'],
 			tasks: [
 				'clean:icons',
@@ -64,7 +64,7 @@ module.exports.tasks = {
 			]
 		},
 
-		grunt: {
+		<% } %>grunt: {
 			files: ['_grunt-configs/*.js', 'Gruntfile.js']
 		}<% if (statix === true) {%>,
 
