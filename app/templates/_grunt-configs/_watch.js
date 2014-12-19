@@ -69,7 +69,7 @@ module.exports.tasks = {
 		}<% if (statix === true) {%>,
 
 		assemble : {
-			files: ['<%%= config.statix.dir%>/src/templates/**/*.hbs', '<%%= config.statix.dir%>/src/templates/**/*.md'],
+			files: ['<%%= config.statix.dir%>/src/templates/**/*.{hbs,md}'],
 			tasks: ['assemble', 'newer:copy:dist'],
 			options: {
 				livereload: true
