@@ -2,7 +2,7 @@
   "name": "<%= _.slugify(projectName) %>",
   "title": "Kickoff",
   "description": "A lightweight front-end framework for creating scalable, responsive sites",
-  "version": "4.0.4",
+  "version": "4.1.0",
   "homepage": "http://tmwagency.github.io/kickoff/",
   "authors": [
     {
@@ -31,33 +31,32 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "glob": "~4.0.6",
+    "grunt-sass": "^0.18.0",
+    "glob": "~4.4.0",
     "grunt": "~0.4.5",
-    "grunt-autoprefixer": "~2.0.0",
-    "grunt-browser-sync": "^1.5.3",
+    "grunt-autoprefixer": "~2.2.0",
+    "grunt-browser-sync": "^2.0.0",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-connect": "~0.9.0",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-sass": "^0.8.1",
-    "grunt-contrib-uglify": "~0.6.0",
+    "grunt-contrib-jshint": "~0.11.0",
+    "grunt-contrib-uglify": "~0.7.0",
     "grunt-contrib-watch": "~0.6.1",
-    "grunt-csso": "~0.6.5",
-    "grunt-grunticon": "~1.5.1",
-    "grunt-newer": "~0.8.0",
+    "grunt-csso": "~0.7.0",
+    "grunt-grunticon": "~2.1.2",
+    "grunt-newer": "~1.1.0",
     "grunt-photobox": "^0.8.1",
     "grunt-scss-lint": "^0.3.4",
     "grunt-shell": "^1.1.1",
     "grunt-shimly": "0.0.7",
     "grunt-svgmin": "~2.0.0",
-    "load-grunt-configs": "~0.4.0",
-    "load-grunt-tasks": "~0.6.0"
+    "load-grunt-configs": "~0.4.2",
+    "load-grunt-tasks": "~3.1.0"
     <% if (statix == true) {%>,
-    "assemble": "~0.4.40",
-    "grunt-contrib-copy": "~0.6.0"<% } %>
-    <% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>,"grunt-jquery-builder": "~0.1.1"<% } %>
+    "assemble": "~0.4.42",
+    "grunt-contrib-copy": "~0.7.0"<% } %>
     <% if (browserify == true) {%>,
-    "grunt-browserify": "~3.0.1",
-    "uglifyify": "~2.5.0"<% } %>
+    "grunt-browserify": "~3.3.0",
+    "uglifyify": "~3.0.1"<% } %>
   },
   "keywords": []
 }
