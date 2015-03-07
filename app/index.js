@@ -8,16 +8,6 @@ var pkg            = require('../package.json');
 
 var KickoffGenerator = module.exports = function KickoffGenerator(args, options) {
 	yeoman.generators.Base.apply(this, arguments);
-
-	//this.on('end', function () {
-		// console.log(this.installDependencies);
-
-		this.installDependencies({
-			skipInstall: this.options['skip-install'],
-			callback: this._injectDependencies.bind(this)
-		});
-	//});
-
 };
 
 
@@ -170,6 +160,15 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		this.template('statix/src/templates/includes/_html_start.hbs', 'statix/src/templates/includes/html_start.hbs');
 	}
 };
+
+
+KickoffGenerator.prototype.install = function packageFiles() {
+	this.installDependencies({
+		skipInstall: this.options['skip-install'],
+		callback: this._injectDependencies.bind(this)
+	});
+};
+
 
 KickoffGenerator.prototype._injectDependencies = function _injectDependencies() {
   if (this.options['skip-install']) {
