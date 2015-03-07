@@ -1,6 +1,6 @@
 {
   "name": "generator-kickoff",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "A Yeoman generator for the Kickoff front-end framework",
   "keywords": [
     "yeoman-generator",
