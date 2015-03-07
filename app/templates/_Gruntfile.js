@@ -27,13 +27,12 @@ module.exports = function (grunt) {
 				// <%%=config.js.fileList%>
 				fileList : [
 					<% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>'bower_modules/jquery/dist/jquery.js',<% if (jsLibs.indexOf('jquery1') != -1) {%> /* jQuery v1.x */<% } %><% if (jsLibs.indexOf('jquery2') != -1) {%> /* jQuery v2.x */<% } %><% } %>
-
 					<% if (shims === true) {%>'js/helpers/shims.js',<% } %>
 
 					'js/helpers/console.js',
 					<% if (jsLibs.indexOf('swiftclick') != -1) {%>'bower_modules/swiftclick/js/libs/swiftclick.js',<% } %>
 					<% if (jsLibs.indexOf('trak') != -1) {%>'bower_modules/trak/dist/trak.js',<% } %>
-					<% if (jsLibs.indexOf('cookies') != -1) {%>'bower_modules/cookies-js/src/cookies.js',<% } %>
+					<% if (jsLibs.indexOf('cookies') != -1) {%>'bower_modules/cookies-js/dist/cookies.js',<% } %>
 
 					'js/script.js'
 				]
