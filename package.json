@@ -29,11 +29,11 @@
     "app"
   ],
   "dependencies": {
-    "chalk": "~0.5.1",
+    "chalk": "~1.0.0",
     "underscore.string": "~3.0.3",
-    "update-notifier": "0.3.0",
-    "yeoman-generator": "~0.18.9",
-    "yosay": "^1.0.2"
+    "update-notifier": "0.3.1",
+    "yeoman-generator": "~0.18.10",
+    "yosay": "^1.0.3"
   },
   "devDependencies": {
     "mocha": "*"
