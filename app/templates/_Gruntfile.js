@@ -11,11 +11,10 @@ module.exports = function (grunt) {
 	};
 
 	// Load grunt tasks automatically
-	require('load-grunt-tasks')(grunt);
+	require('load-grunt-tasks')(grunt, {pattern: ["grunt-*", "chotto"<% if (statix === true) {%>, "assemble"<% } %>]});
 
 	// Load grunt configurations automatically
 	var configs = require('load-grunt-configs')(grunt, options);
-	<% if (statix === true) {%>grunt.loadNpmTasks('assemble');<% } %>
 
 	// Define the configuration for all the tasks
 	grunt.initConfig(configs);
