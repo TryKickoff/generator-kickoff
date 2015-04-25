@@ -6,62 +6,8 @@ module.exports = function (grunt) {
 
 		<% if (statix == true) {%>site: grunt.file.readYAML('statix/src/data/site.yml'),<% } %>
 
-		/**
-		 * Grunt global vars
-		 * Many of the Grunt tasks use these vars
-		 */
-		config : {
-			src : '_grunt-configs/*.js',
-
-			css : {
-				distDir : 'css',     // <%%=config.css.distDir%>
-				srcFile : 'kickoff', // <%%=config.css.srcFile%>
-				scssDir : 'scss'     // <%%=config.css.scssDir%>
-			},
-
-			js : {
-				distDir  : 'js/dist/',   // <%%=config.js.distDir%>
-				distFile : 'app.min.js', // <%%=config.js.distFile%>
-				<% if (browserify === true) {%>srcFile : 'js/script.js',// <%%=config.js.srcFile%>
-				<% } else { %>
-				// <%%=config.js.fileList%>
-				fileList : [
-					<% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>'bower_modules/jquery/dist/jquery.js',<% if (jsLibs.indexOf('jquery1') != -1) {%> /* jQuery v1.x */<% } %><% if (jsLibs.indexOf('jquery2') != -1) {%> /* jQuery v2.x */<% } %><% } %>
-					<% if (shims === true) {%>'js/helpers/shims.js',<% } %>
-
-					'js/helpers/console.js',
-					<% if (jsLibs.indexOf('swiftclick') != -1) {%>'bower_modules/swiftclick/js/libs/swiftclick.js',<% } %>
-					<% if (jsLibs.indexOf('trak') != -1) {%>'bower_modules/trak/dist/trak.js',<% } %>
-					<% if (jsLibs.indexOf('cookies') != -1) {%>'bower_modules/cookies-js/dist/cookies.js',<% } %>
-
-					'js/script.js'
-				]
-				<% } %>
-			},
-
-			img : {
-				dir : 'img' // <%%=config.img.dir%>
-			},
-
-			localserver: 'kickoff.dev', // <%%=config.localserver%>
-
-			testing: {
-				visual : {
-					sizes: [ '600', '1000', '1200' ], // <%%=config.testing.visual.sizes%>
-
-					// <%%=config.testing.visual.urls%>
-					urls : [
-						'http://localhost:3000',
-						'http://localhost:3000/_docs/',
-						'http://localhost:3000/_docs/styleguide.html'
-					]
-				}
-			}<% if (statix === true) {%>,
-
-			statix : {
-				dir : 'statix' // <%%= config.statix.dir%>
-			}<% } %>
-		},
+		// Global Grunt vars. Edit this file to change vars
+		config : require('./_grunt-configs/config.js')
 	};
 
 	// Load grunt tasks automatically
