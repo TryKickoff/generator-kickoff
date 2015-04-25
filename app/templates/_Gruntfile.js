@@ -20,61 +20,68 @@ module.exports = function (grunt) {
 	grunt.initConfig(configs);
 
 
-	/* ==========================================================================
-		Available tasks:
-		* grunt            : run jshint, uglify and sass:kickoff
-		* grunt watch      : run sass:kickoff, uglify and livereload
-		* grunt dev        : run jshint, uglify and sass:kickoff
-		* grunt deploy     : run jshint, uglify, sass:kickoff and csso
-		* grunt serve      : watch js & scss and run a local server
-		* grunt start      : run this before starting development
-		* grunt icons      : generate the icons. uses svgmin and grunticon
-		* grunt checks     : run jshint
-		* grunt styleguide : watch js & scss, run a local server for editing the styleguide
-		 ========================================================================== */
+	/**
+	 * Available tasks:
+	 * grunt            : Alias for 'serve' task, below
+	 * grunt serve      : watch js, images & scss and run a local server
+	 * grunt start      : Run this to show the start page before starting development
+	 * grunt watch      : run sass:kickoff, uglify and livereload
+	 * grunt dev        : run uglify, sass:kickoff & autoprefixer:kickoff
+	 * grunt deploy     : run jshint, uglify, sass:kickoff and csso
+	 * grunt styleguide : watch js & scss, run a local server for editing the styleguide
+	 * grunt icons      : generate the icons. uses svgmin and grunticon
+	 * grunt checks     : run jshint & scsslint
+	 */
 
 	/**
-	 * GRUNT * Default task
-	 * run jshint, uglify and sass:kickoff
+	 * GRUNT * Alias for 'serve' task, below
 	 */
-	// Default task
-	grunt.registerTask('default', [
-		<% if (shims === true) {%>'shimly',<% } %>
+	grunt.registerTask('default', ['serve']);
+
+
+	/**
+	 * GRUNT SERVE * A task for a static server with a watch
+	 * run browserSync and watch
+	 */
+	grunt.registerTask('serve', [
 		<% if (statix === true) {%>'clean:all',<% } %>
+		<% if (shims === true) {%>'shimly',<% } %>
 		<% if (browserify === true) {%>
 		'newer:browserify:prod',
 		<% } else { %>
-		'dofilesexist:js',
+		'chotto:js',
 		'uglify',
 		<% } %>
-		'sass:kickoff',
-		'autoprefixer:kickoff'
-		<% if (statix === true) {%>
-		,'copy',
-		'assemble'
-		<% } %>
+		'sass',
+		'autoprefixer',
+		'clean:tempCSS',
+		'copy:modernizr',
+		<% if (statix === true) {%>'copy',
+		'assemble'<% } %>
+		'browserSync:serve',
+		'watch'
 	]);
 
 
 	/**
 	 * GRUNT DEV * A task for development
-	 * run jshint, uglify and sass:kickoff
+	 * run uglify, sass:kickoff & autoprefixer:kickoff
 	 */
 	grunt.registerTask('dev', [
-		<% if (shims === true) {%>'shimly',<% } %>
 		<% if (statix === true) {%>'clean:all',<% } %>
+		<% if (shims === true) {%>'shimly',<% } %>
 		<% if (browserify === true) {%>
-		'newer:browserify:dev',
+		'newer:browserify:prod',
 		<% } else { %>
-		'dofilesexist:js',
+		'chotto:js',
 		'uglify',
 		<% } %>
-		'sass:kickoff',
-		'autoprefixer:kickoff'
-		<% if (statix === true) {%>
-		,'copy',
-		'assemble'
-		<% } %>
+		'sass',
+		'autoprefixer',
+		'clean:tempCSS',
+		'copy:modernizr'<% if (statix === true) {%>,
+		'copy',
+		'assemble'<% } %>
 	]);
 
 
@@ -83,71 +90,41 @@ module.exports = function (grunt) {
 	 * run jshint, uglify and sass:production
 	 */
 	grunt.registerTask('deploy', [
-		<% if (shims === true) {%>'shimly',<% } %>
 		<% if (statix === true) {%>'clean:all',<% } %>
-		<% if (browserify === true) {%>
-		'newer:browserify:prod',
-		<% } else { %>
-		'dofilesexist:js',
-		'uglify',
-		<% } %>
-		'sass:kickoff',
-		'autoprefixer:kickoff',
-		'csso'
-		<% if (statix === true) {%>
-		,'copy',
-		'assemble'
-		<% } %>
-	]);
-
-
-	/**
-	 * GRUNT SERVE * A task for for a static server with a watch
-	 * run connect and watch
-	 */
-	grunt.registerTask("serve", [
 		<% if (shims === true) {%>'shimly',<% } %>
-		<% if (statix === true) {%>'clean:all',<% } %>
-		<% if (browserify === true) {%>
-		'newer:browserify:prod',
+		<% if (browserify === true) {%>'newer:browserify:prod',
 		<% } else { %>
-		'dofilesexist:js',
-		'uglify',
-		<% } %>
-		'sass:kickoff',
-		'autoprefixer:kickoff',
-		<% if (statix === true) {%>
+		'chotto:js',
+		'uglify',<% } %>
+		'sass',
+		'autoprefixer',
+		'csso',
+		'clean:tempCSS',
+		'copy:modernizr'<% if (statix === true) {%>,
 		'copy',
-		'assemble',
-		<% } %>
-		'browserSync:serve',
-		'watch'
+		'assemble'<% } %>
 	]);
 
 
 	/**
-	 * GRUNT START * Run this to
-	 * run jquery builder, uglify, sass and autoprefixer
+	 * GRUNT START * Run this to show the start page before starting development
 	 */
 	grunt.registerTask('start', [
-		<% if (shims === true) {%>'shimly',<% } %>
 		<% if (statix === true) {%>'clean:all',<% } %>
+		<% if (shims === true) {%>'shimly',<% } %>
 		<% if (browserify === true) {%>
 		'newer:browserify:prod',
 		<% } else { %>
-		'dofilesexist:js',
+		'chotto:js',
 		'uglify',
 		<% } %>
-		'sass:kickoff',
-		'sass:styleguide',
-		'autoprefixer:kickoff',
-		'autoprefixer:styleguide',
-		<% if (statix === true) {%>
-		'copy',
-		'assemble',
-		<% } %>
-		'connect:start',
-		'watch'
+		'sass',
+		'autoprefixer',
+		'clean:tempCSS',
+		'copy:modernizr',
+		<% if (statix === true) {%>'copy',
+		'assemble'<% } %>
+		'browserSync:start'
 	]);
 
 
@@ -156,21 +133,21 @@ module.exports = function (grunt) {
 	 * run uglify, sass:kickoff, sass:styleguide, autoprefixer:kickoff, autoprefixer:styleguide, connect:styleguide & watch
 	 */
 	grunt.registerTask('styleguide', [
+		<% if (statix === true) {%>'clean:all',<% } %>
 		<% if (shims === true) {%>'shimly',<% } %>
-		'dofilesexist:js',
 		<% if (browserify === true) {%>
 		'newer:browserify:prod',
 		<% } else { %>
+		'chotto:js',
 		'uglify',
 		<% } %>
-		'sass:styleguide',
-		'autoprefixer:styleguide',
-		<% if (statix === true) {%>
-		'copy',
-		'assemble',
-		<% } %>
-		'connect:styleguide',
-		'watch'
+		'sass',
+		'autoprefixer',
+		'clean:tempCSS',
+		'copy:modernizr',
+		<% if (statix === true) {%>'copy',
+		'assemble'<% } %>
+		'browserSync:styleguide'
 	]);
 
 
@@ -180,7 +157,7 @@ module.exports = function (grunt) {
 	 */
 	grunt.registerTask('icons', [
 		'clean:icons',
-		'svgmin',
+		'imagemin:grunticon',
 		'grunticon'
 	]);
 
@@ -193,30 +170,5 @@ module.exports = function (grunt) {
 		'jshint:project',
 		'scsslint'
 	]);
-
-	/**
-	 * GRUNT DOFILESEXIST * Check for the existence of specific files and fail if not found
-	 */
-	grunt.registerMultiTask('dofilesexist', function () {
-
-		var filePaths = this.data;
-		var numFailedFiles = 0;
-
-		if (Array.isArray(filePaths)) {
-
-			filePaths.forEach(function(path) {
-
-				if (!grunt.file.exists(path))
-				{
-					grunt.log.warn("Source file: '" + path + "' not found.");
-					numFailedFiles++;
-				}
-			});
-
-			if (numFailedFiles > 0) grunt.fail.warn("Please add the missing files.");
-		}
-	});
-
-
 
 };
