@@ -3,7 +3,7 @@ module.exports.tasks = {
 	/**
 	 * Sass compilation using grunt-sass
 	 * https://github.com/sindresorhus/grunt-sass
-	 * Includes <%%=config.css.distDir%>.scss and <%%=config.css.distDir%>-old-ie.scss by default
+	 * Includes <%%=config.css.distFile%>.scss<% if (oldIE === true) {%> and <%%=config.css.distFile%>-old-ie.scss<% } %> by default
 	 */
 	sass: {
 		kickoff: {
@@ -13,17 +13,18 @@ module.exports.tasks = {
 				sourceMap : true
 			},
 			files: {
-				'<%%=config.css.distDir%>/temp/<%= _.slugify(projectName) %>.css' : '<%%=config.css.scssDir%>/<%%=config.css.srcFile%>.scss',
-				'<%%=config.css.distDir%>/temp/<%= _.slugify(projectName) %>-old-ie.css': '<%%=config.css.scssDir%>/<%%=config.css.srcFile%>-old-ie.scss'
+				'<%=config.tempDir%>/css/<%=config.css.distFile%>.css' : '<%=config.css.scssDir%>/kickoff.scss'<% if (oldIE === true) {%>,
+				'<%=config.tempDir%>/css/<%=config.css.distFile%>-old-ie.css': '<%=config.css.scssDir%>/kickoff-old-ie.scss'<% } %>
 			}
 		},
+
 		styleguide: {
 			options: {
 				outputStyle: 'compressed',
 				precision : 10,
 			},
 			files: {
-				'<%%=config.css.distDir%>/styleguide.css': '<%%=config.css.scssDir%>/styleguide.scss'
+				'<%=config.tempDir%>/css/styleguide.css' : '<%=config.css.scssDir%>/styleguide.scss'
 			}
 		}
 	},
@@ -37,22 +38,15 @@ module.exports.tasks = {
 	 */
 	autoprefixer: {
 		options: {
-			// We are supporting the last 2 browsers, any browsers with >1% market share,
-			// and ensuring we support IE8+ with prefixes
-			browsers: ['> 5%', 'last 4 versions', 'firefox > 3.6', 'ie > 7'],
+			browsers: '<%=config.css.autoprefixer%>',
 			map: true
 		},
 
 		kickoff: {
 			expand: true,
 			flatten: true,
-			src: '<%%=config.css.distDir%>/temp/*.css',
-			dest: '<%%=config.css.distDir%>/'
-		},
-
-		styleguide : {
-			src: '<%%=config.css.distDir%>/styleguide.css',
-			dest: '<%%=config.css.distDir%>/styleguide.css'
+			src: '<%=config.tempDir%>/css/*.css',
+			dest: '<%=config.css.distDir%>/'
 		}
 	},
 
@@ -68,8 +62,8 @@ module.exports.tasks = {
 				restructure: false //turns structural optimisations off as can mess up fallbacks http://bem.info/tools/optimizers/csso/description/
 			},
 			files: {
-				'<%%=config.css.distDir%>/<%= _.slugify(projectName) %>.css' : '<%%=config.css.distDir%>/<%= _.slugify(projectName) %>.css',
-				'<%%=config.css.distDir%>/<%= _.slugify(projectName) %>-old-ie.css': '<%%=config.css.distDir%>/<%= _.slugify(projectName) %>-old-ie.css'
+				'<%=config.css.distDir%>/<%=config.css.distFile%>.css'       : '<%=config.css.distDir%>/<%=config.css.distFile%>.css'<% if (oldIE === true) {%>,
+				'<%=config.css.distDir%>/<%=config.css.distFile%>-old-ie.css': '<%=config.css.distDir%>/<%=config.css.distFile%>-old-ie.css'<% } %>
 			},
 		}
 	}
