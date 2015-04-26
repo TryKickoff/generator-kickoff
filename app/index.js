@@ -42,6 +42,11 @@ KickoffGenerator.prototype.askFor = function () {
 			default: 'Kickoff'
 		},
 		{
+			name: 'projectDescription',
+			message: 'Project description',
+			default: 'Kickoff'
+		},
+		{
 			name: 'devNames',
 			message: 'What are the project developer\'s names?',
 			default: 'The Kickoff Team'
