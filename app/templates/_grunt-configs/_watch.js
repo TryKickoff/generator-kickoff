@@ -7,70 +7,79 @@ module.exports.tasks = {
 	*/
 	watch: {
 		scss: {
-			files: ['<%%=config.css.scssDir%>/**/*.scss', '!<%%=config.css.scssDir%>/styleguide.scss'],
-			<% if (statix == true) {%>
-			tasks: ['sass:kickoff', 'autoprefixer:kickoff', 'copy:css']
-			<% } else { %>
-			tasks: ['sass:kickoff', 'autoprefixer:kickoff']
-			<% } %>
-		},
-
-		"styleguide_scss": {
-			files: ['<%%=config.css.scssDir%>/styleguide.scss'],
+			files: ['<%%=config.css.scssDir%>/**/*.scss'],
 			tasks: [
-				'sass:styleguide',
-				'autoprefixer:styleguide'
+				'sass',
+				'autoprefixer',
+				'clean:tempCSS'<% if (statix == true) {%>,
+				'copy:css'<% } %>
 			]
 		},
 
 		js: {
-			<% if (browserify == true) {%>
 			files: [
+			<% if (browserify == true) {%>
 				'js/**/*.js',
 				'!js/dist/**/*.js'<% if (statix == true) {%>,
 				'!<%%= config.statix.dir%>/assets/js/dist/**/*.js'<% } %>
+			<% } else { %>'<%%=config.js.fileList%>'<% } %>
 			],
 			tasks: [
-				'browserify:dev'<% if (statix == true) {%>,
+			<% if (browserify == true) {%>'browserify:dev'<% } else { %>
+				'uglify',
+				'newer:copy:modernizr'<% } %><% if (statix == true) {%>,
 				'copy:js'<% } %>
 			]
-			<% } else { %>
+		},
+
+		js: {
+			<% if (browserify == true) {%>files: [
+				'js/**/*.js',
+				'!js/dist/**/*.js'<% if (statix == true) {%>,
+				'!<%%= config.statix.dir%>/assets/js/dist/**/*.js'<% } %>
+			],<% } else { %>
 			files: [
 				'<%%=config.js.fileList%>'<% if (statix == true) {%>,
 				'!<%%= config.statix.dir%>/assets/js/dist/**/*.js'<% } %>
-			],
+			],<% } %>
 			tasks: [
-				'uglify'<% if (statix == true) {%>,
+				<% if (browserify == true) {%>'browserify:dev'<% } else { %>
+				'uglify',
+				'newer:copy:modernizr'<% } %><% if (statix == true) {%>,
 				'copy:js'<% } %>
 			]
-			<% } %>
 		},
 
-		livereload: {
-			options: { livereload: true },
-			<% if (statix == true) {%>
-			files: ['<%%= config.statix.dir%>/dist/css/*.css']
-			<% } else { %>
-			files: ['<%%=config.css.distDir%>/*.css']
-			<% } %>
+		images : {
+			files: ['<%%=config.img.srcDir%>/**/*.{svg,png,jpg,gif}'],
+			tasks: ['imagemin:images'],
+			options: {
+				interrupt: true,
+			}
 		},
 
 		<% if (grunticon == true) {%>grunticon : {
-			files: ['<%%=config.img.dir%>/src/*.svg', '<%%=config.img.dir%>/src/*.png'],
+			files: ['<%%=config.img.grunticonDir%>/**/*.{svg,png,jpg,gif}'],
 			tasks: [
 				'clean:icons',
-				'svgmin',
+				'imagemin:grunticon',
 				'grunticon'
 			]
 		},
 
 		<% } %>grunt: {
-			files: ['_grunt-configs/*.js', 'Gruntfile.js']
+			files: ['_grunt-configs/*.js', 'Gruntfile.js'],
+			options: {
+				reload: true
+			}
 		}<% if (statix === true) {%>,
 
 		assemble : {
 			files: ['<%%= config.statix.dir%>/src/templates/**/*.{hbs,md}'],
-			tasks: ['assemble', 'newer:copy:dist'],
+			tasks: [
+				'assemble',
+				'newer:copy:statix'
+			],
 			options: {
 				livereload: true
 			}

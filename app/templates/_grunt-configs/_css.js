@@ -13,8 +13,8 @@ module.exports.tasks = {
 				sourceMap : true
 			},
 			files: {
-				'<%=config.tempDir%>/css/<%=config.css.distFile%>.css' : '<%=config.css.scssDir%>/kickoff.scss'<% if (oldIE === true) {%>,
-				'<%=config.tempDir%>/css/<%=config.css.distFile%>-old-ie.css': '<%=config.css.scssDir%>/kickoff-old-ie.scss'<% } %>
+				'<%%=config.tempDir%>/css/<%%=config.css.distFile%>.css' : '<%%=config.css.scssDir%>/kickoff.scss'<% if (oldIE === true) {%>,
+				'<%%=config.tempDir%>/css/<%%=config.css.distFile%>-old-ie.css': '<%%=config.css.scssDir%>/kickoff-old-ie.scss'<% } %>
 			}
 		},
 
@@ -24,7 +24,7 @@ module.exports.tasks = {
 				precision : 10,
 			},
 			files: {
-				'<%=config.tempDir%>/css/styleguide.css' : '<%=config.css.scssDir%>/styleguide.scss'
+				'<%%=config.tempDir%>/css/styleguide.css' : '<%%=config.css.scssDir%>/styleguide.scss'
 			}
 		}
 	},
@@ -38,15 +38,15 @@ module.exports.tasks = {
 	 */
 	autoprefixer: {
 		options: {
-			browsers: '<%=config.css.autoprefixer%>',
+			browsers: '<%%=config.css.autoprefixer%>',
 			map: true
 		},
 
 		kickoff: {
 			expand: true,
 			flatten: true,
-			src: '<%=config.tempDir%>/css/*.css',
-			dest: '<%=config.css.distDir%>/'
+			src: '<%%=config.tempDir%>/css/*.css',
+			dest: '<%%=config.css.distDir%>/'
 		}
 	},
 
@@ -62,8 +62,8 @@ module.exports.tasks = {
 				restructure: false //turns structural optimisations off as can mess up fallbacks http://bem.info/tools/optimizers/csso/description/
 			},
 			files: {
-				'<%=config.css.distDir%>/<%=config.css.distFile%>.css'       : '<%=config.css.distDir%>/<%=config.css.distFile%>.css'<% if (oldIE === true) {%>,
-				'<%=config.css.distDir%>/<%=config.css.distFile%>-old-ie.css': '<%=config.css.distDir%>/<%=config.css.distFile%>-old-ie.css'<% } %>
+				'<%%=config.css.distDir%>/<%%=config.css.distFile%>.css'       : '<%%=config.css.distDir%>/<%%=config.css.distFile%>.css'<% if (oldIE === true) {%>,
+				'<%%=config.css.distDir%>/<%%=config.css.distFile%>-old-ie.css': '<%%=config.css.distDir%>/<%%=config.css.distFile%>-old-ie.css'<% } %>
 			},
 		}
 	}

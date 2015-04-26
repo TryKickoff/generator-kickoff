@@ -18,7 +18,7 @@ module.exports = {
 
 		// Renaming this changes the name of the generated CSS file
 		// Make sure you update your template file
-		distFile : 'kickoff', // <%%=config.css.srcFile%>
+		distFile : '<%= _.slugify(projectName) %>', // <%%=config.css.srcFile%>
 
 		// We are supporting the last 2 browsers, any browsers with >5% market share,
 		// and ensuring we support IE8+ with prefixes
@@ -40,19 +40,12 @@ module.exports = {
 
 		// <%%=config.js.fileList%>
 		fileList : [
-			// if you would like to remove jQuery from your concatenated JS, comment out the line below
-			'./node_modules/jquery/dist/jquery.js',
 			<% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>'./node_modules/jquery/dist/jquery.js',<% if (jsLibs.indexOf('jquery1') != -1) {%> /* jQuery v1.x */<% } %><% if (jsLibs.indexOf('jquery2') != -1) {%> /* jQuery v2.x */<% } %><% } %>
-
-			// if you would like some basic JS shims (when not using jQuery),
-			// uncomment the line below to compile Shimly output
 			<% if (shims === true) {%>'<%%=config.srcDir%>/js/helpers/shims.js',<% } %>
-
-			'<%%=config.srcDir%>/js/helpers/console.js',
-			<% if (jsLibs.indexOf('swiftclick') != -1) {%>'./node_modules/swiftclick/js/libs/swiftclick.js',<% } %>
-			<% if (jsLibs.indexOf('trak') != -1) {%>'./node_modules/trak/dist/trak.js',<% } %>
-			<% if (jsLibs.indexOf('cookies') != -1) {%>'./node_modules/cookies-js/dist/cookies.js',<% } %>
-
+			'<%%=config.srcDir%>/js/helpers/console.js',<% if (jsLibs.indexOf('swiftclick') != -1) {%>
+			'./node_modules/swiftclick/js/libs/swiftclick.js',<% } %><% if (jsLibs.indexOf('trak') != -1) {%>
+			'./node_modules/trak.js/dist/trak.js',<% } %><% if (jsLibs.indexOf('cookies') != -1) {%>
+			'./node_modules/cookies-js/dist/cookies.js',<% } %>
 			'<%%=config.srcDir%>/js/script.js'
 		]<% } %>
 	},

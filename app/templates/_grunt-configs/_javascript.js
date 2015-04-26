@@ -5,7 +5,6 @@ module.exports.tasks = {
 	 * https://github.com/jmreidy/grunt-browserify
 	 * Grunt task for node-browserify – allows CommonJS-style JS code and packages it for use in the browser
 	 */
-
 	browserify: {
 		dev: {
 			src: ['<%%=config.js.srcFile%>'],
@@ -39,9 +38,11 @@ module.exports.tasks = {
 	 */
 	uglify: {
 		options: {
-			mangle: { // set to false (replace this object) to turn off mangling
-				except: ['jQuery'] // https://github.com/gruntjs/grunt-contrib-uglify#reserved-identifiers
-			},
+			// set to false (replace this object) to turn off mangling
+			// https://github.com/gruntjs/grunt-contrib-uglify#reserved-identifiers
+			<% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>mangle: {
+				except: ['jQuery']
+			},<% } else { %>mangle: true,<% } %>
 			compress: { // set to false (replace this object) to turn off compression
 				drop_console: false
 			},

@@ -46,18 +46,15 @@ module.exports = function (grunt) {
 	grunt.registerTask('serve', [
 		<% if (statix === true) {%>'clean:all',<% } %>
 		<% if (shims === true) {%>'shimly',<% } %>
-		<% if (browserify === true) {%>
-		'newer:browserify:prod',
-		<% } else { %>
-		'chotto:js',
-		'uglify',
-		<% } %>
+		<% if (browserify === true) {%>'newer:browserify:prod',
+		<% } else { %>'chotto:js',
+		'uglify',<% } %>
 		'sass',
 		'autoprefixer',
 		'clean:tempCSS',
 		'copy:modernizr',
 		<% if (statix === true) {%>'copy',
-		'assemble'<% } %>
+		'assemble',<% } %>
 		'browserSync:serve',
 		'watch'
 	]);
@@ -93,8 +90,7 @@ module.exports = function (grunt) {
 		<% if (statix === true) {%>'clean:all',<% } %>
 		<% if (shims === true) {%>'shimly',<% } %>
 		<% if (browserify === true) {%>'newer:browserify:prod',
-		<% } else { %>
-		'chotto:js',
+		<% } else { %>'chotto:js',
 		'uglify',<% } %>
 		'sass',
 		'autoprefixer',
@@ -112,18 +108,15 @@ module.exports = function (grunt) {
 	grunt.registerTask('start', [
 		<% if (statix === true) {%>'clean:all',<% } %>
 		<% if (shims === true) {%>'shimly',<% } %>
-		<% if (browserify === true) {%>
-		'newer:browserify:prod',
-		<% } else { %>
-		'chotto:js',
-		'uglify',
-		<% } %>
+		<% if (browserify === true) {%>'newer:browserify:prod',
+		<% } else { %>'chotto:js',
+		'uglify',<% } %>
 		'sass',
 		'autoprefixer',
 		'clean:tempCSS',
 		'copy:modernizr',
 		<% if (statix === true) {%>'copy',
-		'assemble'<% } %>
+		'assemble',<% } %>
 		'browserSync:start'
 	]);
 
@@ -135,18 +128,15 @@ module.exports = function (grunt) {
 	grunt.registerTask('styleguide', [
 		<% if (statix === true) {%>'clean:all',<% } %>
 		<% if (shims === true) {%>'shimly',<% } %>
-		<% if (browserify === true) {%>
-		'newer:browserify:prod',
-		<% } else { %>
-		'chotto:js',
-		'uglify',
-		<% } %>
+		<% if (browserify === true) {%>'newer:browserify:prod',
+		<% } else { %>'chotto:js',
+		'uglify',<% } %>
 		'sass',
 		'autoprefixer',
 		'clean:tempCSS',
 		'copy:modernizr',
 		<% if (statix === true) {%>'copy',
-		'assemble'<% } %>
+		'assemble',<% } %>
 		'browserSync:styleguide'
 	]);
 

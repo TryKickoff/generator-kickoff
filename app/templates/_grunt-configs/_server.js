@@ -1,40 +1,6 @@
 module.exports.tasks = {
 
 	/**
-	 * Connect
-	 * https://github.com/gruntjs/grunt-contrib-connect
-	 * Start a static web server
-	 */
-	connect: {
-		site: {
-			options: {
-				open: true,
-				livereload: true
-				<% if (statix == true) {%>,
-					base: '<%%= config.statix.dir%>/dist'
-				<% } %>
-			}
-		},
-		styleguide: {
-			options: {
-				open: {
-					target: 'http://0.0.0.0:8000/_docs/styleguide.html'
-				},
-				livereload: true
-			}
-		},
-		start: {
-			options: {
-				open: {
-					target: 'http://0.0.0.0:8000/_docs/index.html'
-				},
-				livereload: true
-			}
-		}
-	},
-
-
-	/**
 	 * browserSync
 	 * http://www.browsersync.io/docs/options/
 	 * http://www.browsersync.io/docs/grunt/
@@ -43,15 +9,15 @@ module.exports.tasks = {
 		serve: {
 			bsFiles: {
 				src: [
-				<% if (statix == true) {%>
-					'<%%= config.statix.dir%>/dist/assets/css/*.css',
-					'<%%= config.statix.dir%>/dist/**/*.html',
-					'<%%=config.js.distDir%>/**/*.js'
-				<% } else { %>
-					'css/*.css',
-					'<%%=config.js.distDir%>/*.js',
-					'*.html'
-				<% } %>
+					<% if (statix == true) {%>
+						'<%%= config.statix.dir%>/dist/assets/css/*.css',
+						'<%%= config.statix.dir%>/dist/**/*.html',
+						'<%%=config.js.distDir%>/**/*.js'
+					<% } else { %>
+						'<%%=config.css.distDir%>/*.css',
+						'<%%=config.js.distDir%>/*.js',
+						'**/*.html'
+					<% } %>
 				]
 			},
 			options: {
@@ -64,6 +30,39 @@ module.exports.tasks = {
 				<% } %>
 				}
 			}
+		},
+
+
+		start: {
+			bsFiles: {
+				src: [
+					'<%%=config.distDir%>/**/*.*',
+					'*.html'
+				]
+			},
+			options: {
+				server: {
+					baseDir: './',
+					index: '_docs/index.html'
+				}
+			}
+		},
+
+
+		styleguide: {
+			bsFiles: {
+				src: [
+					'<%%=config.distDir%>/**/*.*',
+					'*.html'
+				]
+			},
+			options: {
+				watchTask: true,
+				server: {
+					baseDir: './',
+					index: '_docs/styleguide.html'
+				}
+			}
 		}
 	}<% if (statix === true) {%>,
 
@@ -71,12 +70,13 @@ module.exports.tasks = {
 	/**
 	 * Assemble
 	 * http://assemble.io/
-	 * Static site generator
+	 * Static site generator used by Statix
+	 * Find out more at https://github.com/tmwagency/statix
 	 */
 	assemble: {
 		options: {
 			data: '<%%= config.statix.dir%>/src/**/*.{json,yml}',
-			assets: '<%%= site.destination %>/assets',
+			assets: '<%%= config.statix.dir%>/dist/assets',
 			helpers: ['helper-moment', 'handlebars-helper-eachitems', '<%%= config.statix.dir%>/src/helpers/helper-*.js'],
 
 			partials: ['<%%= config.statix.dir%>/src/templates/includes/**/*.hbs'],

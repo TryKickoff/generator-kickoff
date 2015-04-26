@@ -6,35 +6,35 @@ module.exports.tasks = {
 	 * Clean some files
 	 */
 	clean: {
-		icons: ['img/icons']
-		<% if (statix === true) {%>,all: ['<%%= config.statix.dir%>/dist/**/*.html']<% } %>
+		icons   : ['<%%=config.distDir%>/img/icons', '<%%=config.tempDir%>/icons'],
+		tempCSS : ['<%%=config.tempDir%>/css']<% if (statix === true) {%>,
+		all: ['<%%= config.statix.dir%>/dist/**/*.html']<% } %>
 	},
 
 
 	/**
-	 * Shell
-	 * https://github.com/sindresorhus/grunt-shell
-	 * Run shell commands
+	 * Chotto
+	 * Checks for the existence of files and halts the Grunt build if they don't exist
+	 * https://www.npmjs.com/package/chotto
 	 */
-	shell: {
-		bowerinstall: {
-			command: 'bower install'
+	chotto : {
+		js : {
+			filePaths: '<%%=config.js.fileList%>'
 		}
 	},
 
 
-	dofilesexist : {
-		js : "<%%=config.js.fileList%>"
-	}<% if (statix === true) {%>,
-
-
 	/**
-	 * Copy
+	 * Copy files
 	 * https://github.com/gruntjs/grunt-contrib-copy
-	 * Copy files and folders.
 	 */
 	copy: {
-		dist: {
+		modernizr: {
+			src: '<%=config.srcDir%>/js/libs/modernizr.min.js',
+			dest: '<%=config.distDir%>/js/libs/modernizr.min.js'
+		}<% if (statix === true) {%>,
+
+		statix: {
 			files: [
 				{
 					expand: true,
@@ -79,6 +79,6 @@ module.exports.tasks = {
 				src: ['./**/*.*'],
 				dest: '<%%= config.statix.dir%>/dist/assets/js'
 			}]
-		}
-	}<% } %>
+		}<% } %>
+	}
 };
