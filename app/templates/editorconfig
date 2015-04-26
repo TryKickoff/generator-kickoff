@@ -1,18 +1,17 @@
-; EditorConfig is awesome: http://EditorConfig.org
+# editorconfig.org
+root = true
 
-root = true  ; top-most EditorConfig file
-
-; Unix-style newlines with a newline ending every file
 [*]
-end_of_line = lf
-insert_final_newline = true
 indent_style = tab
-indent_size = 4
-tab_width = 4
+indent_size = 2
+tab_width = 2
+end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
+insert_final_newline = true
 
-; 4 space indentation
-[*.py]
+[*.md]
+trim_trailing_whitespace = false
+
+[*.yml]
 indent_style = space
-indent_size = 4
