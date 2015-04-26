@@ -133,49 +133,51 @@ KickoffGenerator.prototype.askFor = function () {
 
 
 KickoffGenerator.prototype.packageFiles = function packageFiles() {
-	this.template('_index.html', 'index.html');
-	this.template('_docs/_styleguide.html', '_docs/styleguide.html');
-	this.template('_docs/_index.html', '_docs/index.html');
+	this.template('./_index.html', './index.html');
+	this.template('./_docs/_styleguide.html', './_docs/styleguide.html');
+	this.template('./_docs/_index.html', './_docs/index.html');
 
-	this.directory('scss', 'scss');
+	// SCSS
+	this.directory('./assets/src/scss', './assets/src/scss');
 
 	// Grunt configs
-	this.template('_grunt-configs/_css.js', '_grunt-configs/css.js');
-	this.template('_grunt-configs/_icons.js', '_grunt-configs/icons.js');
-	this.template('_grunt-configs/_javascript.js', '_grunt-configs/javascript.js');
-	this.template('_grunt-configs/_server.js', '_grunt-configs/server.js');
-	this.template('_grunt-configs/_utilities.js', '_grunt-configs/utilities.js');
-	this.template('_grunt-configs/_watch.js', '_grunt-configs/watch.js');
-	this.template('_grunt-configs/_tests.js', '_grunt-configs/tests.js');
-
-	this.template('js/_script.js', 'js/script.js');
-	this.directory('js/libs', 'js/libs');
-	this.directory('js/dist', 'js/dist');
-	this.template('js/helpers/_helpers.js', 'js/helpers/helpers.js');
-	this.copy('js/helpers/console.js', 'js/helpers/console.js');
-	this.copy('js/helpers/log.js', 'js/helpers/log.js');
-	this.copy('js/helpers/shims.js', 'js/helpers/shims.js');
-
 	this.template('_Gruntfile.js', 'Gruntfile.js');
+	this.template('./_grunt-configs/_config.js', './_grunt-configs/config.js');
+	this.template('./_grunt-configs/_css.js', './_grunt-configs/css.js');
+	this.template('./_grunt-configs/_images.js', './_grunt-configs/images.js');
+	this.template('./_grunt-configs/_javascript.js', './_grunt-configs/javascript.js');
+	this.template('./_grunt-configs/_server.js', './_grunt-configs/server.js');
+	this.template('./_grunt-configs/_utilities.js', './_grunt-configs/utilities.js');
+	this.template('./_grunt-configs/_watch.js', './_grunt-configs/watch.js');
+	this.template('./_grunt-configs/_tests.js', './_grunt-configs/tests.js');
+
+	// Javascript
+	if (this.browserify) {
+		this.template('./assets/src/js/_script-browserify.js', './assets/src/js/script.js');
+		this.directory('./assets/src/js/modules', './assets/src/js/modules');
+	} else {
+		this.template('./assets/src/js/_script-fileArray.js', './assets/src/js/script.js');
+	}
+	this.directory('./assets/src/js/libs', './assets/src/js/libs');
+	this.directory('./assets/src/js/dist', './assets/src/js/dist');
+	this.copy('./assets/src/js/helpers/console.js', './assets/src/js/helpers/console.js');
+	this.copy('./assets/src/js/helpers/log.js', './assets/src/js/helpers/log.js');
+	this.copy('./assets/src/js/helpers/shims.js', './assets/src/js/helpers/shims.js');
+
 	this.template('_package.json', 'package.json');
-	this.template('_bower.json', 'bower.json');
+	this.template('_readme.md', 'readme.md');
 
 	this.template('_humans.txt', 'humans.txt');
 	this.template('_jshintrc', '.jshintrc');
 	this.copy('editorconfig', '.editorconfig');
 	this.copy('gitignore', '.gitignore');
-	this.copy('bowerrc', '.bowerrc');
 	this.copy('jscs.json', '.jscs.json');
 	this.copy('scss-lint.yml', '.scss-lint.yml');
 
-	if (this.browserify) {
-		this.directory('js/modules', 'js/modules');
-	}
-
 	if (this.statix) {
-		this.directory('statix/src', 'statix/src');
-		this.directory('statix/dist', 'statix/dist');
-		this.template('statix/src/templates/includes/_html_start.hbs', 'statix/src/templates/includes/html_start.hbs');
+		this.directory('./statix/src', './statix/src');
+		this.directory('./statix/dist', './statix/dist');
+		this.template('./statix/src/templates/includes/_html_start.hbs', './statix/src/templates/includes/html_start.hbs');
 	}
 };
 
@@ -191,10 +193,10 @@ KickoffGenerator.prototype.install = function packageFiles() {
 KickoffGenerator.prototype._injectDependencies = function _injectDependencies() {
   if (this.options['skip-install']) {
     this.log(
-      'After running `npm install & bower install`, inject your front end dependencies' +
+      'After running `npm install`, inject your front end dependencies' +
       '\ninto your source code by running:' +
       '\n' +
-      '\n' + chalk.yellow.bold('grunt start')
+      '\n' + chalk.yellow.bold('npm kickoff')
     );
   } else {
     this.spawnCommand('grunt', ['start']);
