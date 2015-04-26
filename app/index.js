@@ -47,6 +47,13 @@ KickoffGenerator.prototype.askFor = function () {
 			default: 'The Kickoff Team'
 		},
 		{
+			name: 'oldIE',
+			type: 'confirm',
+			message: 'Does this project support IE8?',
+			default: true,
+			store: true
+		},
+		{
 			name: 'jsNamespace',
 			message: 'Choose your javascript namespace',
 			default: 'KO',
