@@ -3,6 +3,7 @@
 
 
 # <%= projectName %>
+<%= projectDescription %>
 
 ## Developers:
 <%= devNames %>
@@ -10,13 +11,19 @@
 
 # KICKOFF TEAM
 
- * Zander Martineau -- Creative Technologist -- http://twitter.com/MrMartineau
- * Ashley Nolan -- Creative Technologist -- http://twitter.com/dragongraphics
+    Zander Martineau -- @MrMartineau
+    Ashley Nolan     -- @AshNolan_
+    Nic Bell         -- @nicbell
+    Contributors     -- https://github.com/tmwagency/kickoff/graphs/contributors
 
 
 # TECHNOLOGY COLOPHON
 
- * HTML, CSS
- * Grunt.js
- * Normalize.css, jQuery, Modernizr
- * Sublime Text
+    HTML
+    CSS
+    Sass
+    Grunt.js
+    Bower
+    BrowserSync
+    Node.js / NPM
+    Sublime Text
