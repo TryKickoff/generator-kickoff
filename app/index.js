@@ -24,7 +24,8 @@ KickoffGenerator.prototype.askFor = function () {
 		updateCheckInterval: 1000 * 60 // Every hour
 	});
 
-	var kickoffWelcome = chalk.white.bold('\n ##  ## ######  ####  ##  ##') + chalk.yellow.bold('  ####  ###### ######') + chalk.white.bold('\n ## ##    ##   ##  ## ## ##  ') + chalk.yellow.bold('##  ## ##     ##') + chalk.white.bold('\n ####     ##   ##     ####   ') + chalk.yellow.bold('##  ## ####   ####') + chalk.white.bold('\n ## ##    ##   ##  ## ## ##  ') + chalk.yellow.bold('##  ## ##     ##') + chalk.white.bold('\n ##  ## ######  ####  ##  ##  ') + chalk.yellow.bold('####  ##     ##') + '\n\n ' + chalk.white.bold('A Yeoman generator for the Kickoff front-end framework') + '\n\n Find out more at ' + chalk.cyan('tmwagency.github.io/kickoff/') + '\n Yeoman Generator version:  ' + pkg.version + '\n\n Kickoff is free and open-source and maintained by ' + chalk.yellow('@MrMartineau') + ',\n ' + chalk.green('@AshNolan_') + ', the ' + chalk.blue('@tmwTechTeam') + ' and a few other kind souls. \n';
+	var kickoffWelcome = chalk.white.bold('\n ◍  ◍ ◍◍◍  ◍◍  ◍  ◍') + chalk.yellow.bold('  ◍◍  ◍◍◍ ◍◍◍') + chalk.white.bold('\n ◍ ◍   ◍  ◍  ◍ ◍ ◍  ') + chalk.yellow.bold('◍  ◍ ◍   ◍') + chalk.white.bold('\n ◍◍    ◍  ◍    ◍◍   ') + chalk.yellow.bold('◍  ◍ ◍◍  ◍◍') + chalk.white.bold('\n ◍ ◍   ◍  ◍  ◍ ◍ ◍  ') + chalk.yellow.bold('◍  ◍ ◍   ◍') + chalk.white.bold('\n ◍  ◍ ◍◍◍  ◍◍  ◍  ◍  ') + chalk.yellow.bold('◍◍  ◍   ◍') + '\n\n ' + chalk.white.bold('A Yeoman generator for the Kickoff front-end framework') + '\n\n Find out more at ' + chalk.cyan('tmwagency.github.io/kickoff/') + '\n Yeoman Generator version:  ' + pkg.version + '\n\n Kickoff is free and open-source and maintained by ' + chalk.yellow('@MrMartineau') + ',\n ' + chalk.green('@AshNolan_') + ', the ' + chalk.blue('@tmwTechTeam') + ' and a few other kind souls. \n';
+
 	// Have Yeoman greet the user.
 	this.log(kickoffWelcome);
 
