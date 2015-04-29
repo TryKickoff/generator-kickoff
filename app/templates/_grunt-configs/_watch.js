@@ -13,7 +13,11 @@ module.exports.tasks = {
 				'autoprefixer',
 				'clean:tempCSS'<% if (statix == true) {%>,
 				'copy:css'<% } %>
-			]
+			],
+			options: {
+				interrupt: true,
+				spawn: false
+			}
 		},
 
 		js: {
@@ -48,6 +52,11 @@ module.exports.tasks = {
 				'newer:copy:modernizr'<% } %><% if (statix == true) {%>,
 				'copy:js'<% } %>
 			]
+			],
+			options: {
+				interrupt: true,
+				spawn: false
+			}
 		},
 
 		images : {
