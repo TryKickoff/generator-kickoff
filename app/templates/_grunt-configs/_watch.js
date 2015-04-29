@@ -23,8 +23,7 @@ module.exports.tasks = {
 		js: {
 			files: [
 			<% if (browserify == true) {%>
-				'js/**/*.js',
-				'!js/dist/**/*.js'<% if (statix == true) {%>,
+				'<%%=config.srcDir%>/js/**/*.js'<% if (statix == true) {%>,
 				'!<%%= config.statix.dir%>/assets/js/dist/**/*.js'<% } %>
 			<% } else { %>'<%%=config.js.fileList%>'<% } %>
 			],
@@ -33,25 +32,6 @@ module.exports.tasks = {
 				'uglify',
 				'newer:copy:modernizr'<% } %><% if (statix == true) {%>,
 				'copy:js'<% } %>
-			]
-		},
-
-		js: {
-			<% if (browserify == true) {%>files: [
-				'js/**/*.js',
-				'!js/dist/**/*.js'<% if (statix == true) {%>,
-				'!<%%= config.statix.dir%>/assets/js/dist/**/*.js'<% } %>
-			],<% } else { %>
-			files: [
-				'<%%=config.js.fileList%>'<% if (statix == true) {%>,
-				'!<%%= config.statix.dir%>/assets/js/dist/**/*.js'<% } %>
-			],<% } %>
-			tasks: [
-				<% if (browserify == true) {%>'browserify:dev'<% } else { %>
-				'uglify',
-				'newer:copy:modernizr'<% } %><% if (statix == true) {%>,
-				'copy:js'<% } %>
-			]
 			],
 			options: {
 				interrupt: true,
