@@ -143,9 +143,8 @@ KickoffGenerator.prototype.askFor = function () {
 KickoffGenerator.prototype.packageFiles = function packageFiles() {
 	this.template('./_index.html', './index.html');
 	if (this.styleguide) {
-		this.template('./_docs/_styleguide.html', './_docs/styleguide.html');
+		this.template('./styleguide/_index.html', './styleguide/index.html');
 	}
-	this.template('./_docs/_index.html', './_docs/index.html');
 
 	// CSS, SCSS, images & grunticon source directory
 	this.directory('./assets/dist/css', './assets/dist/css');
