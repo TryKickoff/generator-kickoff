@@ -6,6 +6,7 @@
 module.exports = {
 	src : "./_grunt-configs/*.js", // This directory. Has all the Grunt tasks grouped into specific js files
 
+
 	srcDir  : './assets/src',  // <%%=config.srcDir%>
 	distDir : './assets/dist', // <%%=config.distDir%>
 	tempDir : './assets/temp', // <%%=config.tempDir%>
@@ -75,6 +76,7 @@ module.exports = {
 			]
 		}
 	}<% if (statix === true) {%>,
+
 
 	statix : {
 		dir : 'statix' // <%%= config.statix.dir%>
