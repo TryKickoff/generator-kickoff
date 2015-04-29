@@ -183,6 +183,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 	this.template('_jshintrc', '.jshintrc');
 	this.copy('editorconfig', '.editorconfig');
 	this.copy('gitignore', '.gitignore');
+	this.copy('gitattributes', '.gitattributes');
 	this.copy('scss-lint.yml', '.scss-lint.yml');
 
 	if (this.statix) {
