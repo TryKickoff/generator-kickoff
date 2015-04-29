@@ -1,10 +1,9 @@
 'use strict';
-var util           = require('util');
-var path           = require('path');
-var yeoman         = require('yeoman-generator');
-var chalk          = require('chalk');
-var updateNotifier = require('update-notifier');
-var pkg            = require('../package.json');
+var util            = require('util');
+var yeoman          = require('yeoman-generator');
+var chalk           = require('chalk');
+var updateNotifier  = require('update-notifier');
+var pkg             = require('../package.json');
 
 var KickoffGenerator = module.exports = function KickoffGenerator(args, options) {
 	yeoman.generators.Base.apply(this, arguments);
@@ -36,21 +35,22 @@ KickoffGenerator.prototype.askFor = function () {
 		this.log(updateMessage);
 	}
 
+
 	var prompts = [
 		{
 			name: 'projectName',
 			message: 'Project name',
-			default: 'Kickoff'
+			default: 'Your project name'
 		},
 		{
 			name: 'projectDescription',
 			message: 'Project description',
-			default: 'Kickoff'
+			default: 'Your project description'
 		},
 		{
 			name: 'devNames',
 			message: 'What are the project developer\'s names?',
-			default: 'The Kickoff Team'
+			default: 'The Avengers'
 		},
 		{
 			name: 'oldIE',
@@ -142,11 +142,16 @@ KickoffGenerator.prototype.askFor = function () {
 
 KickoffGenerator.prototype.packageFiles = function packageFiles() {
 	this.template('./_index.html', './index.html');
-	this.template('./_docs/_styleguide.html', './_docs/styleguide.html');
+	if (this.styleguide) {
+		this.template('./_docs/_styleguide.html', './_docs/styleguide.html');
+	}
 	this.template('./_docs/_index.html', './_docs/index.html');
 
-	// SCSS
+	// CSS, SCSS, images & grunticon source directory
+	this.directory('./assets/dist/css', './assets/dist/css');
 	this.directory('./assets/src/scss', './assets/src/scss');
+	this.directory('./assets/src/img', './assets/src/img');
+	this.directory('./assets/src/grunticon', './assets/src/grunticon');
 
 	// Grunt configs
 	this.template('_Gruntfile.js', 'Gruntfile.js');
@@ -160,6 +165,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 	this.template('./_grunt-configs/_tests.js', './_grunt-configs/tests.js');
 
 	// Javascript
+	this.directory('./assets/dist/js', './assets/dist/js');
 	if (this.browserify) {
 		this.template('./assets/src/js/_script-browserify.js', './assets/src/js/script.js');
 		this.directory('./assets/src/js/modules', './assets/src/js/modules');
@@ -167,7 +173,6 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		this.template('./assets/src/js/_script-fileArray.js', './assets/src/js/script.js');
 	}
 	this.directory('./assets/src/js/libs', './assets/src/js/libs');
-	this.directory('./assets/src/js/dist', './assets/src/js/dist');
 	this.copy('./assets/src/js/helpers/console.js', './assets/src/js/helpers/console.js');
 	this.copy('./assets/src/js/helpers/log.js', './assets/src/js/helpers/log.js');
 	this.copy('./assets/src/js/helpers/shims.js', './assets/src/js/helpers/shims.js');
@@ -179,7 +184,6 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 	this.template('_jshintrc', '.jshintrc');
 	this.copy('editorconfig', '.editorconfig');
 	this.copy('gitignore', '.gitignore');
-	this.copy('jscs.json', '.jscs.json');
 	this.copy('scss-lint.yml', '.scss-lint.yml');
 
 	if (this.statix) {
@@ -199,14 +203,14 @@ KickoffGenerator.prototype.install = function packageFiles() {
 
 
 KickoffGenerator.prototype._injectDependencies = function _injectDependencies() {
-  if (this.options['skip-install']) {
-    this.log(
-      'After running `npm install`, inject your front end dependencies' +
-      '\ninto your source code by running:' +
-      '\n' +
-      '\n' + chalk.yellow.bold('npm kickoff')
-    );
-  } else {
-    this.spawnCommand('grunt', ['start']);
-  }
+	if (this.options['skip-install']) {
+		this.log(
+			'After running `npm install`, inject your front end dependencies' +
+			'\ninto your source code by running:' +
+			'\n' +
+			'\n' + chalk.yellow.bold('npm kickoff')
+		);
+	} else {
+		this.spawnCommand('grunt', ['start']);
+	}
 };
