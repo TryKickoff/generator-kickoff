@@ -26,7 +26,7 @@
 				<nav class="docsNav l-list--floated interfaceType">
 					<ul>
 						<li><a href="/_docs/index.html" class="is-active">Setup checklist / getting started</a></li>
-						<li><a href="/_docs/styleguide.html">Project Styleguide</a></li>
+						<% if (styleguide === true) {%><li><a href="/_docs/styleguide.html">Project Styleguide</a></li><% } %>
 					</ul>
 				</nav>
 				<p class="interfaceType">Please refer to <a href="http://tmwagency.github.io/kickoff/">Kickoff documentation</a> for more help and other information</p>

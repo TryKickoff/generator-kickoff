@@ -59,6 +59,13 @@ KickoffGenerator.prototype.askFor = function () {
 			store: true
 		},
 		{
+			name: 'styleguide',
+			type: 'confirm',
+			message: 'Include Kickoff\'s styleguide?',
+			default: true,
+			store: true
+		},
+		{
 			name: 'jsNamespace',
 			message: 'Choose your javascript namespace',
 			default: 'KO',

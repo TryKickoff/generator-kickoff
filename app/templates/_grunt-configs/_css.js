@@ -16,7 +16,7 @@ module.exports.tasks = {
 				'<%%=config.tempDir%>/css/<%%=config.css.distFile%>.css' : '<%%=config.css.scssDir%>/kickoff.scss'<% if (oldIE === true) {%>,
 				'<%%=config.tempDir%>/css/<%%=config.css.distFile%>-old-ie.css': '<%%=config.css.scssDir%>/kickoff-old-ie.scss'<% } %>
 			}
-		},
+		}<% if (styleguide === true) {%>,
 
 		styleguide: {
 			options: {
@@ -26,7 +26,7 @@ module.exports.tasks = {
 			files: {
 				'<%%=config.tempDir%>/css/styleguide.css' : '<%%=config.css.scssDir%>/styleguide.scss'
 			}
-		}
+		}<% } %>
 	},
 
 
