@@ -4,6 +4,7 @@ var yeoman          = require('yeoman-generator');
 var chalk           = require('chalk');
 var updateNotifier  = require('update-notifier');
 var pkg             = require('../package.json');
+var opn             = require('opn');
 
 var KickoffGenerator = module.exports = function KickoffGenerator(args, options) {
 	yeoman.generators.Base.apply(this, arguments);
@@ -195,6 +196,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 
 
 KickoffGenerator.prototype.install = function packageFiles() {
+	opn('http://trykickoff.github.io/learn/checklist.html');
 	this.installDependencies({
 		skipInstall: this.options['skip-install'],
 		callback: this._injectDependencies.bind(this)
@@ -208,9 +210,9 @@ KickoffGenerator.prototype._injectDependencies = function _injectDependencies() 
 			'After running `npm install`, inject your front end dependencies' +
 			'\ninto your source code by running:' +
 			'\n' +
-			'\n' + chalk.yellow.bold('npm kickoff')
+			'\n' + chalk.yellow.bold('npm run kickoff')
 		);
 	} else {
-		this.spawnCommand('grunt', ['start']);
+		this.spawnCommand('npm', ['run kickoff']);
 	}
 };
