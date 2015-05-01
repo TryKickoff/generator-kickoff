@@ -1,44 +1,45 @@
 {
-  "name": "generator-kickoff",
-  "version": "0.11.0",
-  "description": "A Yeoman generator for the Kickoff front-end framework",
-  "keywords": [
-    "yeoman-generator",
-    "yeoman",
-    "yo",
-    "kickoff",
-    "css",
-    "framework"
-  ],
-  "license": "MIT",
-  "main": "app/index.js",
-  "repository": "tmwagency/generator-kickoff",
-  "homepage": "https://github.com/tmwagency/generator-kickoff",
-  "bugs": "https://github.com/tmwagency/generator-kickoff/issues",
-  "author": {
-    "name": "Zander Martineau",
-    "url": "https://github.com/mrmartineau"
-  },
-  "engines": {
-    "node": ">=0.10.0"
-  },
-  "scripts": {
-    "test": "mocha"
-  },
-  "files": [
-    "app"
-  ],
-  "dependencies": {
-    "chalk": "~1.0.0",
-    "underscore.string": "~3.0.3",
-    "update-notifier": "0.3.1",
-    "yeoman-generator": "~0.18.10",
-    "yosay": "^1.0.3"
-  },
-  "devDependencies": {
-    "mocha": "*"
-  },
-  "peerDependencies": {
-    "yo": ">=1.0.0"
-  }
+	"name": "generator-kickoff",
+	"version": "0.11.0-beta.3",
+	"description": "A Yeoman generator for the Kickoff front-end framework",
+	"keywords": [
+		"yeoman-generator",
+		"yeoman",
+		"yo",
+		"kickoff",
+		"css",
+		"framework"
+	],
+	"license": "MIT",
+	"main": "app/index.js",
+	"repository": "tmwagency/generator-kickoff",
+	"homepage": "https://github.com/tmwagency/generator-kickoff",
+	"bugs": "https://github.com/tmwagency/generator-kickoff/issues",
+	"author": {
+		"name": "Zander Martineau",
+		"url": "https://github.com/mrmartineau"
+	},
+	"engines": {
+		"node": ">=0.10.0"
+	},
+	"scripts": {
+		"test": "mocha"
+	},
+	"files": [
+		"app"
+	],
+	"dependencies": {
+		"chalk": "^1.0.0",
+		"opn": "^1.0.2",
+		"underscore.string": "^3.0.3",
+		"update-notifier": "^0.3.1",
+		"yeoman-generator": "^0.18.10",
+		"yosay": "^1.0.3"
+	},
+	"devDependencies": {
+		"mocha": "*"
+	},
+	"peerDependencies": {
+		"yo": ">=1.0.0"
+	}
 }
