@@ -48,7 +48,7 @@
 	"scripts": {
 		"test": "grunt travis --verbose",
 
-		"kickoff": "grunt start",
+		"kickoff": "grunt dev",
 		"prekickoff": "npm install -g grunt-cli && npm install"
 	}
 }

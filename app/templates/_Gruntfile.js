@@ -24,7 +24,6 @@ module.exports = function (grunt) {
 	 * Available tasks:
 	 * grunt            : Alias for 'serve' task, below
 	 * grunt serve      : watch js, images & scss and run a local server
-	 * grunt start      : Run this to show the start page before starting development
 	 * grunt watch      : run sass:kickoff, uglify and livereload
 	 * grunt dev        : run uglify, sass:kickoff & autoprefixer:kickoff
 	 * grunt deploy     : run jshint, uglify, sass:kickoff and csso
@@ -99,25 +98,6 @@ module.exports = function (grunt) {
 		'copy:modernizr'<% if (statix === true) {%>,
 		'copy',
 		'assemble'<% } %>
-	]);
-
-
-	/**
-	 * GRUNT START * Run this to show the start page before starting development
-	 */
-	grunt.registerTask('start', [
-		<% if (statix === true) {%>'clean:all',<% } %>
-		<% if (shims === true) {%>'shimly',<% } %>
-		<% if (browserify === true) {%>'newer:browserify:prod',
-		<% } else { %>'chotto:js',
-		'uglify',<% } %>
-		'sass',
-		'autoprefixer',
-		'clean:tempCSS',
-		'copy:modernizr',
-		<% if (statix === true) {%>'copy',
-		'assemble',<% } %>
-		'browserSync:start'
 	]);
 
 
