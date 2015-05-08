@@ -10,7 +10,7 @@ module.exports.tasks = {
 	 * Minify PNG, SVG, gif & JPEG images
 	 */
 	imagemin: {
-		grunticon: {
+		<% if (grunticon === true) {%>grunticon: {
 			options: {
 				optimizationLevel: 3,
 				progressive : true,
@@ -32,7 +32,7 @@ module.exports.tasks = {
 			}]
 		},
 
-		images: {
+		<% } %>images: {
 			files: [{
 				expand: true,
 				cwd: '<%%=config.img.srcDir%>/',

@@ -27,8 +27,8 @@ module.exports = function (grunt) {
 	 * grunt watch      : run sass:kickoff, uglify and livereload
 	 * grunt dev        : run uglify, sass:kickoff & autoprefixer:kickoff
 	 * grunt deploy     : run jshint, uglify, sass:kickoff and csso
-	 * grunt styleguide : watch js & scss, run a local server for editing the styleguide
-	 * grunt icons      : generate the icons. uses svgmin and grunticon
+	 * grunt styleguide : watch js & scss, run a local server for editing the styleguide<% if (grunticon === true) {%>
+	 * grunt icons      : generate the icons. uses svgmin and grunticon<% } %>
 	 * grunt checks     : run jshint & scsslint
 	 */
 
@@ -118,7 +118,7 @@ module.exports = function (grunt) {
 		<% if (statix === true) {%>'copy',
 		'assemble',<% } %>
 		'browserSync:styleguide'
-	]);
+	]);<% if (grunticon === true) {%>
 
 
 	/**
@@ -129,7 +129,7 @@ module.exports = function (grunt) {
 		'clean:icons',
 		'imagemin:grunticon',
 		'grunticon'
-	]);
+	]);<% } %>
 
 
 	/**
