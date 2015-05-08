@@ -38,13 +38,13 @@ module.exports.tasks = {
 			files: [
 				{
 					expand: true,
-					cwd: './img',
+					cwd: '<%%=config.img.srcDir%>',
 					src: ['./**/*.*'],
 					dest: '<%%=config.statix.dir%>/dist/assets/img'
 				},
 				{
 					expand: true,
-					cwd: './js',
+					cwd: '<%%=config.srcDir%>/js',
 					src: ['./**/*.*'],
 					dest: '<%%=config.statix.dir%>/dist/assets/js'
 				},
@@ -67,7 +67,7 @@ module.exports.tasks = {
 		img: {
 			files: [{
 				expand: true,
-				cwd: './img',
+				cwd: '<%%=config.img.srcDir%>',
 				src: ['./**/*.*'],
 				dest: '<%%= config.statix.dir%>/dist/assets/img'
 			}]
@@ -75,7 +75,7 @@ module.exports.tasks = {
 		js: {
 			files: [{
 				expand: true,
-				cwd: './js',
+				cwd: '<%%=config.srcDir%>/js',
 				src: ['./**/*.*'],
 				dest: '<%%= config.statix.dir%>/dist/assets/js'
 			}]
