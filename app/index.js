@@ -186,6 +186,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 	this.copy('gitignore', '.gitignore');
 	this.copy('gitattributes', '.gitattributes');
 	this.copy('scss-lint.yml', '.scss-lint.yml');
+	this.copy('htaccess', '.htaccess');
 
 	if (this.statix) {
 		this.directory('./statix/src', './statix/src');
