@@ -12,7 +12,8 @@ module.exports.tasks = {
 			options : {
 				browserifyOptions : {
 					debug: true
-				}
+				},
+				watch: true
 			}
 		},
 		prod: {

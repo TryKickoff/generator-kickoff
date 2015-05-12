@@ -45,7 +45,7 @@ module.exports = function (grunt) {
 	grunt.registerTask('serve', [
 		<% if (statix === true) {%>'clean:all',<% } %>
 		<% if (shims === true) {%>'shimly',<% } %>
-		<% if (browserify === true) {%>'newer:browserify:prod',
+		<% if (browserify === true) {%>'browserify:dev',
 		<% } else { %>'chotto:js',
 		'uglify',<% } %>
 		'sass',
@@ -67,7 +67,7 @@ module.exports = function (grunt) {
 		<% if (statix === true) {%>'clean:all',<% } %>
 		<% if (shims === true) {%>'shimly',<% } %>
 		<% if (browserify === true) {%>
-		'newer:browserify:prod',
+		'browserify:dev',
 		<% } else { %>
 		'chotto:js',
 		'uglify',
@@ -88,7 +88,7 @@ module.exports = function (grunt) {
 	grunt.registerTask('deploy', [
 		<% if (statix === true) {%>'clean:all',<% } %>
 		<% if (shims === true) {%>'shimly',<% } %>
-		<% if (browserify === true) {%>'newer:browserify:prod',
+		<% if (browserify === true) {%>'browserify:prod',
 		<% } else { %>'chotto:js',
 		'uglify',<% } %>
 		'sass',
@@ -108,7 +108,7 @@ module.exports = function (grunt) {
 	grunt.registerTask('styleguide', [
 		<% if (statix === true) {%>'clean:all',<% } %>
 		<% if (shims === true) {%>'shimly',<% } %>
-		<% if (browserify === true) {%>'newer:browserify:prod',
+		<% if (browserify === true) {%>'browserify:dev',
 		<% } else { %>'chotto:js',
 		'uglify',<% } %>
 		'sass',

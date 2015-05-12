@@ -18,26 +18,22 @@ module.exports.tasks = {
 				interrupt: true,
 				spawn: false
 			}
-		},
+		},<% if (browserify == false) {%>
 
 		js: {
 			files: [
-			<% if (browserify == true) {%>
-				'<%%=config.srcDir%>/js/**/*.js'<% if (statix == true) {%>,
-				'!<%%= config.statix.dir%>/assets/js/dist/**/*.js'<% } %>
-			<% } else { %>'<%%=config.js.fileList%>'<% } %>
+				'<%%=config.js.fileList%>'
 			],
 			tasks: [
-			<% if (browserify == true) {%>'browserify:dev'<% } else { %>
 				'uglify',
-				'newer:copy:modernizr'<% } %><% if (statix == true) {%>,
+				'newer:copy:modernizr'<% if (statix == true) {%>,
 				'copy:js'<% } %>
 			],
 			options: {
 				interrupt: true,
 				spawn: false
 			}
-		},
+		},<% } %>
 
 		images : {
 			files: ['<%%=config.img.srcDir%>/**/*.{svg,png,jpg,gif}'],
