@@ -61,10 +61,10 @@ KickoffGenerator.prototype.askFor = function () {
 			store: true
 		},
 		{
-			name: 'styleguide',
+			name: 'browserify',
 			type: 'confirm',
-			message: 'Include Kickoff\'s styleguide?',
-			default: true,
+			message: 'Use Browserify?',
+			default: false,
 			store: true
 		},
 		{
@@ -74,16 +74,16 @@ KickoffGenerator.prototype.askFor = function () {
 			store: true
 		},
 		{
-			name: 'statix',
+			name: 'styleguide',
 			type: 'confirm',
-			message: 'Use Kickoff Statix?',
-			default: false,
+			message: 'Include Kickoff\'s styleguide?',
+			default: true,
 			store: true
 		},
 		{
-			name: 'browserify',
+			name: 'statix',
 			type: 'confirm',
-			message: 'Use Browserify?',
+			message: 'Use Kickoff Statix?',
 			default: false,
 			store: true
 		},
