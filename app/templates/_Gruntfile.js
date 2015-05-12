@@ -45,11 +45,8 @@ module.exports = function (grunt) {
 	grunt.registerTask('serve', [
 		<% if (statix === true) {%>'clean:all',<% } %>
 		<% if (shims === true) {%>'shimly',<% } %>
-		<% if (browserify === true) {%>'browserify:dev',
-		<% } else { %>'chotto:js',
-		'uglify',<% } %>
-		'sass',
-		'autoprefixer',
+		'compileJS',
+		'compileCSS',
 		'clean:tempCSS',
 		'copy:modernizr',
 		<% if (statix === true) {%>'copy',
@@ -66,14 +63,8 @@ module.exports = function (grunt) {
 	grunt.registerTask('dev', [
 		<% if (statix === true) {%>'clean:all',<% } %>
 		<% if (shims === true) {%>'shimly',<% } %>
-		<% if (browserify === true) {%>
-		'browserify:dev',
-		<% } else { %>
-		'chotto:js',
-		'uglify',
-		<% } %>
-		'sass',
-		'autoprefixer',
+		'compileJS',
+		'compileCSS',
 		'clean:tempCSS',
 		'copy:modernizr'<% if (statix === true) {%>,
 		'copy',
@@ -88,11 +79,8 @@ module.exports = function (grunt) {
 	grunt.registerTask('deploy', [
 		<% if (statix === true) {%>'clean:all',<% } %>
 		<% if (shims === true) {%>'shimly',<% } %>
-		<% if (browserify === true) {%>'browserify:prod',
-		<% } else { %>'chotto:js',
-		'uglify',<% } %>
-		'sass',
-		'autoprefixer',
+		'compileJS',
+		'compileCSS',
 		'csso',
 		'clean:tempCSS',
 		'copy:modernizr'<% if (statix === true) {%>,
@@ -108,11 +96,8 @@ module.exports = function (grunt) {
 	grunt.registerTask('styleguide', [
 		<% if (statix === true) {%>'clean:all',<% } %>
 		<% if (shims === true) {%>'shimly',<% } %>
-		<% if (browserify === true) {%>'browserify:dev',
-		<% } else { %>'chotto:js',
-		'uglify',<% } %>
-		'sass',
-		'autoprefixer',
+		'compileJS',
+		'compileCSS',
 		'clean:tempCSS',
 		'copy:modernizr',
 		<% if (statix === true) {%>'copy',
@@ -141,4 +126,25 @@ module.exports = function (grunt) {
 		'scsslint'
 	]);
 
+
+	/**
+	 * Utility tasks
+	 */
+	// Compile JS
+	<% if (browserify === true) {%>
+		grunt.registerTask('compileJS', [
+			'browserify:dev'
+		]);
+	<% } else { %>
+		grunt.registerTask('compileJS', [
+			'chotto:js',
+			'uglify',
+		]);
+	<% } %>
+
+	// Compile CSS
+	grunt.registerTask('compileCSS', [
+		'sass',
+		'autoprefixer'
+	]);
 };
