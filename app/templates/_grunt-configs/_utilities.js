@@ -30,8 +30,8 @@ module.exports.tasks = {
 	 */
 	copy: {
 		modernizr: {
-			src: '<%=config.srcDir%>/js/libs/modernizr.min.js',
-			dest: '<%=config.distDir%>/js/libs/modernizr.min.js'
+			src: '<%%=config.srcDir%>/js/libs/modernizr.min.js',
+			dest: '<%%=config.distDir%>/js/libs/modernizr.min.js'
 		}<% if (statix === true) {%>,
 
 		statix: {
