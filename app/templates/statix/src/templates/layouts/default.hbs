@@ -1,19 +1,11 @@
 {{> html_start }}
 
-	 <div class="l-container">
-		<!-- nav partial -->
-		{{> masthead }}
+	{{> masthead }}
 
-		<!--  ====================  -->
-		<!--  === Main content ===  -->
-		<!--  ====================  -->
-		<div id="mainContent" role="main">
+	<div id="mainContent" class="l-container" role="main">
+		{{> body }}
+	</div><!-- Close .l-container -->
 
-			{{> body }}
-
-		</div>
-
-		{{> footer }}
-	</div>
+	{{> footer }}
 
 {{> html_end }}

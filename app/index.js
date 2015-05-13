@@ -189,8 +189,25 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 	this.copy('htaccess', '.htaccess');
 
 	if (this.statix) {
-		this.directory('./statix/src', './statix/src');
 		this.directory('./statix/dist', './statix/dist');
+
+		this.directory('./statix/src/data', './statix/src/data');
+		this.directory('./statix/src/helpers', './statix/src/helpers');
+
+		if (this.styleguide) {
+			this.directory('./statix/src/templates/layouts', './statix/src/templates/layouts');
+			this.directory('./statix/src/templates/pages', './statix/src/templates/pages');
+		} else {
+			this.copy('./statix/src/templates/pages/index.hbs', './statix/src/templates/pages/index.hbs');
+			this.copy('./statix/src/templates/layouts/default.hbs', './statix/src/templates/layouts/default.hbs');
+		}
+
+		this.directory('./statix/src/templates/includes/snippets', './statix/src/templates/includes/snippets');
+		this.copy('./statix/src/templates/includes/footer.hbs', './statix/src/templates/includes/footer.hbs');
+		this.copy('./statix/src/templates/includes/html_end.hbs', './statix/src/templates/includes/html_end.hbs');
+		this.copy('./statix/src/templates/includes/masthead.hbs', './statix/src/templates/includes/masthead.hbs');
+		this.copy('./statix/src/templates/includes/nav.hbs', './statix/src/templates/includes/nav.hbs');
+
 		this.template('./statix/src/templates/includes/_html_start.hbs', './statix/src/templates/includes/html_start.hbs');
 	}
 };
