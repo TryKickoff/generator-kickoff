@@ -11,7 +11,12 @@ module.exports = function (grunt) {
 	};
 
 	// Load grunt tasks automatically
-	require('load-grunt-tasks')(grunt, {pattern: ["grunt-*", "chotto"<% if (statix === true) {%>, "assemble"<% } %>]});
+	require('load-grunt-tasks')(grunt, {pattern: ["grunt-*", "chotto"<%
+		if (statix === true) {
+			%>, "assemble"<%
+		}
+	%>]});
+
 
 	// Load grunt configurations automatically
 	var configs = require('load-grunt-configs')(grunt, options);
@@ -88,10 +93,10 @@ module.exports = function (grunt) {
 		'assemble'<% } %>
 	]);
 
-
+	<% if (styleguide === true) {
+	%>
 	/**
-	 * GRUNT STYLEGUIDE * A task for the styleguide
-	 * run uglify, sass:kickoff, sass:styleguide, autoprefixer:kickoff, autoprefixer:styleguide, connect:styleguide & watch
+	 * GRUNT STYLEGUIDE * A task to view the styleguide
 	 */
 	grunt.registerTask('styleguide', [
 		<% if (statix === true) {%>'clean:all',<% } %>
@@ -103,8 +108,9 @@ module.exports = function (grunt) {
 		<% if (statix === true) {%>'copy',
 		'assemble',<% } %>
 		'browserSync:styleguide'
-	]);<% if (grunticon === true) {%>
-
+	]);<% }%>
+	<% if (grunticon === true) {
+	%>
 
 	/**
 	 * GRUNT ICONS * A task to create all icons using grunticon
@@ -114,8 +120,9 @@ module.exports = function (grunt) {
 		'clean:icons',
 		'imagemin:grunticon',
 		'grunticon'
-	]);<% } %>
-
+	]);
+	<% }
+	%>
 
 	/**
 	 * GRUNT CHECKS * Check code for errors

@@ -331,7 +331,9 @@
 			<div class="l-container">
 				<h2 class="sg-sectionHeading">Icons</h2>
 
-				<h3 class="sg-interfaceType sg-interfaceType--subtle">Interface icons</h3>
+				<%
+				if (grunticon === true) {
+				%><h3 class="sg-interfaceType sg-interfaceType--subtle">Interface icons</h3>
 				<ul class="l-blockGrid l-blockGrid--3up l-blockGrid--2up--narrow">
 					<li>
 						<div class="icon-sg icon-social-instagram"></div>
@@ -357,7 +359,7 @@
 						<div class="icon-sg icon-email"></div>
 						<code>.icon-email</code>
 					</li>
-				</ul>
+				</ul><% } %>
 
 				<h3 class="sg-interfaceType sg-interfaceType--subtle">Favicons</h3>
 

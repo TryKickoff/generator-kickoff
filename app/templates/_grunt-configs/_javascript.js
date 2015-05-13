@@ -22,7 +22,8 @@ module.exports.tasks = {
 			options : {
 				transform: [
 					[
-						'uglifyify', {
+						'uglifyify',
+						{
 							"global" : true
 						}
 					]
@@ -41,9 +42,15 @@ module.exports.tasks = {
 		options: {
 			// set to false (replace this object) to turn off mangling
 			// https://github.com/gruntjs/grunt-contrib-uglify#reserved-identifiers
-			<% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>mangle: {
+			<%
+				if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {
+			%>mangle: {
 				except: ['jQuery']
-			},<% } else { %>mangle: true,<% } %>
+			},<%
+				} else {
+			%>mangle: true,<%
+				}
+			%>
 			compress: { // set to false (replace this object) to turn off compression
 				drop_console: false
 			},

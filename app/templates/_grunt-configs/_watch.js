@@ -9,8 +9,7 @@ module.exports.tasks = {
 		scss: {
 			files: ['<%%=config.css.scssDir%>/**/*.scss'],
 			tasks: [
-				'sass',
-				'autoprefixer',
+				'compileCSS',
 				'clean:tempCSS'<% if (statix == true) {%>,
 				'copy:css'<% } %>
 			],
@@ -39,20 +38,19 @@ module.exports.tasks = {
 			files: ['<%%=config.img.srcDir%>/**/*.{svg,png,jpg,gif}'],
 			tasks: ['imagemin:images'],
 			options: {
-				interrupt: true,
+				interrupt: true
 			}
-		},
+		},<% if (grunticon == true) {%>
 
-		<% if (grunticon == true) {%>grunticon : {
+		grunticon : {
 			files: ['<%%=config.img.grunticonDir%>/**/*.{svg,png,jpg,gif}'],
-			tasks: [
-				'clean:icons',
-				'imagemin:grunticon',
-				'grunticon'
-			]
-		},
+			tasks: ['icons'],
+			options: {
+				interrupt: true
+			}
+		},<% } %>
 
-		<% } %>grunt: {
+		grunt: {
 			files: ['_grunt-configs/*.js', 'Gruntfile.js'],
 			options: {
 				reload: true

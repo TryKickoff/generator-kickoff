@@ -66,7 +66,7 @@ module.exports = {
 				}
 				%>
 				'<%%=config.srcDir%>/js/script.js'
-		]<%
+		],<%
 		} %>
 
 		distDir  : '<%%=config.distDir%>/js/', // <%%=config.js.distDir%>
@@ -99,7 +99,9 @@ module.exports = {
 				'http://localhost:3000'
 			]
 		}
-	}<% if (statix === true) {%>,
+	}<%
+	if (statix === true) {
+	%>,
 
 
 	statix : {
