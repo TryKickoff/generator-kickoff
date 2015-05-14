@@ -10,4 +10,4 @@ module.exports = {
 	init : function () {
 		console.debug('KO.UI module is being initialised');
 	}
-}
+};
