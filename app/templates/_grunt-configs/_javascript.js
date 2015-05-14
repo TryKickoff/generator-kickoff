@@ -1,5 +1,5 @@
 module.exports.tasks = {
-<% if (browserify === true) {%>
+<% if (browserify === true) { %>
 	/**
 	 * Browserify
 	 * https://github.com/jmreidy/grunt-browserify
@@ -43,6 +43,7 @@ module.exports.tasks = {
 			// set to false (replace this object) to turn off mangling
 			// https://github.com/gruntjs/grunt-contrib-uglify#reserved-identifiers
 			<%
+				// if jquery is chosen in the generator, exclude it from uglify
 				if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {
 			%>mangle: {
 				except: ['jQuery']
@@ -66,7 +67,7 @@ module.exports.tasks = {
 			dest: '<%%=config.js.distDir%><%%=config.js.distFile%>'
 		}
 	},
-<% }%>
+<% } %>
 
 
 	/**

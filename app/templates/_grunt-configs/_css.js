@@ -15,7 +15,7 @@ module.exports.tasks = {
 			files: {
 				'<%%=config.tempDir%>/css/<%%=config.css.distFile%>.css' : '<%%=config.css.scssDir%>/kickoff.scss'<%
 				if (oldIE === true) {
-					%>,
+				%>,
 				'<%%=config.tempDir%>/css/<%%=config.css.distFile%>-old-ie.css': '<%%=config.css.scssDir%>/kickoff-old-ie.scss'<%
 				} %>
 			}
@@ -71,7 +71,7 @@ module.exports.tasks = {
 			files: {
 				'<%%=config.css.distDir%>/<%%=config.css.distFile%>.css'       : '<%%=config.css.distDir%>/<%%=config.css.distFile%>.css'<%
 				if (oldIE === true) {
-					%>,
+				%>,
 				'<%%=config.css.distDir%>/<%%=config.css.distFile%>-old-ie.css': '<%%=config.css.distDir%>/<%%=config.css.distFile%>-old-ie.css'<%
 				} %>
 			},

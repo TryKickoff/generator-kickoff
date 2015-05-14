@@ -4,7 +4,9 @@ module.exports = function (grunt) {
 	var options = {
 		pkg: require('./package'), // <%%=pkg.name%>
 
-		<% if (statix == true) {%>site: grunt.file.readYAML('statix/src/data/site.yml'),<% } %>
+		<% if (statix == true) {
+			%>site: grunt.file.readYAML('statix/src/data/site.yml'),<%
+		} %>
 
 		// Global Grunt vars. Edit this file to change vars
 		config : require('./_grunt-configs/config.js')
@@ -93,8 +95,9 @@ module.exports = function (grunt) {
 		'assemble'<% } %>
 	]);
 
-	<% if (styleguide === true) {
-	%>
+<%
+	if (styleguide === true) { // if the styleguide is chosen to be included in the generator – output the grunt styleguide task
+%>
 	/**
 	 * GRUNT STYLEGUIDE * A task to view the styleguide
 	 */
@@ -108,10 +111,15 @@ module.exports = function (grunt) {
 		<% if (statix === true) {%>'copy',
 		'assemble',<% } %>
 		'browserSync:styleguide'
-	]);<% }%>
-	<% if (grunticon === true) {
-	%>
+	]);
+<%
+	}
+%>
 
+
+<%
+	if (grunticon === true) { // if grunticon is in chosen to be included in the generator – output the grunt grunticon task
+%>
 	/**
 	 * GRUNT ICONS * A task to create all icons using grunticon
 	 * run clean, svgmin and grunticon
@@ -121,8 +129,9 @@ module.exports = function (grunt) {
 		'imagemin:grunticon',
 		'grunticon'
 	]);
-	<% }
-	%>
+<%
+	}
+%>
 
 	/**
 	 * GRUNT CHECKS * Check code for errors
@@ -130,7 +139,8 @@ module.exports = function (grunt) {
 	 */
 	grunt.registerTask('checks', [
 		'jshint:project',
-		'scsslint'
+		'scsslint',
+		'validation'
 	]);
 
 
