@@ -48,7 +48,8 @@ module.exports.tasks = {
 				}
 			}
 		}
-	}<% if (statix === true) { %>,
+	}<%
+if (statix === true) { %>,
 
 
 	/**
@@ -79,6 +80,6 @@ module.exports.tasks = {
 			}]
 		}
 	}<%
-	} //end of statix conditional
-	%>
+} //end of statix conditional
+%>
 };

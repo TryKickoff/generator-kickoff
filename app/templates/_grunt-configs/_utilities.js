@@ -8,10 +8,10 @@ module.exports.tasks = {
 	clean: {
 		icons   : ['<%%=config.distDir%>/img/icons', '<%%=config.tempDir%>/icons'],
 		tempCSS : ['<%%=config.tempDir%>/css']<%
-		if (statix === true) {
-			%>,
+			if (statix === true) {
+		%>,
 		all: ['<%%= config.statix.dir%>/dist/**/*.html']<%
-		} %>
+			} %>
 	},
 
 
