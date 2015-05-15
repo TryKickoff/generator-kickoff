@@ -55,9 +55,13 @@ module.exports = function (grunt) {
 		'compileJS',
 		'compileCSS',
 		'clean:tempCSS',
-		'copy:modernizr',
-		<% if (statix === true) {%>'copy',
-		'assemble',<% } %>
+		'images',<%
+		if (statix === true) {%>
+		'copy',
+		'assemble',<%
+		} else {
+		%>'copy:modernizr',<%
+		} %>
 		'browserSync:serve',
 		'watch'
 	]);
@@ -73,9 +77,13 @@ module.exports = function (grunt) {
 		'compileJS',
 		'compileCSS',
 		'clean:tempCSS',
-		'copy:modernizr'<% if (statix === true) {%>,
+		'images',<%
+		if (statix === true) {%>
 		'copy',
-		'assemble'<% } %>
+		'assemble'<%
+		} else {
+		%>'copy:modernizr'<%
+		} %>
 	]);
 
 
@@ -90,9 +98,13 @@ module.exports = function (grunt) {
 		'compileCSS',
 		'csso',
 		'clean:tempCSS',
-		'copy:modernizr'<% if (statix === true) {%>,
+		'images',<%
+		if (statix === true) {%>
 		'copy',
-		'assemble'<% } %>
+		'assemble'<%
+		} else {
+		%>'copy:modernizr'<%
+		} %>
 	]);
 
 <%
@@ -107,15 +119,28 @@ module.exports = function (grunt) {
 		'compileJS',
 		'compileCSS',
 		'clean:tempCSS',
-		'copy:modernizr',
-		<% if (statix === true) {%>'copy',
-		'assemble',<% } %>
-		'browserSync:styleguide'
+		'images',<%
+		if (statix === true) {%>
+		'copy',
+		'assemble',<%
+		} else {
+		%>'copy:modernizr',<%
+		} %>
+		'browserSync:styleguide',
+		'watch'
 	]);
 <%
 	}
 %>
 
+
+	/**
+	 * GRUNT IMAGES * A task to compress all non-grunticon images
+	 */
+	grunt.registerTask('images', [
+		'imagemin:images',
+		'icons'
+	]);
 
 <%
 	if (grunticon === true) { // if grunticon is in chosen to be included in the generator – output the grunt grunticon task
@@ -148,16 +173,16 @@ module.exports = function (grunt) {
 	 * Utility tasks
 	 */
 	// Compile JS
-	<% if (browserify === true) {%>
-		grunt.registerTask('compileJS', [
-			'browserify:dev'
-		]);
-	<% } else { %>
-		grunt.registerTask('compileJS', [
-			'chotto:js',
-			'uglify',
-		]);
-	<% } %>
+<% if (browserify === true) {%>
+	grunt.registerTask('compileJS', [
+		'browserify:dev'
+	]);
+<% } else { %>
+	grunt.registerTask('compileJS', [
+		'chotto:js',
+		'uglify',
+	]);
+<% } %>
 
 	// Compile CSS
 	grunt.registerTask('compileCSS', [
