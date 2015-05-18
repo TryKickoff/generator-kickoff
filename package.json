@@ -1,6 +1,6 @@
 {
 	"name": "generator-kickoff",
-	"version": "0.11.0-beta.15",
+	"version": "0.11.0-beta.17",
 	"description": "A Yeoman generator for the Kickoff front-end framework",
 	"keywords": [
 		"yeoman-generator",
@@ -34,12 +34,10 @@
 		"underscore.string": "^3.0.3",
 		"update-notifier": "^0.3.1",
 		"yeoman-generator": "^0.18.10",
-		"yosay": "^1.0.3"
+		"yosay": "^1.0.3",
+		"yo": ">=1.0.0"
 	},
 	"devDependencies": {
 		"mocha": "*"
-	},
-	"peerDependencies": {
-		"yo": ">=1.0.0"
 	}
 }
