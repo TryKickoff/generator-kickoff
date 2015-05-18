@@ -34,7 +34,8 @@ module.exports = function (grunt) {
 	 * grunt watch      : run sass:kickoff, uglify and livereload
 	 * grunt dev        : run uglify, sass:kickoff & autoprefixer:kickoff
 	 * grunt deploy     : run jshint, uglify, sass:kickoff and csso
-	 * grunt styleguide : watch js & scss, run a local server for editing the styleguide<% if (grunticon === true) {%>
+	 * grunt styleguide : watch js & scss, run a local server for editing the styleguide<%
+	if (grunticon === true) {%>
 	 * grunt icons      : generate the icons. uses svgmin and grunticon<% } %>
 	 * grunt checks     : run jshint & scsslint
 	 */
@@ -49,9 +50,11 @@ module.exports = function (grunt) {
 	 * GRUNT SERVE * A task for a static server with a watch
 	 * run browserSync and watch
 	 */
-	grunt.registerTask('serve', [
-		<% if (statix === true) {%>'clean:all',<% } %>
-		<% if (shims === true) {%>'shimly',<% } %>
+	grunt.registerTask('serve', [<%
+		if (statix === true) {%>
+		'clean:all',<% } %><%
+		if (shims === true) {%>
+		'shimly',<% } %>
 		'compileJS',
 		'compileCSS',
 		'clean:tempCSS',
@@ -71,9 +74,11 @@ module.exports = function (grunt) {
 	 * GRUNT DEV * A task for development
 	 * run uglify, sass:kickoff & autoprefixer:kickoff
 	 */
-	grunt.registerTask('dev', [
-		<% if (statix === true) {%>'clean:all',<% } %>
-		<% if (shims === true) {%>'shimly',<% } %>
+	grunt.registerTask('dev', [<%
+		if (statix === true) {%>
+		'clean:all',<% } %><%
+		if (shims === true) {%>
+		'shimly',<% } %>
 		'compileJS',
 		'compileCSS',
 		'clean:tempCSS',
@@ -91,9 +96,11 @@ module.exports = function (grunt) {
 	 * GRUNT DEPLOY * A task for your production environment
 	 * run jshint, uglify and sass:production
 	 */
-	grunt.registerTask('deploy', [
-		<% if (statix === true) {%>'clean:all',<% } %>
-		<% if (shims === true) {%>'shimly',<% } %>
+	grunt.registerTask('deploy', [<%
+		if (statix === true) {%>
+		'clean:all',<% } %><%
+		if (shims === true) {%>
+		'shimly',<% } %>
 		'compileJS',
 		'compileCSS',
 		'csso',
@@ -108,14 +115,16 @@ module.exports = function (grunt) {
 	]);
 
 <%
-	if (styleguide === true) { // if the styleguide is chosen to be included in the generator – output the grunt styleguide task
+	if (styleguide === true) {
 %>
 	/**
 	 * GRUNT STYLEGUIDE * A task to view the styleguide
 	 */
-	grunt.registerTask('styleguide', [
-		<% if (statix === true) {%>'clean:all',<% } %>
-		<% if (shims === true) {%>'shimly',<% } %>
+	grunt.registerTask('styleguide', [<%
+		if (statix === true) {%>
+		'clean:all',<% } %><%
+		if (shims === true) {%>
+		'shimly',<% } %>
 		'compileJS',
 		'compileCSS',
 		'clean:tempCSS',
@@ -128,10 +137,8 @@ module.exports = function (grunt) {
 		} %>
 		'browserSync:styleguide',
 		'watch'
-	]);
-<%
-	}
-%>
+	]);<%
+} %>
 
 
 	/**
@@ -156,8 +163,8 @@ module.exports = function (grunt) {
 } else { %>
 	grunt.registerTask('images', [
 		'imagemin:images'
-	]);
-<% } %>
+	]);<%
+} %>
 
 
 	/**

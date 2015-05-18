@@ -8,48 +8,56 @@ module.exports.tasks = {
 	browserSync: {
 		serve: {
 			bsFiles: {
-				src: [
-					<% if (statix == true) { %>
-						'<%%= config.statix.dir%>/dist/assets/css/*.css',
-						'<%%= config.statix.dir%>/dist/**/*.html',
-						'<%%=config.js.distDir%>/**/*.js'
-					<% } else { %>
-						'<%%=config.css.distDir%>/*.css',
-						'<%%=config.js.distDir%>/*.js',
-						'**/*.html'
-					<% } %>
+				src: [<%
+				if (statix) { %>
+					'<%%= config.statix.dir%>/dist/assets/**/*.*',
+					'<%%= config.statix.dir%>/dist/**/*.html'<%
+				} else { %>
+					'<%%=config.css.distDir%>/*.css',
+					'<%%=config.js.distDir%>/*.js',
+					'**/*.html'<%
+				} %>
 				]
 			},
 			options: {
 				watchTask: true,
-				server: {
-				<% if (statix == true) { %>
-					baseDir: './<%%= config.statix.dir%>/dist'
-				<% } else { %>
-					baseDir: './'
-				<% } %>
+				server: {<%
+				if (statix) { %>
+					baseDir: './<%%= config.statix.dir%>/dist'<%
+				} else { %>
+					baseDir: './'<%
+				} %>
 				}
 			}
-		}<% if (styleguide == true) { %>,
+		}<% if (styleguide) { %>,
 
 
 		styleguide: {
 			bsFiles: {
-				src: [
-					'<%%=config.distDir%>/**/*.*',
-					'*.html'
+				src: [<%
+				if (statix) { %>
+					'<%%= config.statix.dir%>/dist/assets/**/*.*',
+					'<%%= config.statix.dir%>/dist/**/*.html'<%
+				} else { %>
+					'<%%= config.distDir%>/**/*.*',
+					'*.html'<%
+				} %>
 				]
 			},
 			options: {
 				watchTask: true,
-				server: {
-					baseDir: './',
+				server: {<%
+					if (statix) { %>
+					baseDir: './<%%= config.statix.dir%>/dist',<%
+				} else { %>
+					baseDir: './',<%
+				} %>
 					index: 'styleguide/index.html'
 				}
 			}
 		}<% } %>
 	}<%
-if (statix === true) { %>,
+if (statix) { %>,
 
 
 	/**
