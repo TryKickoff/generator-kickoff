@@ -74,20 +74,6 @@ KickoffGenerator.prototype.askFor = function () {
 			store: true
 		},
 		{
-			name: 'styleguide',
-			type: 'confirm',
-			message: 'Include Kickoff\'s styleguide?',
-			default: true,
-			store: true
-		},
-		{
-			name: 'statix',
-			type: 'confirm',
-			message: 'Use Kickoff Statix?',
-			default: false,
-			store: true
-		},
-		{
 			name: 'jsLibs',
 			type: 'checkbox',
 			message: 'Which Javascript libraries would you like to use?',
@@ -113,6 +99,20 @@ KickoffGenerator.prototype.askFor = function () {
 					value: 'cookies'
 				}
 			],
+			store: true
+		},
+		{
+			name: 'styleguide',
+			type: 'confirm',
+			message: 'Include Kickoff\'s styleguide?',
+			default: true,
+			store: true
+		},
+		{
+			name: 'statix',
+			type: 'confirm',
+			message: 'Use Kickoff Statix?',
+			default: false,
 			store: true
 		},
 		{
