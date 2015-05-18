@@ -30,7 +30,7 @@ module.exports.tasks = {
 				<% } %>
 				}
 			}
-		},
+		}<% if (styleguide == true) { %>,
 
 
 		styleguide: {
@@ -47,7 +47,7 @@ module.exports.tasks = {
 					index: 'styleguide/index.html'
 				}
 			}
-		}
+		}<% } %>
 	}<%
 if (statix === true) { %>,
 
@@ -62,7 +62,12 @@ if (statix === true) { %>,
 		options: {
 			data: '<%%= config.statix.dir%>/src/**/*.{json,yml}',
 			assets: '<%%= config.statix.dir%>/dist/assets',
-			helpers: ['helper-moment', 'handlebars-helper-eachitems', '<%%= config.statix.dir%>/src/helpers/helper-*.js'],
+			helpers: [
+				'helper-moment',
+				'handlebars-helper-eachitems',
+				'<%%= config.statix.dir%>/src/helpers/helper-*.js',
+				'handlebars-helper-aggregate'
+			],
 
 			partials: ['<%%= config.statix.dir%>/src/templates/includes/**/*.hbs'],
 			flatten: false,
