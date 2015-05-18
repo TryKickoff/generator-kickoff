@@ -65,9 +65,15 @@ module.exports.tasks = {
 			relaxerror: ['A meta element with an http-equiv attribute whose value is X-UA-Compatible must have a content attribute with the value IE=edge.']
 		},
 		files: {
-			src: ['**/*.html',
+			src: [
+				<% if (statix === true) {
+				%>'./<%= config.statix.dir%>/dist/**/*.html',
+				'!./<%= config.statix.dir%>/dist/assets/**/*.html'<%
+					} else {
+				%>'**/*.html',
 				'!*/dist/img/**/*.html',
-				'!node_modules/**/*.html']
+				'!node_modules/**/*.html'<%
+					} %>]
 		}
 	}
 };

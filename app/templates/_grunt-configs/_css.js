@@ -26,7 +26,7 @@ module.exports.tasks = {
 		styleguide: {
 			options: {
 				outputStyle: 'compressed',
-				precision : 10,
+				precision : 10
 			},
 			files: {
 				'<%%=config.tempDir%>/css/styleguide.css' : '<%%=config.css.scssDir%>/styleguide.scss'
