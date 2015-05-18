@@ -136,15 +136,14 @@ module.exports = function (grunt) {
 
 	/**
 	 * GRUNT IMAGES * A task to compress all non-grunticon images
-	 */
+	 */<%
+	if (grunticon === true) {%>
 	grunt.registerTask('images', [
 		'imagemin:images',
 		'icons'
 	]);
 
-<%
-	if (grunticon === true) { // if grunticon is in chosen to be included in the generator – output the grunt grunticon task
-%>
+
 	/**
 	 * GRUNT ICONS * A task to create all icons using grunticon
 	 * run clean, svgmin and grunticon
@@ -153,10 +152,13 @@ module.exports = function (grunt) {
 		'clean:icons',
 		'imagemin:grunticon',
 		'grunticon'
+	]);<%
+} else { %>
+	grunt.registerTask('images', [
+		'imagemin:images'
 	]);
-<%
-	}
-%>
+<% } %>
+
 
 	/**
 	 * GRUNT CHECKS * Check code for errors
