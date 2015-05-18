@@ -70,7 +70,7 @@ module.exports.tasks = {
 		img: {
 			files: [{
 				expand: true,
-				cwd: '<%%=config.distDir%>/img',
+				cwd: '<%%=config.img.distDir%>',
 				src: ['./**/*.*'],
 				dest: '<%%= config.statix.dir%>/dist/assets/dist/img'
 			}]
@@ -78,7 +78,7 @@ module.exports.tasks = {
 		js: {
 			files: [{
 				expand: true,
-				cwd: '<%%=config.distDir%>/js',
+				cwd: '<%%=config.js.distDir%>',
 				src: ['./**/*.*'],
 				dest: '<%%= config.statix.dir%>/dist/assets/dist/js'
 			}]
