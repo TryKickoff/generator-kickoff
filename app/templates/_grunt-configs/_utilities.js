@@ -43,19 +43,19 @@ module.exports.tasks = {
 					expand: true,
 					cwd: '<%%=config.distDir%>/img',
 					src: ['./**/*.*'],
-					dest: '<%%=config.statix.dir%>/dist/assets/img'
+					dest: '<%%=config.statix.dir%>/dist/assets/dist/img'
 				},
 				{
 					expand: true,
 					cwd: '<%%=config.distDir%>/js',
 					src: ['./**/*.*'],
-					dest: '<%%=config.statix.dir%>/dist/assets/js'
+					dest: '<%%=config.statix.dir%>/dist/assets/dist/js'
 				},
 				{
 					expand: true,
 					cwd: './<%%=config.css.distDir%>',
 					src: ['./*.{css,map}'],
-					dest: '<%%= config.statix.dir%>/dist/assets/css'
+					dest: '<%%= config.statix.dir%>/dist/assets/dist/css'
 				}
 			]
 		},
@@ -64,7 +64,7 @@ module.exports.tasks = {
 				expand: true,
 				cwd: './<%%=config.css.distDir%>',
 				src: ['./*.{css,map}'],
-				dest: '<%%= config.statix.dir%>/dist/assets/css'
+				dest: '<%%= config.statix.dir%>/dist/assets/dist/css'
 			}]
 		},
 		img: {
@@ -72,7 +72,7 @@ module.exports.tasks = {
 				expand: true,
 				cwd: '<%%=config.distDir%>/img',
 				src: ['./**/*.*'],
-				dest: '<%%= config.statix.dir%>/dist/assets/img'
+				dest: '<%%= config.statix.dir%>/dist/assets/dist/img'
 			}]
 		},
 		js: {
@@ -80,7 +80,7 @@ module.exports.tasks = {
 				expand: true,
 				cwd: '<%%=config.distDir%>/js',
 				src: ['./**/*.*'],
-				dest: '<%%= config.statix.dir%>/dist/assets/js'
+				dest: '<%%= config.statix.dir%>/dist/assets/dist/js'
 			}]
 		}<% } %>
 	}
