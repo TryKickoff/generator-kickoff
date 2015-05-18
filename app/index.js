@@ -143,6 +143,7 @@ KickoffGenerator.prototype.askFor = function () {
 
 KickoffGenerator.prototype.packageFiles = function packageFiles() {
 	this.template('./_index.html', './index.html');
+
 	if (this.styleguide && !this.statix) {
 		this.template('./styleguide/_index.html', './styleguide/index.html');
 	}
