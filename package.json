@@ -12,9 +12,9 @@
 	],
 	"license": "MIT",
 	"main": "app/index.js",
-	"repository": "tmwagency/generator-kickoff",
-	"homepage": "https://github.com/tmwagency/generator-kickoff",
-	"bugs": "https://github.com/tmwagency/generator-kickoff/issues",
+	"repository": "trykickoff/generator-kickoff",
+	"homepage": "https://github.com/trykickoff/generator-kickoff",
+	"bugs": "https://github.com/trykickoff/generator-kickoff/issues",
 	"author": {
 		"name": "Zander Martineau",
 		"url": "https://github.com/mrmartineau"
