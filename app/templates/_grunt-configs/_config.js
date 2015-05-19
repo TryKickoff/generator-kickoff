@@ -73,7 +73,7 @@ module.exports = {
 
 		// Renaming this changes the name of the generated JS file
 		// Make sure you update your template file
-		distFile : 'script.js', // <%%=config.js.distFile%>
+		distFile : 'script.<% if (browserify === true) {%>min.<% } %>js', // <%%=config.js.distFile%>
 	},
 
 
@@ -106,6 +106,7 @@ module.exports = {
 
 
 	statix : {
-		dir : 'statix' // <%%= config.statix.dir%>
+		dir : 'statix', // <%%= config.statix.dir%>
+		distDir: './statix/dist'
 	}<% } %>
 };
