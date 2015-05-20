@@ -64,7 +64,7 @@ if (statix) { %>,
 	 * Assemble
 	 * http://assemble.io/
 	 * Static site generator used by Statix
-	 * Find out more at https://github.com/tmwagency/statix
+	 * Find out more at https://github.com/TryKickoff/statix
 	 */
 	assemble: {
 		options: {
