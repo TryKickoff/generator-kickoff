@@ -1,6 +1,10 @@
 # Kickoff Yeoman generator changelog
 All latest changes are documented on our site at http://trykickoff.github.io/learn/yeoman.html
 
+## Version 0.11.2
+
+Minor Bugfixes to grunt config files
+
 ## Version 0.11.0
 Date 18/05/2015
 

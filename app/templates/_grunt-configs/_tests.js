@@ -67,8 +67,8 @@ module.exports.tasks = {
 		files: {
 			src: [
 				<% if (statix === true) {
-				%>'./<%= config.statix.dir%>/dist/**/*.html',
-				'!./<%= config.statix.dir%>/dist/assets/**/*.html'<%
+				%>'./<%%= config.statix.dir%>/dist/**/*.html',
+				'!./<%%= config.statix.dir%>/dist/assets/**/*.html'<%
 					} else {
 				%>'**/*.html',
 				'!*/dist/img/**/*.html',

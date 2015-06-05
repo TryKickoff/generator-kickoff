@@ -87,7 +87,7 @@ if (statix) { %>,
 		default: {
 			files: [{
 				cwd: './<%%= config.statix.dir%>/src/templates/pages/',
-				dest: '<%= config.statix.distDir %>',
+				dest: '<%%= config.statix.distDir %>',
 				expand: true,
 				src: ['**/*.{hbs,md}']
 			}]
