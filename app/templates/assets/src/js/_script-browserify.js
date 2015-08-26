@@ -29,4 +29,4 @@ var <%= jsNamespace.toUpperCase() %> = {};
 };
 
 
-KO.Config.init();
+<%= jsNamespace.toUpperCase() %>.Config.init();
