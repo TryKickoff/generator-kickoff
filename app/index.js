@@ -93,10 +93,6 @@ KickoffGenerator.prototype.askFor = function () {
 				{
 					name: 'Swiftclick - Eliminates the 300ms click event delay on touch devices',
 					value: 'swiftclick'
-				},
-				{
-					name: 'Cookies - JavaScript Client-Side Cookie Manipulation Library',
-					value: 'cookies'
 				}
 			],
 			store: true
