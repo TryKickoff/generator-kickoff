@@ -4,12 +4,14 @@
 */
 
 // dependencies for this module go here
-// e.g. var $ = require('traversty')
+var trak = require('trak.js');
 
 function init() {
 	doSomething();
 }
 
-function doSomething() {}
+function doSomething() {
+	trak.event({category: 'category value', action: 'action value'});
+}
 
 module.exports = init;
