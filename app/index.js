@@ -64,14 +64,17 @@ KickoffGenerator.prototype.askFor = function () {
 			name: 'browserify',
 			type: 'confirm',
 			message: 'Use Browserify?',
-			default: false,
+			default: true,
 			store: true
 		},
 		{
 			name: 'jsNamespace',
 			message: 'Choose your javascript namespace',
 			default: 'KO',
-			store: true
+			store: true,
+			when: function(response) {
+				return !response.browserify;
+			}
 		},
 		{
 			name: 'jsLibs',
@@ -170,8 +173,6 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		this.template('./assets/src/js/_script-fileArray.js', './assets/src/js/script.js');
 	}
 	this.directory('./assets/src/js/libs', './assets/src/js/libs');
-	this.copy('./assets/src/js/helpers/console.js', './assets/src/js/helpers/console.js');
-	this.copy('./assets/src/js/helpers/log.js', './assets/src/js/helpers/log.js');
 	this.copy('./assets/src/js/helpers/shims.js', './assets/src/js/helpers/shims.js');
 
 	this.template('_package.json', 'package.json');
@@ -221,9 +222,9 @@ KickoffGenerator.prototype._injectDependencies = function _injectDependencies() 
 			'After running `npm install`, inject your front end dependencies' +
 			'\ninto your source code by running:' +
 			'\n' +
-			'\n' + chalk.yellow.bold('npm run kickoff')
+			'\n' + chalk.yellow.bold('npm start')
 		);
 	} else {
-		this.spawnCommand('npm', ['run kickoff']);
+		this.spawnCommand('npm', ['start']);
 	}
 };
