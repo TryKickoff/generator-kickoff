@@ -20,7 +20,7 @@
     "url": "https://github.com/mrmartineau"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=0.12"
   },
   "scripts": {
     "test": "mocha"
