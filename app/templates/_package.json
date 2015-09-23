@@ -14,7 +14,7 @@
 	"dependencies": {
 		"console": "^0.5.2"<%
 		if (browserify) {%>,
-		"lite-ready": "^1.0.2"<%
+		"lite-ready": "^1.0.3"<%
 		}%><%
 		if (jsLibs.indexOf('swiftclick') != -1) {%>,
 		"swiftclick": "^1.1.5"<% } %><%
