@@ -77,12 +77,12 @@ module.exports.tasks = {
 	 */
 	shimly: {
 		// things you would like to shim (an array of items from the list above)
-		shim: ['Array.forEach', 'Array.filter', 'Array.map', 'Function.bind', 'EventListener'],
+		shim: ['EventListener', 'Element.classList'],
 
 		// output location (relative to your grunt.js file location)
-		dest: '<%%=config.srcDir%>/js/helpers/shims.js',
+		dest: '<%%=config.srcDir%>/js/standalone/shims.js',
 
 		// minify the output (true or false)
-		minify: false
+		minify: true
 	}
 };

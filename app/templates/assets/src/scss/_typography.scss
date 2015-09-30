@@ -1,15 +1,13 @@
 /**
  * Typography
- * =================================
- * Base
- * Paragraphs
- * Headings
- * Links
- * Lists
- * Definition lists
- * Blockquotes
- * Misc
- * Utilities
+ * - Base
+ * - Paragraphs
+ * - Headings
+ * - Lists
+ * - Definition lists
+ * - Blockquotes
+ * - Misc
+ * - Utilities
  *
  * Body font size, leadings etc have been set in _variables.scss
  * Resources:
@@ -39,7 +37,6 @@ body {
 
 	// Two ways to smoothen type, they are disabled by default
 	// Enable only one of them if you need them
-	// =========================================
 	// 1.
 	// -webkit-font-smoothing: antialiased;
 	//    -moz-font-smoothing: antialiased;
@@ -59,7 +56,6 @@ p {
 	margin-bottom: $baseline;
 
 	// Measure - ideally about 65 chars per line
-	// =========================================
 	// max-width: $type-base * 30 + px;
 
 	// & small {
@@ -89,18 +85,14 @@ h1, h2, h3, h4, h5, h6 {
 h1, .h1, .alpha {
 	@include font-size($type-largest);
 	margin-bottom: $baseline * 2;
-
-		&:first-child {
-			margin-top: $baseline * 2;
-		}
 }
 
 h2, .h2, .beta {
-	@include font-size($type-larger);
+	@include font-size($type-large);
 }
 
 h3, .h3, .gamma {
-	@include font-size($type-large);
+	@include font-size($type-mid);
 }
 
 h4, .h4, .delta {
@@ -112,7 +104,6 @@ h6, .h6, .zeta {
 	@include font-size($type-small);
 	margin-bottom: 0;
 }
-
 
 // h5, .h5, .epsilon {
 // }
@@ -130,31 +121,6 @@ h6, .h6, .zeta {
 
 small {
 	font-size: 80%;
-}
-
-/**
- * Links
- */
-a {
-	&, &:link {
-		color: $color-link-default;
-		text-decoration: none;
-	}
-
-	&:visited {
-		color: $color-link-visited;
-		text-decoration: none;
-	}
-
-	&:hover, &:focus {
-		color: $color-link-hover;
-		//text-decoration: underline;
-	}
-
-	&:active {
-		color: $color-link-active;
-		//text-decoration: underline;
-	}
 }
 
 
