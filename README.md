@@ -60,9 +60,6 @@ yo kickoff
 
 The repo and more information can be found at [github.com/TryKickoff/generator-kickoff](https://github.com/TryKickoff/generator-kickoff)
 
-[![NPM](https://nodei.co/npm/generator-kickoff.png?downloads=true&stars=true)](https://nodei.co/npm/generator-kickoff/)
-
-[![NPM version](https://badge.fury.io/js/generator-kickoff.png)](http://badge.fury.io/js/generator-kickoff)
 If you'd like to get to know Yeoman better check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
 
 
