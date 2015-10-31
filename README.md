@@ -1,5 +1,15 @@
 ## [Yeoman](http://yeoman.io) generator for the [Kickoff framework](https://github.com/TryKickoff/kickoff/)
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/TryKickoff/generator-kickoff?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![stability][stability-image]][stability-url]
+[![NPM version][npm-image]][npm-url]
+[![Downloads][downloads-image]][downloads-url]
+
+[stability-image]: https://img.shields.io/badge/stability-stable-brightgreen.svg?style=flat-square
+[stability-url]: https://nodejs.org/api/documentation.html#documentation_stability_index
+[npm-image]: https://img.shields.io/npm/v/generator-kickoff.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/generator-kickoff
+[downloads-image]: http://img.shields.io/npm/dm/budo.svg?style=flat-square
+[downloads-url]: https://npmjs.org/package/generator-kickoff
+
 
 Using our Yeoman Generator is the best and fastest way to get Kickoff each time you want to start a new project. It will ask you a few questions and then build a custom version of [Kickoff version 5](https://github.com/TryKickoff/kickoff/releases/tag/5.0.0) for your needs.
 
