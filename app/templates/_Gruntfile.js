@@ -1,10 +1,23 @@
+/**
+ * Grunt tasks:
+ * - grunt                   : The default task. Alias for `grunt serve` task below
+ * - grunt serve             : watch files and run a static server
+ * - grunt watcher           : watch files without static server
+ * - grunt compile           : compile scss, js & compress images
+ * - grunt compile --release : same as above, but compress CSS as well
+ * - grunt icons             : generate the icons using grunticon
+ * - grunt images            : compress all non-grunticon images & then run `grunt icons`
+ */
+
+var opn = require('opn')
+
 module.exports = function (grunt) {
 	'use strict';
 
 	var options = {
 		pkg: require('./package'), // <%%=pkg.name%>
 
-		<% if (statix == true) {
+		<% if (statix) {
 			%>site: grunt.file.readYAML('statix/src/data/site.yml'),<%
 		} %>
 
@@ -13,8 +26,12 @@ module.exports = function (grunt) {
 	};
 
 	// Load grunt tasks automatically
-	require('load-grunt-tasks')(grunt, {pattern: ["grunt-*", "chotto"<%
-		if (statix === true) {
+	require('load-grunt-tasks')(grunt, {pattern: ["grunt-*"<%
+		if (!browserify) {
+			%>, "chotto"<%
+		}
+		%><%
+		if (statix) {
 			%>, "assemble"<%
 		}
 	%>]});
@@ -28,174 +45,87 @@ module.exports = function (grunt) {
 
 
 	/**
-	 * Available tasks:
-	 * grunt            : Alias for 'serve' task, below
-	 * grunt serve      : watch js, images & scss and run a local server
-	 * grunt watch      : run sass:kickoff, uglify and livereload
-	 * grunt dev        : run uglify, sass:kickoff & autoprefixer:kickoff
-	 * grunt deploy     : run jshint, uglify, sass:kickoff and csso
-	 * grunt styleguide : watch js & scss, run a local server for editing the styleguide<%
-	if (grunticon === true) {%>
-	 * grunt icons      : generate the icons. uses svgmin and grunticon<% } %>
-	 * grunt checks     : run jshint & scsslint
+	 * The tasks
 	 */
 
-	/**
-	 * GRUNT * Alias for 'serve' task, below
-	 */
+	// grunt
 	grunt.registerTask('default', ['serve']);
 
 
-	/**
-	 * GRUNT SERVE * A task for a static server with a watch
-	 * run browserSync and watch
-	 */
-	grunt.registerTask('serve', [<%
-		if (statix === true) {%>
-		'clean:all',<% } %><%
-		if (shims === true) {%>
-		'shimly',<% } %>
-		'compileJS',
-		'compileCSS',
-		'clean:tempCSS',
-		'images',<%
-		if (statix === true) {%>
-		'copy',
-		'assemble',<%
-		} else {
-		%>'copy:modernizr',<%
-		} %>
+	// grunt serve
+	grunt.registerTask('serve', [
+		'compile',
 		'browserSync:serve',
+		'watch'
+	])
+
+
+	// grunt watcher
+	grunt.registerTask('watcher', [
+		'compile',
 		'watch'
 	]);
 
 
-	/**
-	 * GRUNT DEV * A task for development
-	 * run uglify, sass:kickoff & autoprefixer:kickoff
-	 */
-	grunt.registerTask('dev', [<%
-		if (statix === true) {%>
-		'clean:all',<% } %><%
-		if (shims === true) {%>
-		'shimly',<% } %>
-		'compileJS',
-		'compileCSS',
-		'clean:tempCSS',
-		'images',<%
-		if (statix === true) {%>
-		'copy',
+	// grunt compile
+	grunt.registerTask('compile', [<%
+		if (browserify) {%>
+		'browserify',<%
+		} else { %>
+		'chotto:js',
+		'uglify',<%
+		} %>
+		'postscss',
+		'images'<%
+		if (statix) {%>
+		'copy:statix',
 		'assemble'<%
-		} else {
-		%>'copy:modernizr'<%
+		} %><%
+		if (shims) {%>,
+		'shimly'<%
+		} %><%
+		if (modernizr) {%>,
+		'copy:modernizr'<%
 		} %>
 	]);
 
 
-	/**
-	 * GRUNT DEPLOY * A task for your production environment
-	 * run jshint, uglify and sass:production
-	 */
-	grunt.registerTask('deploy', [<%
-		if (statix === true) {%>
-		'clean:all',<% } %><%
-		if (shims === true) {%>
-		'shimly',<% } %>
-		'compileJS',
-		'compileCSS',
-		'csso',
-		'clean:tempCSS',
-		'images',<%
-		if (statix === true) {%>
-		'copy',
-		'assemble'<%
-		} else {
-		%>'copy:modernizr'<%
-		} %>
-	]);
+	// grunt start
+	grunt.registerTask('start', function() {
+		opn('http://trykickoff.com/learn/checklist.html');
+	});<%
+	if (styleguide) { %>
 
-<%
-	if (styleguide === true) {
-%>
-	/**
-	 * GRUNT STYLEGUIDE * A task to view the styleguide
-	 */
-	grunt.registerTask('styleguide', [<%
-		if (statix === true) {%>
-		'clean:all',<% } %><%
-		if (shims === true) {%>
-		'shimly',<% } %>
-		'compileJS',
-		'compileCSS',
-		'clean:tempCSS',
-		'images',<%
-		if (statix === true) {%>
-		'copy',
-		'assemble',<%
-		} else {
-		%>'copy:modernizr',<%
-		} %>
+
+	// grunt styleguide
+	grunt.registerTask('styleguide', [
+		'compile',
 		'browserSync:styleguide',
 		'watch'
 	]);<%
-} %>
+	} %>
 
 
-	/**
-	 * GRUNT IMAGES * A task to compress all non-grunticon images
-	 */<%
-	if (grunticon === true) {%>
+	// grunt images
 	grunt.registerTask('images', [
-		'imagemin:images',
-		'icons'
-	]);
+		'newer:imagemin:images'<%
+		if (grunticon) {%>,
+		'icons'<% } %>
+	]);<%
+	if (grunticon) {%>
 
 
-	/**
-	 * GRUNT ICONS * A task to create all icons using grunticon
-	 * run clean, svgmin and grunticon
-	 */
+	// grunt icons
 	grunt.registerTask('icons', [
 		'clean:icons',
-		'imagemin:grunticon',
+		'newer:imagemin:grunticon',
 		'grunticon'
-	]);<%
-} else { %>
-	grunt.registerTask('images', [
-		'imagemin:images'
-	]);<%
-} %>
+	]);<% } %>
 
 
-	/**
-	 * GRUNT CHECKS * Check code for errors
-	 * run jshint
-	 */
-	grunt.registerTask('checks', [
-		'jshint:project',
-		'scsslint',
-		'validation'
+	// grunt travis
+	grunt.registerTask('travis', [
+		'postscss'
 	]);
 
-
-	/**
-	 * Utility tasks
-	 */
-	// Compile JS
-<% if (browserify === true) {%>
-	grunt.registerTask('compileJS', [
-		'browserify:dev'
-	]);
-<% } else { %>
-	grunt.registerTask('compileJS', [
-		'chotto:js',
-		'uglify',
-	]);
-<% } %>
-
-	// Compile CSS
-	grunt.registerTask('compileCSS', [
-		'sass',
-		'autoprefixer'
-	]);
 };
