@@ -8,11 +8,12 @@ module.exports.tasks = {
 	clean: {
 		icons   : ['<%%=config.distDir%>/img/icons', '<%%=config.tempDir%>/icons'],
 		tempCSS : ['<%%=config.tempDir%>/css']<%
-			if (statix === true) {
+			if (statix) {
 		%>,
 		all: ['<%%= config.statix.dir%>/dist/**/*.html']<%
 			} %>
-	},
+	},<%
+	if (!browserify) {%>
 
 
 	/**
@@ -24,7 +25,7 @@ module.exports.tasks = {
 		js : {
 			filePaths: '<%%=config.js.fileList%>'
 		}
-	},
+	},<% } %>
 
 
 	/**
@@ -32,10 +33,21 @@ module.exports.tasks = {
 	 * https://github.com/gruntjs/grunt-contrib-copy
 	 */
 	copy: {
+		jsStandalone: {
+			files: [{
+				expand: true,
+				cwd: '<%=config.srcDir%>/js/standalone',
+				src: ['./**/*.*'],
+				dest: '<%=config.js.distDir%>/standalone'
+			}]
+		}<%
+		if (modernizr) {%>,
 		modernizr: {
 			src: '<%%=config.srcDir%>/js/libs/modernizr.min.js',
 			dest: '<%%=config.distDir%>/js/libs/modernizr.min.js'
-		}<% if (statix === true) {%>,
+		}<%
+		} %><%
+		if (statix) {%>,
 
 		statix: {
 			files: [
@@ -83,5 +95,25 @@ module.exports.tasks = {
 				dest: '<%%= config.statix.dir%>/dist/assets/js'
 			}]
 		}<% } %>
-	}
+	},
+
+
+	/**
+	 * grunt-filesizegzip
+	 * https://github.com/mrmartineau/grunt-filesizegzip
+	 * Output the normal & gzipped file size of a given file
+	 */
+	filesizegzip: {
+		js: {
+			src: '<%%=config.js.distDir%><%%=config.js.distFile%>'
+		},
+
+		css: {
+			src: '<%%=config.css.distDir%>/<%%=config.css.distFile%>.css'
+		},
+
+		grunticon: {
+			src: '<%%=config.img.distDir%>/icons/icons.data.svg.css'
+		}
+	},
 };

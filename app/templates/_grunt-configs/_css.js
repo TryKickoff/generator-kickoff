@@ -1,80 +1,44 @@
-module.exports.tasks = {
+var postscss = require('postscss');
+var autoprefixer = require('autoprefixer');
+var cssnano = require('cssnano');
+
+module.exports = function (grunt, options) {
 
 	/**
-	 * Sass compilation using grunt-sass
-	 * https://github.com/sindresorhus/grunt-sass
-	 * Includes <%%=config.css.distFile%>.scss<% if (oldIE === true) {%> and <%%=config.css.distFile%>-old-ie.scss<% } %> by default
+	 * PostScss
+	 * https://github.com/nicbell/postscss
 	 */
-	sass: {
-		kickoff: {
-			options: {
-				outputStyle: 'nested',
-				precision : 10,
-				sourceMap : true
-			},
-			files: {
-				'<%%=config.tempDir%>/css/<%%=config.css.distFile%>.css' : '<%%=config.css.scssDir%>/kickoff.scss'<%
-				if (oldIE === true) {
-				%>,
-				'<%%=config.tempDir%>/css/<%%=config.css.distFile%>-old-ie.css': '<%%=config.css.scssDir%>/kickoff-old-ie.scss'<%
-				} %>
-			}
-		}<%
-		if (styleguide === true) {
-		%>,
+	return grunt.registerTask('postscss', 'Compiles SASS and runs postcss.', function () {
+		var done = this.async();
 
-		styleguide: {
-			options: {
-				outputStyle: 'compressed',
-				precision : 10
-			},
-			files: {
-				'<%%=config.tempDir%>/css/styleguide.css' : '<%%=config.css.scssDir%>/styleguide.scss'
-			}
-		}<%
-		// end of styleguide conditional
-		} %>
-	},
+		var scssDir = grunt.config.process(options.config.css.scssDir);
+		var cssDir = grunt.config.process(options.config.css.distDir);
+		var cssDistFile = grunt.config.process(options.config.css.distFile);
 
+		var plugins = [
+			autoprefixer({ browsers: options.config.css.autoprefixer })
+		];
 
-	/**
-	 * Autoprefixer
-	 * https://github.com/nDmitry/grunt-autoprefixer
-	 * https://github.com/ai/autoprefixer
-	 * Auto prefixes your CSS using caniuse data
-	 */
-	autoprefixer: {
-		options: {
-			browsers: '<%%=config.css.autoprefixer%>',
-			map: true
-		},
-
-		kickoff: {
-			expand: true,
-			flatten: true,
-			src: '<%%=config.tempDir%>/css/*.css',
-			dest: '<%%=config.css.distDir%>/'
+		// Release flag, use cssnano
+		if (grunt.option('release')) {
+			plugins.push(cssnano());
 		}
-	},
 
-
-	/**
-	 * CSSO
-	 * https://github.com/t32k/grunt-csso
-	 * Minify CSS files with CSSO
-	 */
-	csso: {
-		dist: {
-			options: {
-				restructure: false //turns structural optimisations off as can mess up fallbacks http://bem.info/tools/optimizers/csso/description/
+		postscss(plugins).processMany([
+			{
+				from: scssDir + '/kickoff.scss',
+				to: cssDir + '/' + cssDistFile + '.css'
 			},
-			files: {
-				'<%%=config.css.distDir%>/<%%=config.css.distFile%>.css'       : '<%%=config.css.distDir%>/<%%=config.css.distFile%>.css'<%
-				if (oldIE === true) {
-				%>,
-				'<%%=config.css.distDir%>/<%%=config.css.distFile%>-old-ie.css': '<%%=config.css.distDir%>/<%%=config.css.distFile%>-old-ie.css'<%
-				} %>
+			{
+				from: scssDir + '/kickoff-old-ie.scss',
+				to: cssDir + '/' + cssDistFile + '-old-ie.css'
 			},
-		}
-	}
+			{
+				from: scssDir + '/styleguide.scss',
+				to: cssDir + '/styleguide.css'
+			}
+		]).then(done).catch(function(error) {
+			console.error('\n' + error.formatted + '\n');
+		});
+	});
 };

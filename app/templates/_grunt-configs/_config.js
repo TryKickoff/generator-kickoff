@@ -7,9 +7,9 @@ module.exports = {
 	src : "./_grunt-configs/*.js", // This directory. Has all the Grunt tasks grouped into specific js files
 
 
-	srcDir  : './assets/src',  // <%%=config.srcDir%>
-	distDir : './assets/dist', // <%%=config.distDir%>
-	tempDir : './assets/temp', // <%%=config.tempDir%>
+	srcDir  : 'assets/src',  // <%%=config.srcDir%>
+	distDir : 'assets/dist', // <%%=config.distDir%>
+	tempDir : 'assets/temp', // <%%=config.tempDir%>
 
 
 	// CSS-related Grunt vars
@@ -23,7 +23,7 @@ module.exports = {
 
 		// We are supporting the last 2 browsers, any browsers with >5% market share,
 		// and ensuring we support IE8+ with prefixes
-		autoprefixer : ['> 5%', 'last 2 versions', 'firefox > 3.6', 'ie > 7'] // <%%=config.css.autoprefixer%>
+		autoprefixer : ['> 5%', 'last 2 versions', 'ie > 7'] // <%%=config.css.autoprefixer%>
 	},
 
 
@@ -43,10 +43,6 @@ module.exports = {
 						%> /* jQuery v2.x */<%
 					}
 				}
-				// if shimly is being used, add path to config
-				if (shims === true) { %>
-				'<%%=config.srcDir%>/js/helpers/shims.js',<%
-				} %>
 				'<%%=config.srcDir%>/js/helpers/console.js',<%
 
 				// if swiftclick is being used, add path to config
@@ -73,7 +69,7 @@ module.exports = {
 
 		// Renaming this changes the name of the generated JS file
 		// Make sure you update your template file
-		distFile : 'script.<% if (browserify === true) {%>min.<% } %>js', // <%%=config.js.distFile%>
+		distFile : 'bundle.js', // <%%=config.js.distFile%>
 	},
 
 
@@ -82,24 +78,6 @@ module.exports = {
 		srcDir       : '<%%=config.srcDir%>/img',      // <%%=config.img.srcDir%>
 		distDir      : '<%%=config.distDir%>/img',     // <%%=config.img.distDir%>
 		grunticonDir : '<%%=config.srcDir%>/grunticon' // <%%=config.img.grunticonDir%>
-	},
-
-
-	// Testing-related Grunt vars
-	// Add any other test vars in here
-	testing: {
-
-		// Used by Photobox at the moment
-		// http://trykickoff.github.io/learn/grunt.html#task-photobox
-		visual : {
-			sizes: [ '600', '1000', '1200' ], // <%%=config.testing.visual.sizes%>
-
-			// Change these urls to test your app
-			// <%%=config.testing.visual.urls%>
-			urls : [
-				'http://localhost:3000'
-			]
-		}
 	}<%
 	if (statix === true) {
 	%>,
@@ -107,6 +85,6 @@ module.exports = {
 
 	statix : {
 		dir : 'statix', // <%%= config.statix.dir%>
-		distDir: './statix/dist'
+		distDir: './<%%= config.statix.dir%>/dist'
 	}<% } %>
 };

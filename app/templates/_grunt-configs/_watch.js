@@ -6,32 +6,41 @@ module.exports.tasks = {
 	* Watches your scss, js etc for changes and compiles them
 	*/
 	watch: {
+		options: {
+			interrupt: true,
+			spawn: false
+		},
+
 		scss: {
 			files: ['<%%=config.css.scssDir%>/**/*.scss'],
 			tasks: [
-				'compileCSS',
-				'clean:tempCSS'<% if (statix == true) {%>,
-				'copy:css'<% } %>
-			],
-			options: {
-				interrupt: true,
-				spawn: false
-			}
-		},<% if (browserify == false) {%>
+				'bsNotify:sassStart',
+				'postscss'<%
+				if (statix) {%>,
+				'copy:css'<%
+				} %>,
+				'bsReload:css',
+				'filesizegzip:css'
+			]
+		},
 
 		js: {
-			files: [
-				'<%%=config.js.fileList%>'
+			files: [<%
+				if (browserify) { %>
+				'<%%=config.js.distDir%>/**/*.js'<%
+				} else { <%
+				'<%%=config.js.fileList%>'<% } %>
 			],
-			tasks: [
+			tasks: [<%
+				if (!browserify) { %>
 				'uglify',
-				'newer:copy:modernizr'<% if (statix == true) {%>,
-				'copy:js'<% } %>
-			],
-			options: {
-				interrupt: true,
-				spawn: false
-			}
+				'newer:copy:modernizr'<%
+				} %><%
+				if (statix) {%>,
+				'copy:js'<%
+				} %>,
+				'filesizegzip:js'
+			]
 		},<% } %>
 
 		images : {
@@ -40,14 +49,14 @@ module.exports.tasks = {
 			options: {
 				interrupt: true
 			}
-		},<% if (grunticon == true) {%>
+		},<% if (grunticon) {%>
 
 		grunticon : {
 			files: ['<%%=config.img.grunticonDir%>/**/*.{svg,png,jpg,gif}'],
-			tasks: ['icons'],
-			options: {
-				interrupt: true
-			}
+			tasks: [
+				'icons',
+				'filesizegzip:grunticon'
+			]
 		},<% } %>
 
 		grunt: {
@@ -55,7 +64,7 @@ module.exports.tasks = {
 			options: {
 				reload: true
 			}
-		}<% if (statix === true) {%>,
+		}<% if (statix) {%>,
 
 		assemble : {
 			files: ['<%%=config.statix.dir%>/src/templates/**/*.{hbs,md}'],
@@ -67,5 +76,22 @@ module.exports.tasks = {
 				livereload: true
 			}
 		},<% } %>
+	},
+
+	// Browsersync reload
+	bsReload: {
+		css: {
+			reload: '<%=config.distDir%>/css/*.css'
+		},
+		all: {
+			reload: true
+		}
+	},
+
+	// Browsersync notify
+	bsNotify: {
+		sassStart: {
+			notify: 'Please wait, compiling Sass!'
+		}
 	}
 };
