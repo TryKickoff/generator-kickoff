@@ -1,34 +1,37 @@
 <!doctype html>
 <%
 if (oldIE === true) {
-%><!--[if IE 8]><html class="no-js lt-ie9" lang=""><![endif]-->
-<!--[if gt IE 8]><!--><html class="no-js" lang=""><!--<![endif]--><%
+%><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><%
 } else {
-%><html class="no-js" lang=""><%
+%><html class="no-js" lang="en"><%
 } %>
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<title><%= projectName %></title>
 		<meta name="description" content="">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<!-- Built with Kickoff - trykickoff.github.io -->
+		<!-- Built with Kickoff - trykickoff.com -->
 
-		<% if (oldIE === true) {%><!-- This conditional loads a specific stylesheet for Internet Explorer <=8
-				 and another for all other, better browsers
-				 Remove if you support IE9=>
-		-->
+		<%
+		if (oldIE) {
+		%>
 		<!--[if lte IE 8]>
 			<link rel="stylesheet" href="/assets/dist/css/<%= _.slugify(projectName) %>-old-ie.css">
 		<![endif]-->
 		<!--[if gt IE 8]><!-->
 			<link rel="stylesheet" href="/assets/dist/css/<%= _.slugify(projectName) %>.css">
 		<!--<![endif]-->
-		<% } else { %><link rel="stylesheet" href="/assets/dist/css/<%= _.slugify(projectName) %>.css"><% } %>
+		<%
+		} else {
+		%><link rel="stylesheet" href="/assets/dist/css/<%= _.slugify(projectName) %>.css"><%
+		} %>
 
-		<!-- For mobile icons & social metatags etc, see http://trykickoff.github.io/learn/html.html#socialmeta
-		--><% if (grunticon == true) {%>
+		<!-- For mobile icons & social metatags etc, see http://trykickoff.com/learn/html.html#socialmeta
+		--><%
+		if (grunticon) {%>
 		<!-- Grunticon SVG detection script. http://github.com/filamentgroup/
 				 Remove if not using Grunticon. -->
 		<script>
@@ -36,9 +39,12 @@ if (oldIE === true) {
 			grunticon(["/assets/dist/img/icons/icons.data.svg.css", "/assets/dist/img/icons/icons.data.png.css", "/assets/dist/img/icons/icons.fallback.css"], grunticon.svgLoadedCallback);
 		</script>
 		<noscript><link href="/assets/dist/img/icons/icons.fallback.css" rel="stylesheet"></noscript>
-		<!-- /End Grunticon detection & injection script --><% } %>
+		<!-- /End Grunticon detection & injection script --><%
+		} %><%
+		if (modernizr) {%>
 
-		<script src="/assets/dist/js/libs/modernizr.min.js"></script>
+		<script src="/assets/dist/js/libs/modernizr.min.js"></script><%
+		} %>
 	</head>
 	<body>
 		<div class="skipToContent">
@@ -58,11 +64,13 @@ if (oldIE === true) {
 		</div><!-- Close .l-container -->
 
 
-		<!-- JavaScript at the bottom for fast page loading -->
+		<!-- JavaScript at the bottom for fast page loading --><%
+		if (shims == true) {%>
 		<!--[if lte IE 9]>
 			<script src="/assets/dist/js/standalone/shims.js"></script>
 		<![endif]-->
-		<script src="/assets/dist/js/script.js"></script>
+		<%
+		} %><script src="/assets/dist/js/bundle.js"></script>
 
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
