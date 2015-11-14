@@ -1,9 +1,24 @@
 # <%= projectName %>
 <%= projectDescription %>
 
+## Deployment
+Use `npm run deploy` to compile & compress static assets
+
+## Local development
+Kickoff uses Grunt.js to compile javascript, scss & to compress image assets.
+
+### Watch files and run a static server
+Run `grunt`
+
+### Watch files without static server
+Run `grunt watcher`
+
+### Compile and compress scss, images & js
+Run `grunt compile --release`
+
 ## Developers: 
 <%= devNames %>
 
 
 ---
-This project was built with Kickoff, a lightweight front-end framework for creating scalable, responsive sites. To find out more please visit [trykickoff.github.io](http://trykickoff.github.io)
+This project was built with Kickoff, a lightweight front-end framework for creating scalable, responsive sites. For documentation and to find out more, please visit [trykickoff.com](http://trykickoff.com)
