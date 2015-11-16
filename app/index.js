@@ -52,7 +52,7 @@ KickoffGenerator.prototype.askFor = function () {
 		{
 			name: 'devNames',
 			message: 'Developer\'s names?',
-			default: 'Tom, Dick & Harry'
+			default: 'Tom, Dick and Harry'
 		},
 		{
 			name: 'features',
