@@ -169,7 +169,6 @@ KickoffGenerator.prototype.askFor = function () {
  */
 KickoffGenerator.prototype.packageFiles = function packageFiles() {
 
-	// this.template('./_index.html', './index.html');
 	this.fs.copyTpl(
 		this.templatePath('_index.html'),
 		this.destinationPath('index.html'),
@@ -184,7 +183,6 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 	);
 
 	if (this.includeStyleguide && !this.includeStatix) {
-		// this.template('./styleguide/_index.html', './styleguide/index.html');
 		this.fs.copyTpl(
 			this.templatePath('styleguide/_index.html'),
 			this.destinationPath('styleguide/index.html'),
@@ -201,19 +199,17 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 
 
 	// CSS, SCSS, images & grunticon source directory
-	this.directory('./assets/dist/css', './assets/dist/css');
-	this.directory('./assets/src/scss', './assets/src/scss');
-	this.directory('./assets/src/img', './assets/src/img');
-	this.directory('./assets/src/grunticon', './assets/src/grunticon');
+	this.directory('assets/dist/css', 'assets/dist/css');
+	this.directory('assets/src/scss', 'assets/src/scss');
+	this.directory('assets/src/img', 'assets/src/img');
+	this.directory('assets/src/grunticon', 'assets/src/grunticon');
 
 
 	// Javascript
-	// this.directory('./assets/dist/js', './assets/dist/js');
 	if (this.browserify) {
-		// this.template('./assets/src/js/_script-browserify.js', './assets/src/js/script.js');
 		this.fs.copyTpl(
-			this.templatePath('./assets/src/js/_script-browserify.js'),
-			this.destinationPath('./assets/src/js/script.js'),
+			this.templatePath('assets/src/js/_script-browserify.js'),
+			this.destinationPath('assets/src/js/script.js'),
 			{
 				projectName: this.projectName,
 				devNames: this.devNames,
@@ -227,13 +223,12 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 			}
 		);
 
-		this.directory('./assets/src/js/modules', './assets/src/js/modules');
+		this.directory('assets/src/js/modules', 'assets/src/js/modules');
 
 	} else {
-		// this.template('./assets/src/js/_script-fileArray.js', './assets/src/js/script.js');
 		this.fs.copyTpl(
-			this.templatePath('./assets/src/js/_script-fileArray.js'),
-			this.destinationPath('./assets/src/js/script.js'),
+			this.templatePath('assets/src/js/_script-fileArray.js'),
+			this.destinationPath('assets/src/js/script.js'),
 			{
 				projectName: this.projectName,
 				devNames: this.devNames,
@@ -245,16 +240,15 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 	}
 
 	if (this.modernizr) {
-		this.copy('./assets/src/js/standalone/modernizr.js', './assets/src/js/standalone/modernizr.js');
+		this.copy('assets/src/js/standalone/modernizr.js', 'assets/src/js/standalone/modernizr.js');
 	}
 
 	if (this.shims) {
-		this.copy('./assets/src/js/standalone/shims.js', './assets/src/js/standalone/shims.js');
+		this.copy('assets/src/js/standalone/shims.js', 'assets/src/js/standalone/shims.js');
 	}
 
 
 	// Grunt configs
-	// this.template('_Gruntfile.js', 'Gruntfile.js');
 	this.fs.copyTpl(
 		this.templatePath('_Gruntfile.js'),
 		this.destinationPath('Gruntfile.js'),
@@ -268,7 +262,6 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		}
 	);
 
-	// this.template('./_grunt-configs/_config.js', './_grunt-configs/config.js');
 	this.fs.copyTpl(
 		this.templatePath('_grunt-configs/_config.js'),
 		this.destinationPath('_grunt-configs/config.js'),
@@ -284,9 +277,8 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		}
 	);
 
-	this.copy('./_grunt-configs/css.js', './_grunt-configs/css.js');
+	this.copy('_grunt-configs/css.js', '_grunt-configs/css.js');
 
-	// this.template('./_grunt-configs/_images.js', './_grunt-configs/images.js');
 	this.fs.copyTpl(
 		this.templatePath('_grunt-configs/_images.js'),
 		this.destinationPath('_grunt-configs/images.js'),
@@ -295,7 +287,6 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		}
 	);
 
-	// this.template('./_grunt-configs/_javascript.js', './_grunt-configs/javascript.js');
 	this.fs.copyTpl(
 		this.templatePath('_grunt-configs/_javascript.js'),
 		this.destinationPath('_grunt-configs/javascript.js'),
@@ -307,7 +298,6 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		}
 	);
 
-	// this.template('./_grunt-configs/_server.js', './_grunt-configs/server.js');
 	this.fs.copyTpl(
 		this.templatePath('_grunt-configs/_server.js'),
 		this.destinationPath('_grunt-configs/server.js'),
@@ -317,7 +307,6 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		}
 	);
 
-	// this.template('./_grunt-configs/_utilities.js', './_grunt-configs/utilities.js');
 	this.fs.copyTpl(
 		this.templatePath('_grunt-configs/_utilities.js'),
 		this.destinationPath('_grunt-configs/utilities.js'),
@@ -330,7 +319,6 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		}
 	);
 
-	// this.template('./_grunt-configs/_watch.js', './_grunt-configs/watch.js');
 	this.fs.copyTpl(
 		this.templatePath('_grunt-configs/_watch.js'),
 		this.destinationPath('_grunt-configs/watch.js'),
@@ -341,16 +329,14 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		}
 	);
 
-	// this.template('./_grunt-configs/_tests.js', './_grunt-configs/tests.js');
 	this.fs.copyTpl(
-		this.templatePath('./_grunt-configs/_tests.js'),
-		this.destinationPath('./_grunt-configs/tests.js'),
+		this.templatePath('_grunt-configs/_tests.js'),
+		this.destinationPath('_grunt-configs/tests.js'),
 		{}
 	);
-	this.copy('./_grunt-configs/grunticon-tpl.hbs', './_grunt-configs/grunticon-tpl.hbs');
+	this.copy('_grunt-configs/grunticon-tpl.hbs', '_grunt-configs/grunticon-tpl.hbs');
 
 
-	// this.template('_package.json', 'package.json');
 	this.fs.copyTpl(
 		this.templatePath('_package.json'),
 		this.destinationPath('package.json'),
@@ -368,7 +354,6 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		}
 	);
 
-	// this.template('_readme.md', 'readme.md');
 	this.fs.copyTpl(
 		this.templatePath('_readme.md'),
 		this.destinationPath('readme.md'),
@@ -379,7 +364,6 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		}
 	);
 
-	// this.template('_humans.txt', 'humans.txt');
 	this.fs.copyTpl(
 		this.templatePath('_humans.txt'),
 		this.destinationPath('humans.txt'),
@@ -390,7 +374,6 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		}
 	);
 
-	// this.template('_jshintrc', '.jshintrc');
 	this.fs.copyTpl(
 		this.templatePath('_jshintrc'),
 		this.destinationPath('.jshintrc'),
@@ -406,25 +389,24 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 	this.copy('scss-lint.yml', '.scss-lint.yml');
 
 	if (this.includeStatix) {
-		this.directory('./statix/dist', './statix/dist');
+		this.directory('statix/dist', 'statix/dist');
 
-		this.directory('./statix/src/data', './statix/src/data');
-		this.directory('./statix/src/helpers', './statix/src/helpers');
+		this.directory('statix/src/data', 'statix/src/data');
+		this.directory('statix/src/helpers', 'statix/src/helpers');
 
 		if (this.includeStyleguide) {
-			this.directory('./statix/src/templates/layouts', './statix/src/templates/layouts');
-			this.directory('./statix/src/templates/views', './statix/src/templates/views');
+			this.directory('statix/src/templates/layouts', 'statix/src/templates/layouts');
+			this.directory('statix/src/templates/views', 'statix/src/templates/views');
 		} else {
-			this.copy('./statix/src/templates/views/index.hbs', './statix/src/templates/views/index.hbs');
-			this.copy('./statix/src/templates/layouts/default.hbs', './statix/src/templates/layouts/default.hbs');
+			this.copy('statix/src/templates/views/index.hbs', 'statix/src/templates/views/index.hbs');
+			this.copy('statix/src/templates/layouts/default.hbs', 'statix/src/templates/layouts/default.hbs');
 		}
 
-		this.directory('./statix/src/templates/partials', './statix/src/templates/partials');
+		this.directory('statix/src/templates/partials', 'statix/src/templates/partials');
 
-		// this.template('./statix/src/templates/partials/_html_start.hbs', './statix/src/templates/partials/html_start.hbs');
 		this.fs.copyTpl(
-			this.templatePath('./statix/src/templates/partials/_html_start.hbs'),
-			this.destinationPath('./statix/src/templates/partials/html_start.hbs'),
+			this.templatePath('statix/src/templates/_html_start.hbs'),
+			this.destinationPath('statix/src/templates/partials/html_start.hbs'),
 			{
 				projectName: this.projectName,
 				projectNameSlugified: _s.slugify(this.projectName),
