@@ -46,19 +46,37 @@ KickoffGenerator.prototype.askFor = function () {
 		},
 		{
 			name: 'projectDescription',
-			message: 'Project description',
-			default: 'Your project description'
+			message: 'Description',
+			default: 'Project description'
 		},
 		{
 			name: 'devNames',
-			message: 'What are the project developer\'s names?',
-			default: 'The Avengers'
+			message: 'Developer\'s names?',
+			default: 'Tom, Dick & Harry'
 		},
 		{
-			name: 'oldIE',
-			type: 'confirm',
-			message: 'Does this project support IE8?',
-			default: true,
+			name: 'features',
+			type: 'checkbox',
+			message: 'Which features would you like?',
+			choices: [
+				{
+					name: 'Does this project support IE8?',
+					value: 'oldIE',
+					default: false,
+				},
+				{
+					name: 'Include Kickoff\'s styleguide?',
+					value: 'styleguide'
+				},
+				{
+					name: 'Use Kickoff Statix?',
+					value: 'statix'
+				},
+				{
+					name: 'Use Grunticon?',
+					value: 'grunticon'
+				}
+			],
 			store: true
 		},
 		{
@@ -108,26 +126,6 @@ KickoffGenerator.prototype.askFor = function () {
 				}
 			],
 			store: true
-		},
-		{
-			name: 'features',
-			type: 'checkbox',
-			message: 'Which features would you like?',
-			choices: [
-				{
-					name: 'Include Kickoff\'s styleguide?',
-					value: 'styleguide'
-				},
-				{
-					name: 'Use Kickoff Statix?',
-					value: 'statix'
-				},
-				{
-					name: 'Use Grunticon?',
-					value: 'grunticon'
-				}
-			],
-			store: true
 		}
 	];
 
@@ -158,6 +156,7 @@ KickoffGenerator.prototype.askFor = function () {
 		this.includeGrunticon  = hasFeature('grunticon', features);
 		this.includeStatix     = hasFeature('statix', features);
 		this.includeStyleguide = hasFeature('styleguide', features);
+		this.oldIE = hasFeature('oldIE', features);
 
 		done();
 	}.bind(this));
