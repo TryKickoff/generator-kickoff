@@ -422,22 +422,5 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 
 KickoffGenerator.prototype.install = function packageFiles() {
 	opn('http://trykickoff.com/learn/checklist.html');
-	this.installDependencies({
-		skipInstall: this.options['skip-install'],
-		callback: this._injectDependencies.bind(this) //TODO: is this still needed?
-	});
-};
-
-
-KickoffGenerator.prototype._injectDependencies = function _injectDependencies() {
-	if (this.options['skip-install']) {
-		this.log(
-			'After running `npm install`, inject your front end dependencies' +
-			'\ninto your source code by running:' +
-			'\n' +
-			'\n' + chalk.yellow.bold('npm start')
-		);
-	} else {
-		this.spawnCommand('npm', ['start']);
-	}
+	this.installDependencies();
 };
