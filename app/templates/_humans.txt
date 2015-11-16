@@ -5,25 +5,18 @@
 # <%= projectName %>
 <%= projectDescription %>
 
+
 ## Developers:
 <%= devNames %>
 
 
-# KICKOFF TEAM
-
-    Zander Martineau -- @MrMartineau
-    Ashley Nolan     -- @AshNolan_
-    Nic Bell         -- @nicbell
-    Contributors     -- https://github.com/TryKickoff/kickoff/graphs/contributors
-
-
 # TECHNOLOGY COLOPHON
 
+    KICKOFF FRAMEWORK - trykickoff.com
     HTML
     CSS
     Sass
     Grunt.js
-    Bower
     BrowserSync
-    Node.js / NPM
-    Sublime Text
+    NPM
+    Browserify
