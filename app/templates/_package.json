@@ -25,7 +25,7 @@
 		"trak.js": "^0.5.2"<%
 		}
 
-		if (includeJquery2) {%>,
+		if (includeJquery1) {%>,
 		"jquery": "^1.11.3"<%
 		}
 
