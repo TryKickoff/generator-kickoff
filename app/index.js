@@ -443,7 +443,7 @@ KickoffGenerator.prototype.install = function packageFiles() {
 	opn('http://trykickoff.com/learn/checklist.html');
 	this.installDependencies({
 		skipInstall: this.options['skip-install'],
-		callback: this._injectDependencies.bind(this)
+		callback: this._injectDependencies.bind(this) //TODO: is this still needed?
 	});
 };
 
