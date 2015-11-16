@@ -33,8 +33,8 @@ module.exports = function (grunt) {
 
 		if (statix) {
 			%>, "assemble"<%
-		}
-	%>]});
+		}%>
+	]});
 
 
 	// Load grunt configurations automatically
