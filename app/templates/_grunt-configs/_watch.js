@@ -28,7 +28,7 @@ module.exports.tasks = {
 			files: [<%
 				if (browserify) { %>
 				'<%%=config.js.distDir%>/**/*.js'<%
-				} else { <%
+				} else { %>
 				'<%%=config.js.fileList%>'<% } %>
 			],
 			tasks: [<%
@@ -41,7 +41,7 @@ module.exports.tasks = {
 				} %>,
 				'filesizegzip:js'
 			]
-		},<% } %>
+		},
 
 		images : {
 			files: ['<%%=config.img.srcDir%>/**/*.{svg,png,jpg,gif}'],
@@ -81,7 +81,7 @@ module.exports.tasks = {
 	// Browsersync reload
 	bsReload: {
 		css: {
-			reload: '<%=config.distDir%>/css/*.css'
+			reload: '<%%=config.distDir%>/css/*.css'
 		},
 		all: {
 			reload: true

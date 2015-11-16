@@ -32,23 +32,19 @@ module.exports.tasks = {
 	 * Copy files
 	 * https://github.com/gruntjs/grunt-contrib-copy
 	 */
-	copy: {
+	copy: {<%
+		if (modernizr || shims) {%>
 		jsStandalone: {
 			files: [{
 				expand: true,
-				cwd: '<%=config.srcDir%>/js/standalone',
+				cwd: '<%%=config.srcDir%>/js/standalone',
 				src: ['./**/*.*'],
-				dest: '<%=config.js.distDir%>/standalone'
+				dest: '<%%=config.js.distDir%>/standalone'
 			}]
 		}<%
-		if (modernizr) {%>,
-		modernizr: {
-			src: '<%%=config.srcDir%>/js/libs/modernizr.min.js',
-			dest: '<%%=config.distDir%>/js/libs/modernizr.min.js'
-		}<%
-		} %><%
-		if (statix) {%>,
+		}
 
+		if (statix) {%>,
 		statix: {
 			files: [
 				{

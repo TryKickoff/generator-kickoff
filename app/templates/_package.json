@@ -1,5 +1,5 @@
 {
-	"name": "<%= _.slugify(projectName) %>",
+	"name": "<%= projectNameSlugified %>",
 	"title": "<%= projectName %>",
 	"description": "<%= projectDescription %>",
 	"version": "0.1.0",
@@ -9,22 +9,29 @@
 		}
 	],
 	"engines": {
-		"node": ">=0.12"
+		"node": ">=4.0"
 	},
 	"dependencies": {
 		"console": "^0.5.2"<%
 		if (browserify) {%>,
 		"lite-ready": "^1.0.4"<%
-		}%><%
-		if (jsLibs.indexOf('swiftclick') != -1) {%>,
-		"swiftclick": "^1.2.0"<% } %><%
-		if (jsLibs.indexOf('trak') != -1) {%>,
-		"trak.js": "^0.5.2"<% } %><%
-		if (jsLibs.indexOf('jquery1') != -1) {%>,
-		"jquery": "^1.11.1"<%
-		} %><%
-		if (jsLibs.indexOf('jquery2') != -1) {%>,
-		"jquery": "^2.1.1"<% } %>
+		}
+
+		if (includeSwiftclick) {%>,
+		"swiftclick": "^1.2.0"<%
+		}
+
+		if (includeTrak) {%>,
+		"trak.js": "^0.5.2"<%
+		}
+
+		if (includeJquery2) {%>,
+		"jquery": "^1.11.3"<%
+		}
+
+		if (includeJquery2) {%>,
+		"jquery": "^2.1.4"<%
+		} %>
 	},
 	"devDependencies": {<%
 		if (!browserify) {%>

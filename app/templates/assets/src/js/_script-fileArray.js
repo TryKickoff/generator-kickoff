@@ -4,14 +4,17 @@
  */
 
 // Create a closure to maintain scope of the '$' and <%= jsNamespace.toUpperCase() %>
-;(function (<%= jsNamespace.toUpperCase() %><% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>, $<% } %>) {
+;(function (<%= jsNamespace.toUpperCase() %><% if (includeJquery1 || includeJquery2) {%>, $<% } %>) {
+<%
+	if (includeJquery1 || includeJquery2) {%>
+	$(function() {<%
 
-	<% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>$(function() {<% } %>
-
+	} %>
 		<%= jsNamespace.toUpperCase() %>.Config.init();
-
-	<% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) {%>}); // END DOC READY<% } %>
-
+	<%
+	if (includeJquery1 || includeJquery2) {
+	%>
+	}); /* END DOC READY */<% } %>
 
 	<%= jsNamespace.toUpperCase() %>.Config = {
 		variableX : '', // please don't keep me - only for example syntax!
@@ -34,4 +37,4 @@
 	};
 	*/
 
-})(window.<%= jsNamespace.toUpperCase() %> = window.<%= jsNamespace.toUpperCase() %> || {}<% if (jsLibs.indexOf('jquery1') != -1 || jsLibs.indexOf('jquery2') != -1) { %>, jQuery<% } %>);
+})(window.<%= jsNamespace.toUpperCase() %> = window.<%= jsNamespace.toUpperCase() %> || {}<% if (includeJquery1 || includeJquery2) { %>, jQuery<% } %>);

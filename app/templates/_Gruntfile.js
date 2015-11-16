@@ -16,9 +16,9 @@ module.exports = function (grunt) {
 
 	var options = {
 		pkg: require('./package'), // <%%=pkg.name%>
-
-		<% if (statix) {
-			%>site: grunt.file.readYAML('statix/src/data/site.yml'),<%
+		<%
+		if (statix) { %>
+		site: grunt.file.readYAML('statix/src/data/site.yml'),<%
 		} %>
 
 		// Global Grunt vars. Edit this file to change vars
@@ -30,7 +30,7 @@ module.exports = function (grunt) {
 		if (!browserify) {
 			%>, "chotto"<%
 		}
-		%><%
+
 		if (statix) {
 			%>, "assemble"<%
 		}
@@ -94,6 +94,7 @@ module.exports = function (grunt) {
 	grunt.registerTask('start', function() {
 		opn('http://trykickoff.com/learn/checklist.html');
 	});<%
+
 	if (styleguide) { %>
 
 

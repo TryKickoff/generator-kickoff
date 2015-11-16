@@ -59,7 +59,9 @@ module.exports.tasks = {
 					index: 'styleguide/index.html'
 				}
 			}
-		}<% } %>
+		}<%
+		} %>
+
 	}<%
 	if (statix) { %>,
 
