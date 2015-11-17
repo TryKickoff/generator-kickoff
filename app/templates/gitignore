@@ -15,7 +15,8 @@ assets/temp/**/*
 
 
 # Dependencies
-node_modules/* # Node modules directory. comment this line to commit them.
+# # Node modules directory. comment this line to commit them.
+node_modules/*
 
 
 # PHP
