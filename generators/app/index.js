@@ -3,12 +3,12 @@ var util            = require('util');
 var yeoman          = require('yeoman-generator');
 var chalk           = require('chalk');
 var updateNotifier  = require('update-notifier');
-var pkg             = require('../package.json');
+var pkg             = require('../../package.json');
 var opn             = require('opn');
 var _s              = require('underscore.string');
 
 var KickoffGenerator = module.exports = function KickoffGenerator(args, options) {
-	yeoman.generators.Base.apply(this, arguments);
+	yeoman.Base.apply(this, arguments);
 };
 
 
