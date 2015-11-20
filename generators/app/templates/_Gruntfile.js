@@ -79,7 +79,7 @@ module.exports = function (grunt) {
 		} %>
 		'postscss',
 		'images'<%
-		if (statix) {%>
+		if (statix) {%>,
 		'copy:statix',
 		'assemble'<%
 		} %><%
