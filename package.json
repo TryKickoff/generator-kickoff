@@ -26,7 +26,8 @@
     "test": "mocha"
   },
   "files": [
-    "app"
+    "index.js",
+    "generators"
   ],
   "dependencies": {
     "chalk": "^1.1.1",
