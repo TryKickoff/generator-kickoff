@@ -15,6 +15,7 @@ module.exports.tasks = {
 			files: ['<%%=config.css.scssDir%>/**/*.scss'],
 			tasks: [
 				'bsNotify:sassStart',
+				// 'scsslint', // uncomment this line if you want to run linting checks on your SCSS as part of your watch build
 				'postscss'<%
 				if (statix) {%>,
 				'copy:css'<%
@@ -31,7 +32,8 @@ module.exports.tasks = {
 				} else { %>
 				'<%%=config.js.fileList%>'<% } %>
 			],
-			tasks: [<%
+			tasks: [
+				/* 'jshint:project', / uncomment this line if you want to run linting checks on your JS as part of your watch build*/<%
 				if (!browserify) { %>
 				'uglify',
 				'newer:copy:modernizr'<%
