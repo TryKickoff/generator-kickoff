@@ -24,4 +24,4 @@ Run `grunt compile --release`
 
 
 ---
-This project was built with Kickoff, a lightweight front-end framework for creating scalable, responsive sites. For documentation and to find out more, please visit [trykickoff.com](http://trykickoff.com)
+This project uses Kickoff, a front-end framework for creating scalable and responsive sites. For documentation and to find out more, please visit [trykickoff.com](http://trykickoff.com)
