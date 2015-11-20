@@ -69,7 +69,7 @@ KickoffGenerator.prototype.askFor = function () {
 					value: 'styleguide'
 				},
 				{
-					name: 'Use Kickoff Statix?',
+					name: 'Use Kickoff Statix for static templating and rapid prototyping?',
 					value: 'statix'
 				},
 				{
@@ -141,9 +141,6 @@ KickoffGenerator.prototype.askFor = function () {
 			return prop && prop.indexOf(feat) !== -1;
 		}
 
-		console.log('jsLibs', jsLibs);
-		console.log('features', features);
-
 		// JS Libs
 		this.includeTrak       = hasFeature('trak', jsLibs);
 		this.includeJquery1    = hasFeature('jquery1', jsLibs);
@@ -161,6 +158,7 @@ KickoffGenerator.prototype.askFor = function () {
 		done();
 	}.bind(this));
 };
+
 
 /**
  * Info
