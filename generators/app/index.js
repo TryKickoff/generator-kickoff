@@ -411,7 +411,8 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 				projectDescription: this.projectDescription,
 				oldIE: this.oldIE,
 				grunticon: this.includeGrunticon,
-				modernizr: this.includeModernizr
+				modernizr: this.includeModernizr,
+				shims: this.includeShims
 			}
 		);
 	}
