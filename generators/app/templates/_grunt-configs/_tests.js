@@ -22,7 +22,8 @@ module.exports.tasks = {
 	 */
 	jshint: {
 		options: {
-			jshintrc: '.jshintrc'
+			jshintrc: '.jshintrc',
+			reporter: require('jshint-stylish')
 		},
 		project: [
 			'<%%=config.srcDir%>/js/**/*.js',

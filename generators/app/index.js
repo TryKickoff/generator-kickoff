@@ -3,12 +3,12 @@ var util            = require('util');
 var yeoman          = require('yeoman-generator');
 var chalk           = require('chalk');
 var updateNotifier  = require('update-notifier');
-var pkg             = require('../package.json');
+var pkg             = require('../../package.json');
 var opn             = require('opn');
 var _s              = require('underscore.string');
 
 var KickoffGenerator = module.exports = function KickoffGenerator(args, options) {
-	yeoman.generators.Base.apply(this, arguments);
+	yeoman.Base.apply(this, arguments);
 };
 
 
@@ -69,7 +69,7 @@ KickoffGenerator.prototype.askFor = function () {
 					value: 'styleguide'
 				},
 				{
-					name: 'Use Kickoff Statix?',
+					name: 'Use Kickoff Statix for static templating and rapid prototyping?',
 					value: 'statix'
 				},
 				{
@@ -141,9 +141,6 @@ KickoffGenerator.prototype.askFor = function () {
 			return prop && prop.indexOf(feat) !== -1;
 		}
 
-		console.log('jsLibs', jsLibs);
-		console.log('features', features);
-
 		// JS Libs
 		this.includeTrak       = hasFeature('trak', jsLibs);
 		this.includeJquery1    = hasFeature('jquery1', jsLibs);
@@ -161,6 +158,7 @@ KickoffGenerator.prototype.askFor = function () {
 		done();
 	}.bind(this));
 };
+
 
 /**
  * Info
@@ -413,7 +411,8 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 				projectDescription: this.projectDescription,
 				oldIE: this.oldIE,
 				grunticon: this.includeGrunticon,
-				modernizr: this.includeModernizr
+				modernizr: this.includeModernizr,
+				shims: this.includeShims
 			}
 		);
 	}
