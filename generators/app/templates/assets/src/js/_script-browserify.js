@@ -26,8 +26,7 @@ window.jQuery = window.$ = require('jquery');<% } %>
 // var browserifyTest = require('./modules/browserifyTest'); // this is a test module, uncomment to try it
 
 // Bundle global libs that don't return a value
-require('console');<%
-if (shims) {%>require("./helpers/shims");<% } %>
+require('console');
 
 // DOM ready code goes in here
 ready(function () {<%

@@ -33,6 +33,7 @@ module.exports.tasks = {
 					'<%%=config.distDir%>/{js,img}/**/*.*',
 					'**/*.html'<%
 					} %>
+				]
 			},
 			options: {
 				server: {<%

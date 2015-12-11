@@ -86,8 +86,8 @@ module.exports = function (grunt) {
 		if (shims) {%>,
 		'shimly'<%
 		} %><%
-		if (modernizr) {%>,
-		'copy:modernizr'<%
+		if (modernizr || shims) {%>,
+		'copy:jsStandalone'<%
 		} %>
 	]);
 
