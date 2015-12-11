@@ -33,7 +33,9 @@
 		"jquery": "^2.1.4"<%
 		} %>
 	},
-	"devDependencies": {<%
+	"devDependencies": {
+		"autoprefixer": "^6.1.2",
+		"cssnano": "^3.4.0",<%
 		if (browserify) {%>
 		"grunt-browserify": "^4.0.1",
 		"minifyify": "^7.1.0",<%
