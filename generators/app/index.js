@@ -392,12 +392,21 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		this.directory('statix/src/data', 'statix/src/data');
 		this.directory('statix/src/helpers', 'statix/src/helpers');
 
+		this.directory('statix/src/templates/views', 'statix/src/templates/views');
+		this.directory('statix/src/templates/layouts', 'statix/src/templates/layouts');
+
 		if (this.includeStyleguide) {
 			this.directory('statix/src/templates/layouts', 'statix/src/templates/layouts');
-			this.directory('statix/src/templates/views', 'statix/src/templates/views');
-		} else {
-			this.copy('statix/src/templates/views/index.hbs', 'statix/src/templates/views/index.hbs');
-			this.copy('statix/src/templates/layouts/default.hbs', 'statix/src/templates/layouts/default.hbs');
+
+			this.fs.copyTpl(
+				this.templatePath('statix/src/templates/_index.hbs'),
+				this.destinationPath('statix/src/templates/views/styleguide/index.hbs'),
+				{
+					projectName: this.projectName
+				}
+			);
+
+			this.copy('statix/src/templates/styleguide-layout.hbs', 'statix/src/templates/layouts/styleguide.hbs');
 		}
 
 		this.directory('statix/src/templates/partials', 'statix/src/templates/partials');
@@ -412,7 +421,8 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 				oldIE: this.oldIE,
 				grunticon: this.includeGrunticon,
 				modernizr: this.includeModernizr,
-				shims: this.includeShims
+				shims: this.includeShims,
+				styleguide: this.includeStyleguide
 			}
 		);
 	}

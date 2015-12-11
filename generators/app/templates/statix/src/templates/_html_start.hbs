@@ -35,8 +35,12 @@ if (oldIE) {
 		} else {
 		%>
 		<link rel="stylesheet" href="/assets/dist/css/<%= projectNameSlugified %>.css"><%
-		} %>
-
+		} %><%
+		if (styleguide) {
+		%>
+		<link rel="stylesheet" href="/assets/dist/css/styleguide.css"><%
+		}
+		%>
 		<!-- For mobile icons & social metatags etc, see http://trykickoff.com/learn/html.html#socialmeta -->
 
 		<script>
