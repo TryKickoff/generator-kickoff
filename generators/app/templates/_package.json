@@ -35,7 +35,8 @@
 	},
 	"devDependencies": {
 		"autoprefixer": "^6.1.2",
-		"cssnano": "^3.4.0",<%
+		"cssnano": "^3.4.0",
+		"grunt": "^0.4.5",<%
 		if (browserify) {%>
 		"grunt-browserify": "^4.0.1",
 		"minifyify": "^7.1.0",<%
