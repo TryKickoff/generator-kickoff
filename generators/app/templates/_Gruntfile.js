@@ -58,7 +58,7 @@ module.exports = function (grunt) {
 		'compile',
 		'browserSync:serve',
 		'watch'
-	])
+	]);
 
 
 	// grunt watcher
@@ -69,8 +69,7 @@ module.exports = function (grunt) {
 
 
 	// grunt compile
-	grunt.registerTask('compile', [
-		/* 'checks', / uncomment this line if you want to run linting checks on your SCSS/JS as part of your build*/<%
+	grunt.registerTask('compile', [<%
 		if (browserify) {%>
 		'browserify',<%
 		} else { %>
