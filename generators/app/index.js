@@ -387,6 +387,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 	this.copy('gitignore', '.gitignore');
 	this.copy('gitattributes', '.gitattributes');
 	this.copy('scss-lint.yml', '.scss-lint.yml');
+	this.copy('robots.txt', 'robots.txt');
 
 	if (this.includeStatix) {
 		this.directory('statix/dist', 'statix/dist');
@@ -427,6 +428,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 				styleguide: this.includeStyleguide
 			}
 		);
+
 	}
 };
 
