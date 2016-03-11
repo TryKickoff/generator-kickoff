@@ -88,7 +88,11 @@ module.exports.tasks = {
 			flatten: false,
 
 			layout: 'default.hbs',
-			layoutdir: '<%%= config.statix.dir%>/src/templates/layouts'
+			layoutdir: '<%%= config.statix.dir%>/src/templates/layouts',
+
+			aggregate: {
+				cwd: '<%%= config.statix.dir%>/src/templates/'
+			}
 		},
 
 		default: {
