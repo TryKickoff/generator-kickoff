@@ -15,7 +15,8 @@ assets/temp/**/*
 
 
 # Dependencies
-node_modules/* # Node modules directory. comment this line to commit them.
+# # Node modules directory. comment this line to commit them.
+node_modules/*
 
 
 # PHP
@@ -41,6 +42,7 @@ Thumbs.db
 
 
 # Miscellaneous
-_site/ # Jekyll compilation directory
+# # Jekyll compilation directory
+_site/
 logs
 *.log
