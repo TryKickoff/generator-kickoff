@@ -26,11 +26,11 @@
 		}
 
 		if (includeJquery1) {%>,
-		"jquery": "^1.11.3"<%
+		"jquery": "^1.11.1"<%
 		}
 
 		if (includeJquery2) {%>,
-		"jquery": "^2.1.4"<%
+		"jquery": "^2.2.1"<%
 		} %>
 	},
 	"devDependencies": {
