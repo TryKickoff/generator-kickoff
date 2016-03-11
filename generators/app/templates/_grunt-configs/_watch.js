@@ -41,22 +41,24 @@ module.exports.tasks = {
 				if (statix) {%>,
 				'copy:js'<%
 				} %>,
+				'bsReload:all',
 				'filesizegzip:js'
 			]
 		},
 
 		images : {
 			files: ['<%%=config.img.srcDir%>/**/*.{svg,png,jpg,gif}'],
-			tasks: ['imagemin:images'],
-			options: {
-				interrupt: true
-			}
+			tasks: [
+				'imagemin:images',
+				'bsReload:all'
+			]
 		},<% if (grunticon) {%>
 
 		grunticon : {
 			files: ['<%%=config.img.grunticonDir%>/**/*.{svg,png,jpg,gif}'],
 			tasks: [
 				'icons',
+				'bsReload:all',
 				'filesizegzip:grunticon'
 			]
 		},<% } %>
@@ -72,11 +74,9 @@ module.exports.tasks = {
 			files: ['<%%=config.statix.dir%>/src/templates/**/*.{hbs,md}'],
 			tasks: [
 				'assemble',
-				'newer:copy:statix'
-			],
-			options: {
-				livereload: true
-			}
+				'newer:copy:statix',
+				'bsReload:all'
+			]
 		},<% } %>
 	},
 
