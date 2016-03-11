@@ -237,6 +237,8 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		);
 	}
 
+	this.copy('assets/src/js/standalone/.gitkeep', 'assets/src/js/standalone/.gitkeep');
+
 	if (this.modernizr) {
 		this.copy('assets/src/js/standalone/modernizr.js', 'assets/src/js/standalone/modernizr.js');
 	}
