@@ -30,10 +30,10 @@ require('console');
 
 // DOM ready code goes in here
 ready(function () {<%
-if (includeTrak) {%>
-	trak.start();<% } %><%
 if (includeSwiftclick) {%>
-	var swiftclick = SwiftClick.attach(document.body);<% } %>
+	var swiftclick = SwiftClick.attach(document.body);<% }
+if (includeTrak) {%>
+	trak.start();<% } %>
 
 	// browserifyTest(); // this is a test, uncomment this line & the line above to try it
 });
