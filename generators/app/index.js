@@ -374,15 +374,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		}
 	);
 
-	this.fs.copyTpl(
-		this.templatePath('_jshintrc'),
-		this.destinationPath('.jshintrc'),
-		{
-			includeJquery1: this.includeJquery1,
-			includeJquery2: this.includeJquery2
-		}
-	);
-
+	this.copy('eslintrc.js', '.eslintrc.js');
 	this.copy('editorconfig', '.editorconfig');
 	this.copy('gitignore', '.gitignore');
 	this.copy('gitattributes', '.gitattributes');
