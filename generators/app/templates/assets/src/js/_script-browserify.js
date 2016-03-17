@@ -8,33 +8,33 @@
 'use-strict';
 
 // npm modules
-var ready = require('lite-ready');<%
+import ready from 'lite-ready';<%
 
 if (includeSwiftclick) {%>
-var SwiftClick = require('swiftclick');<%
+import SwiftClick from 'swiftclick';<%
 }
 
 if (includeTrak) {%>
-var trak = require('trak.js');<%
+import trak from 'trak.js';<%
 }
 
 if (includeJquery1 || includeJquery2) {%>
 window.jQuery = window.$ = require('jquery');<% } %>
 
-
-// Our own modules
-// var browserifyTest = require('./modules/browserifyTest'); // this is a test module, uncomment to try it
-
 // Bundle global libs that don't return a value
-require('console');<%
-if (shims) {%>require("./helpers/shims");<% } %>
+import 'console';
+
+// Add your project-specific modules here
+//import moduleTest from './modules/moduleTest';
 
 // DOM ready code goes in here
 ready(function () {<%
-if (includeTrak) {%>
-	trak.start();<% } %><%
 if (includeSwiftclick) {%>
-	var swiftclick = SwiftClick.attach(document.body);<% } %>
+	const swiftclick = SwiftClick.attach(document.body);
+	swiftclick.useCssParser(true);<% }
+
+	if (includeTrak) {%>
+	trak.start();<% } %>
 
 	// browserifyTest(); // this is a test, uncomment this line & the line above to try it
 });

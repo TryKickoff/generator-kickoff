@@ -42,6 +42,7 @@ Thumbs.db
 
 
 # Miscellaneous
-_site/ # Jekyll compilation directory
+# # Jekyll compilation directory
+_site/
 logs
 *.log

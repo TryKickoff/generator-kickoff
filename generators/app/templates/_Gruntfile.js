@@ -10,8 +10,6 @@
  * - grunt checks            : run jshint and scsslint
  */
 
-var opn = require('opn')
-
 module.exports = function (grunt) {
 	'use strict';
 
@@ -58,7 +56,7 @@ module.exports = function (grunt) {
 		'compile',
 		'browserSync:serve',
 		'watch'
-	])
+	]);
 
 
 	// grunt watcher
@@ -69,8 +67,7 @@ module.exports = function (grunt) {
 
 
 	// grunt compile
-	grunt.registerTask('compile', [
-		/* 'checks', / uncomment this line if you want to run linting checks on your SCSS/JS as part of your build*/<%
+	grunt.registerTask('compile', [<%
 		if (browserify) {%>
 		'browserify',<%
 		} else { %>
@@ -79,21 +76,22 @@ module.exports = function (grunt) {
 		} %>
 		'postscss',
 		'images'<%
-		if (statix) {%>
+		if (statix) {%>,
 		'copy:statix',
 		'assemble'<%
 		} %><%
 		if (shims) {%>,
 		'shimly'<%
 		} %><%
-		if (modernizr) {%>,
-		'copy:modernizr'<%
+		if (modernizr || shims) {%>,
+		'copy:jsStandalone'<%
 		} %>
 	]);
 
 
 	// grunt start
 	grunt.registerTask('start', function() {
+		var opn = require('opn');
 		opn('http://trykickoff.com/learn/checklist.html');
 	});<%
 
