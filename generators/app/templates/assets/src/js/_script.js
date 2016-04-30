@@ -18,7 +18,7 @@ if (includeTrak) {%>
 import trak from 'trak.js';<%
 }
 
-if (includeJquery1 || includeJquery2) {%>
+if (includeJquery) {%>
 window.jQuery = window.$ = require('jquery');<% } %>
 
 // Bundle global libs that don't return a value

@@ -8,7 +8,7 @@ Front-end source files can be found in the `./assets/src` directory. These compi
 Use `npm run deploy` to compile & compress static assets in CI environments.
 
 ## Local development
-Kickoff uses Grunt.js to compile javascript, scss & to compress image assets.
+Kickoff uses [Grunt.js](http://gruntjs.com) to compile javascript, scss & to compress image assets.
 
 ### Watch files and run a static server
 Run `grunt`
@@ -16,7 +16,7 @@ Run `grunt`
 ### Watch files without static server
 Run `grunt watcher`
 
-### Compile and compress scss, images & js
+### Compile assets for deployment: compress scss, images & js
 Run `grunt compile --release`
 
 ## Developers:

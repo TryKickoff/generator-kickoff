@@ -1,34 +1,29 @@
 module.exports.tasks = {
-
 	/**
-	 * scss Lint
-	 * https://github.com/ahmednuaman/grunt-scss-lint
-	 */
+	* scss Lint
+	* https://github.com/ahmednuaman/grunt-scss-lint
+	*/
 	scsslint: {
 		allFiles: [
 			'<%%=config.css.scssDir%>/**/*.scss',
 		],
 		options: {
 			config: '.scss-lint.yml',
-			reporterOutput: null
+			reporterOutput: null,
 		},
 	},
 
 
 	/**
-	 * JSHint
-	 * https://github.com/gruntjs/grunt-contrib-jshint
-	 * Manage the options inside .jshintrc file
+	 * Eslint
+	 * http://eslint.org
+	 * https://github.com/sindresorhus/grunt-eslint
+	 * Manage the options inside .eslintrc.js file
 	 */
-	jshint: {
-		options: {
-			jshintrc: '.jshintrc',
-			reporter: require('jshint-stylish')
-		},
-		project: [
-			'<%%=config.srcDir%>/js/**/*.js',
-			'!<%%=config.srcDir%>/js/{libs,helpers}/**/*.js',
-			'!<%%=config.srcDir%>/js/**/*.min.js'
-		]
-	}
+	eslint: {
+		target: [
+			'<%%=config.srcDir%>/js/*.js',
+			'<%%=config.srcDir%>/js/modules/*.js',
+		],
+	},
 };

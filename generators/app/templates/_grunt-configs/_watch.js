@@ -26,18 +26,11 @@ module.exports.tasks = {
 		},
 
 		js: {
-			files: [<%
-				if (browserify) { %>
-				'<%%=config.js.distDir%>/**/*.js'<%
-				} else { %>
-				'<%%=config.js.fileList%>'<% } %>
+			files: [
+				'<%%=config.js.distDir%>/**/*.js'
 			],
 			tasks: [
 				/* 'jshint:project', / uncomment this line if you want to run linting checks on your JS as part of your watch build*/<%
-				if (!browserify) { %>
-				'uglify',
-				'newer:copy:modernizr'<%
-				} %><%
 				if (statix) {%>,
 				'copy:js'<%
 				} %>,
@@ -52,16 +45,7 @@ module.exports.tasks = {
 				'imagemin:images',
 				'bsReload:all'
 			]
-		},<% if (grunticon) {%>
-
-		grunticon : {
-			files: ['<%%=config.img.grunticonDir%>/**/*.{svg,png,jpg,gif}'],
-			tasks: [
-				'icons',
-				'bsReload:all',
-				'filesizegzip:grunticon'
-			]
-		},<% } %>
+		},
 
 		grunt: {
 			files: ['_grunt-configs/*.js', 'Gruntfile.js'],

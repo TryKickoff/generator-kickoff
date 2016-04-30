@@ -71,29 +71,9 @@ KickoffGenerator.prototype.askFor = function () {
 				{
 					name: 'Use Kickoff Statix for static templating and rapid prototyping?',
 					value: 'statix'
-				},
-				{
-					name: 'Use Grunticon?',
-					value: 'grunticon'
 				}
 			],
 			store: true
-		},
-		{
-			name: 'browserify',
-			type: 'confirm',
-			message: 'Use Browserify to bundle your Javascript?',
-			default: true,
-			store: true
-		},
-		{
-			name: 'jsNamespace',
-			message: 'Choose your javascript namespace',
-			default: 'KO',
-			store: true,
-			when: function(response) {
-				return !response.browserify;
-			}
 		},
 		{
 			name: 'jsLibs',
@@ -101,12 +81,8 @@ KickoffGenerator.prototype.askFor = function () {
 			message: 'Which Javascript libraries would you like to use?',
 			choices: [
 				{
-					name: 'jQuery 1.x - only choose one jQuery version',
-					value: 'jquery1'
-				},
-				{
-					name: 'jQuery 2.x - only choose one jQuery version',
-					value: 'jquery2'
+					name: 'jQuery',
+					value: 'jquery'
 				},
 				{
 					name: 'trak.js - Universal event tracking API',
@@ -143,14 +119,12 @@ KickoffGenerator.prototype.askFor = function () {
 
 		// JS Libs
 		this.includeTrak       = hasFeature('trak', jsLibs);
-		this.includeJquery1    = hasFeature('jquery1', jsLibs);
-		this.includeJquery2    = hasFeature('jquery2', jsLibs);
+		this.includeJquery     = hasFeature('jquery', jsLibs);
 		this.includeSwiftclick = hasFeature('swiftclick', jsLibs);
 		this.includeShims      = hasFeature('shims', jsLibs);
 		this.includeModernizr  = hasFeature('modernizr', jsLibs);
 
 		// Features
-		this.includeGrunticon  = hasFeature('grunticon', features);
 		this.includeStatix     = hasFeature('statix', features);
 		this.includeStyleguide = hasFeature('styleguide', features);
 		this.oldIE = hasFeature('oldIE', features);
@@ -174,7 +148,6 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 			projectName: this.projectName,
 			projectNameSlugified: _s.slugify(this.projectName),
 			oldIE: this.oldIE,
-			grunticon: this.includeGrunticon,
 			modernizr: this.includeModernizr,
 			shims: this.includeShims
 		}
@@ -188,7 +161,6 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 				projectName: this.projectName,
 				projectNameSlugified: _s.slugify(this.projectName),
 				oldIE: this.oldIE,
-				grunticon: this.includeGrunticon,
 				modernizr: this.includeModernizr,
 				shims: this.includeShims
 			}
@@ -196,46 +168,27 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 	}
 
 
-	// CSS, SCSS, images & grunticon source directory
+	// CSS, SCSS, images source directory
 	this.directory('assets/dist/css', 'assets/dist/css');
 	this.directory('assets/src/scss', 'assets/src/scss');
 	this.directory('assets/src/img', 'assets/src/img');
-	this.directory('assets/src/grunticon', 'assets/src/grunticon');
 
 
 	// Javascript
-	if (this.browserify) {
-		this.fs.copyTpl(
-			this.templatePath('assets/src/js/_script-browserify.js'),
-			this.destinationPath('assets/src/js/script.js'),
-			{
-				projectName: this.projectName,
-				devNames: this.devNames,
-				browserify: this.browserify,
-				includeSwiftclick: this.includeSwiftclick,
-				includeTrak: this.includeTrak,
-				includeJquery1: this.includeJquery1,
-				includeJquery2: this.includeJquery2,
-				statix: this.includeStatix,
-				shims: this.includeShims
-			}
-		);
-
-		this.directory('assets/src/js/modules', 'assets/src/js/modules');
-
-	} else {
-		this.fs.copyTpl(
-			this.templatePath('assets/src/js/_script-fileArray.js'),
-			this.destinationPath('assets/src/js/script.js'),
-			{
-				projectName: this.projectName,
-				devNames: this.devNames,
-				includeJquery1: this.includeJquery1,
-				includeJquery2: this.includeJquery2,
-				jsNamespace: this.jsNamespace
-			}
-		);
-	}
+	this.fs.copyTpl(
+		this.templatePath('assets/src/js/_script.js'),
+		this.destinationPath('assets/src/js/script.js'),
+		{
+			projectName: this.projectName,
+			devNames: this.devNames,
+			includeSwiftclick: this.includeSwiftclick,
+			includeTrak: this.includeTrak,
+			includeJquery: this.includeJquery,
+			statix: this.includeStatix,
+			shims: this.includeShims
+		}
+	);
+	this.directory('assets/src/js/modules', 'assets/src/js/modules');
 
 	this.copy('assets/src/js/standalone/.gitkeep', 'assets/src/js/standalone/.gitkeep');
 
@@ -253,8 +206,6 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		this.templatePath('_Gruntfile.js'),
 		this.destinationPath('Gruntfile.js'),
 		{
-			browserify: this.browserify,
-			grunticon: this.includeGrunticon,
 			modernizr: this.includeModernizr,
 			statix: this.includeStatix,
 			shims: this.includeShims,
@@ -268,32 +219,28 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		{
 			projectName: this.projectName,
 			projectNameSlugified: _s.slugify(this.projectName),
-			browserify: this.browserify,
-			includeSwiftclick: this.includeSwiftclick,
-			includeTrak: this.includeTrak,
-			includeJquery1: this.includeJquery1,
-			includeJquery2: this.includeJquery2,
 			statix: this.includeStatix
 		}
 	);
 
-	this.copy('_grunt-configs/css.js', '_grunt-configs/css.js');
+	this.fs.copyTpl(
+		this.templatePath('_grunt-configs/_css.js'),
+		this.destinationPath('_grunt-configs/css.js'),
+		{
+			oldIE: this.oldIE
+		}
+	);
 
 	this.fs.copyTpl(
 		this.templatePath('_grunt-configs/_images.js'),
 		this.destinationPath('_grunt-configs/images.js'),
-		{
-			grunticon: this.includeGrunticon
-		}
+		{}
 	);
 
 	this.fs.copyTpl(
 		this.templatePath('_grunt-configs/_javascript.js'),
 		this.destinationPath('_grunt-configs/javascript.js'),
 		{
-			browserify: this.browserify,
-			includeJquery1: this.includeJquery1,
-			includeJquery2: this.includeJquery2,
 			includeShims: this.includeShims
 		}
 	);
@@ -311,9 +258,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		this.templatePath('_grunt-configs/_utilities.js'),
 		this.destinationPath('_grunt-configs/utilities.js'),
 		{
-			browserify: this.browserify,
 			statix: this.includeStatix,
-			styleguide: this.includeStyleguide,
 			shims: this.includeShims,
 			modernizr: this.includeModernizr
 		}
@@ -323,9 +268,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		this.templatePath('_grunt-configs/_watch.js'),
 		this.destinationPath('_grunt-configs/watch.js'),
 		{
-			browserify: this.browserify,
-			statix: this.includeStatix,
-			grunticon: this.includeGrunticon
+			statix: this.includeStatix
 		}
 	);
 
@@ -334,7 +277,6 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		this.destinationPath('_grunt-configs/tests.js'),
 		{}
 	);
-	this.copy('_grunt-configs/grunticon-tpl.hbs', '_grunt-configs/grunticon-tpl.hbs');
 
 
 	this.fs.copyTpl(
@@ -345,12 +287,11 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 			projectNameSlugified: _s.slugify(this.projectName),
 			projectDescription: this.projectDescription,
 			devNames: this.devNames,
-			browserify: this.browserify,
 			includeSwiftclick: this.includeSwiftclick,
 			includeTrak: this.includeTrak,
-			includeJquery1: this.includeJquery1,
-			includeJquery2: this.includeJquery2,
-			statix: this.includeStatix
+			includeJquery: this.includeJquery,
+			statix: this.includeStatix,
+			oldIE: this.oldIE
 		}
 	);
 
@@ -414,7 +355,6 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 				projectNameSlugified: _s.slugify(this.projectName),
 				projectDescription: this.projectDescription,
 				oldIE: this.oldIE,
-				grunticon: this.includeGrunticon,
 				modernizr: this.includeModernizr,
 				shims: this.includeShims,
 				styleguide: this.includeStyleguide

@@ -5,27 +5,10 @@ module.exports.tasks = {
 	 * https://github.com/gruntjs/grunt-contrib-clean
 	 * Clean some files
 	 */
-	clean: {
-		icons   : ['<%%=config.distDir%>/img/icons', '<%%=config.tempDir%>/icons'],
-		tempCSS : ['<%%=config.tempDir%>/css']<%
-			if (statix) {
-		%>,
-		all: ['<%%= config.statix.dir%>/dist/**/*.html']<%
-			} %>
-	},<%
-	if (!browserify) {%>
-
-
-	/**
-	 * Chotto
-	 * Checks for the existence of files and halts the Grunt build if they don't exist
-	 * https://www.npmjs.com/package/chotto
-	 */
-	chotto : {
-		js : {
-			filePaths: '<%%=config.js.fileList%>'
-		}
-	},<% } %>
+	clean: {<%
+		if (statix) { %>
+		all: ['<%%= config.statix.dir%>/dist/**/*.html']<% } %>
+	},
 
 
 	/**

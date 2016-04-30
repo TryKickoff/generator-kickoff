@@ -1,6 +1,5 @@
-module.exports.tasks = {<%
-	if (browserify) {
-	%>/**
+module.exports.tasks = {
+	/**
 	 * Browserify
 	 * https://github.com/jmreidy/grunt-browserify
 	 * Grunt task for node-browserify – allows CommonJS-style JS code and packages it for use in the browser
@@ -24,47 +23,8 @@ module.exports.tasks = {<%
 			}
 		}
 	},<%
-	} else { %>
-	/**
-	 * Uglify
-	 * https://github.com/gruntjs/grunt-contrib-uglify
-	 * Minifies and concatinates your JS
-	 * Also creates source maps
-	 */
-	uglify: {
-		options: {
-			// set to false (replace this object) to turn off mangling
-			// https://github.com/gruntjs/grunt-contrib-uglify#reserved-identifiers
-			<%
-				// if jquery is chosen in the generator, exclude it from uglify
-				if (includeJquery1 || includeJquery2) {
-			%>mangle: {
-				except: ['jQuery']
-			},<%
-				} else {
-			%>mangle: true,<%
-				}
-			%>
-			compress: { // set to false (replace this object) to turn off compression
-				drop_console: false
-			},
-
-			beautify: false, // beautify: beautify your code for debugging/troubleshooting purposes
-			// report: 'gzip', // report: Show file size report
-			sourceMap: '<%%=config.js.distDir%><%%=config.js.distFile%>.map',
-			sourceMappingURL: '/<%%=config.js.distFile%>.map',
-		},
-		js: {
-			nonull: true,
-			src: '<%%=config.js.fileList%>',
-			dest: '<%%=config.js.distDir%><%%=config.js.distFile%>'
-		}
-	},<%
-	}
 
 	if (includeShims) { %>
-
-
 	/**
 	 * Shimly
 	 * https://github.com/nicbell/shimly

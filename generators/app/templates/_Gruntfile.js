@@ -5,7 +5,6 @@
  * - grunt watcher           : watch files without static server
  * - grunt compile           : compile scss, js & compress images
  * - grunt compile --release : same as above, but compress CSS as well
- * - grunt icons             : generate the icons using grunticon
  * - grunt images            : compress all non-grunticon images & then run `grunt icons`
  * - grunt checks            : run jshint and scsslint
  */
@@ -26,10 +25,6 @@ module.exports = function (grunt) {
 
 	// Load grunt tasks automatically
 	require('load-grunt-tasks')(grunt, {pattern: ["grunt-*"<%
-		if (!browserify) {
-			%>, "chotto"<%
-		}
-
 		if (statix) {
 			%>, "assemble"<%
 		}%>
@@ -55,25 +50,20 @@ module.exports = function (grunt) {
 	grunt.registerTask('serve', [
 		'compile',
 		'browserSync:serve',
-		'watch'
+		'watch',
 	]);
 
 
 	// grunt watcher
 	grunt.registerTask('watcher', [
 		'compile',
-		'watch'
+		'watch',
 	]);
 
 
 	// grunt compile
-	grunt.registerTask('compile', [<%
-		if (browserify) {%>
-		'browserify',<%
-		} else { %>
-		'chotto:js',
-		'uglify',<%
-		} %>
+	grunt.registerTask('compile', [
+		'browserify',
 		'postscss',
 		'images'<%
 		if (statix) {%>,
@@ -109,26 +99,15 @@ module.exports = function (grunt) {
 
 	// grunt images
 	grunt.registerTask('images', [
-		'newer:imagemin:images'<%
-		if (grunticon) {%>,
-		'icons'<% } %>
-	]);<%
-	if (grunticon) {%>
-
-
-	// grunt icons
-	grunt.registerTask('icons', [
-		'clean:icons',
-		'newer:imagemin:grunticon',
-		'grunticon'
-	]);<% } %>
+		'newer:imagemin:images'
+	]);
 
 
 	/**
 	 * grunt checks
 	 */
 	grunt.registerTask('checks', [
-		'jshint:project',
+		'eslint',
 		'scsslint'
 	]);
 
