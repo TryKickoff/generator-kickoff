@@ -46,7 +46,7 @@ if (oldIE) {
 		<script>
 			var win = window, doc = win.document, docElem = doc.documentElement;<%
 
-			if (!modernizr) {%>
+			if (!modernizr || !flexboxFallback) {%>
 			// Replace 'no-js'/'js' class on <html>
 			docElem.className = docElem.className.replace(/\bno-js\b/g, '') + ' js ';<%
 			} %>
@@ -66,7 +66,7 @@ if (oldIE) {
 			}
 		</script><%
 
-		if (modernizr) {%>
+		if (modernizr || flexboxFallback) {%>
 		<script src="/assets/dist/js/standalone/modernizr.js"></script><%
 		} %>
 	</head>

@@ -60,6 +60,11 @@ KickoffGenerator.prototype.askFor = function () {
 			message: 'Which features would you like?',
 			choices: [
 				{
+					name: 'Provide Flexbox feature-detect? Needed if you use the our grid in older browsers',
+					value: 'flexboxFallback',
+					default: false,
+				},
+				{
 					name: 'Does this project support IE8?',
 					value: 'oldIE',
 					default: false,
@@ -128,6 +133,7 @@ KickoffGenerator.prototype.askFor = function () {
 		this.includeStatix     = hasFeature('statix', features);
 		this.includeStyleguide = hasFeature('styleguide', features);
 		this.oldIE = hasFeature('oldIE', features);
+		this.flexboxFallback = hasFeature('flexboxFallback', features);
 
 		done();
 	}.bind(this));
@@ -149,7 +155,8 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 			projectNameSlugified: _s.slugify(this.projectName),
 			oldIE: this.oldIE,
 			modernizr: this.includeModernizr,
-			shims: this.includeShims
+			shims: this.includeShims,
+			flexboxFallback: this.flexboxFallback,
 		}
 	);
 
@@ -162,7 +169,8 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 				projectNameSlugified: _s.slugify(this.projectName),
 				oldIE: this.oldIE,
 				modernizr: this.includeModernizr,
-				shims: this.includeShims
+				shims: this.includeShims,
+				flexboxFallback: this.flexboxFallback,
 			}
 		);
 	}
@@ -260,7 +268,8 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		{
 			statix: this.includeStatix,
 			shims: this.includeShims,
-			modernizr: this.includeModernizr
+			modernizr: this.includeModernizr,
+			flexboxFallback: this.flexboxFallback,
 		}
 	);
 

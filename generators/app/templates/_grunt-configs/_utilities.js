@@ -16,7 +16,7 @@ module.exports.tasks = {
 	 * https://github.com/gruntjs/grunt-contrib-copy
 	 */
 	copy: {<%
-		if (modernizr || shims) {%>
+		if (modernizr || shims || flexboxFallback) {%>
 		jsStandalone: {
 			files: [{
 				expand: true,

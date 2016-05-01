@@ -43,7 +43,7 @@ if (oldIE) {
 		<script>
 			var win = window, doc = win.document, docElem = doc.documentElement;<%
 
-			if (!modernizr) { %>
+			if (!modernizr && !flexboxFallback) { %>
 			// Replace 'no-js'/'js' class on <html>
 			docElem.className = docElem.className.replace(/\bno-js\b/g, '') + ' js ';<%
 			} %>
@@ -56,14 +56,13 @@ if (oldIE) {
 			if( !('addEventListener' in win && 'classList' in docElem) ){<%
 				if (shims) {%>
 				// Load shims for browsers that don't pass the test
-				loadJS('/assets/dist/js/standalone/shims.js');
-
-				<% } %>
+				loadJS('/assets/dist/js/standalone/shims.js');<%
+				} %>
 				// Add your own enhancements here, see https://github.com/filamentgroup/enhance for more info
 			}
 		</script><%
 
-		if (modernizr) {%>
+		if (modernizr || flexboxFallback) {%>
 		<script src="/assets/dist/js/standalone/modernizr.js"></script><%
 		} %>
 	</head>
