@@ -51,8 +51,8 @@ KickoffGenerator.prototype.askFor = function () {
 		},
 		{
 			name: 'devNames',
-			message: 'Developer\'s names?',
-			default: 'Tom, Dick and Harry'
+			message: 'Team members',
+			default: 'Zander & Ash'
 		},
 		{
 			name: 'features',
@@ -60,23 +60,23 @@ KickoffGenerator.prototype.askFor = function () {
 			message: 'Which features would you like?',
 			choices: [
 				{
-					name: 'Provide Flexbox feature-detect? Needed if you use the our grid in older browsers',
-					value: 'flexboxFallback',
-					default: false,
-				},
-				{
-					name: 'Does this project support IE8?',
-					value: 'oldIE',
-					default: false,
-				},
-				{
 					name: 'Include Kickoff\'s styleguide?',
 					value: 'styleguide'
 				},
 				{
 					name: 'Use Kickoff Statix for static templating and rapid prototyping?',
 					value: 'statix'
-				}
+				},
+				{
+					name: 'Provide Flexbox feature-detect? Needed if you use our grid in non-flexbox supporting browsers',
+					value: 'flexboxFallback',
+					default: false,
+				},
+				{
+					name: 'Support IE8?',
+					value: 'oldIE',
+					default: false,
+				},
 			],
 			store: true
 		},
@@ -193,7 +193,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 			includeTrak: this.includeTrak,
 			includeJquery: this.includeJquery,
 			statix: this.includeStatix,
-			shims: this.includeShims
+			shims: this.includeShims,
 		}
 	);
 	this.directory('assets/src/js/modules', 'assets/src/js/modules');
@@ -217,7 +217,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 			modernizr: this.includeModernizr,
 			statix: this.includeStatix,
 			shims: this.includeShims,
-			styleguide: this.includeStyleguide
+			styleguide: this.includeStyleguide,
 		}
 	);
 
@@ -227,7 +227,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		{
 			projectName: this.projectName,
 			projectNameSlugified: _s.slugify(this.projectName),
-			statix: this.includeStatix
+			statix: this.includeStatix,
 		}
 	);
 
@@ -235,7 +235,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		this.templatePath('_grunt-configs/_css.js'),
 		this.destinationPath('_grunt-configs/css.js'),
 		{
-			oldIE: this.oldIE
+			oldIE: this.oldIE,
 		}
 	);
 
@@ -249,7 +249,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		this.templatePath('_grunt-configs/_javascript.js'),
 		this.destinationPath('_grunt-configs/javascript.js'),
 		{
-			includeShims: this.includeShims
+			includeShims: this.includeShims,
 		}
 	);
 
@@ -258,7 +258,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		this.destinationPath('_grunt-configs/server.js'),
 		{
 			statix: this.includeStatix,
-			styleguide: this.includeStyleguide
+			styleguide: this.includeStyleguide,
 		}
 	);
 
@@ -277,7 +277,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		this.templatePath('_grunt-configs/_watch.js'),
 		this.destinationPath('_grunt-configs/watch.js'),
 		{
-			statix: this.includeStatix
+			statix: this.includeStatix,
 		}
 	);
 
@@ -300,7 +300,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 			includeTrak: this.includeTrak,
 			includeJquery: this.includeJquery,
 			statix: this.includeStatix,
-			oldIE: this.oldIE
+			oldIE: this.oldIE,
 		}
 	);
 
@@ -310,7 +310,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		{
 			projectName: this.projectName,
 			projectDescription: this.projectDescription,
-			devNames: this.devNames
+			devNames: this.devNames,
 		}
 	);
 
@@ -320,7 +320,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		{
 			projectName: this.projectName,
 			projectDescription: this.projectDescription,
-			devNames: this.devNames
+			devNames: this.devNames,
 		}
 	);
 
@@ -347,7 +347,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 				this.templatePath('statix/src/templates/_index.hbs'),
 				this.destinationPath('statix/src/templates/views/styleguide/index.hbs'),
 				{
-					projectName: this.projectName
+					projectName: this.projectName,
 				}
 			);
 
@@ -366,7 +366,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 				oldIE: this.oldIE,
 				modernizr: this.includeModernizr,
 				shims: this.includeShims,
-				styleguide: this.includeStyleguide
+				styleguide: this.includeStyleguide,
 			}
 		);
 
