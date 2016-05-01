@@ -18,9 +18,9 @@ module.exports.tasks = {
 					'text-align: center',
 					'background-color: #181830',
 					'color: #fff',
-					'padding: 15px'
-				]
-			}
+					'padding: 15px',
+				],
+			},
 		},
 
 		serve: {
@@ -81,7 +81,7 @@ module.exports.tasks = {
 				'helper-moment',
 				'handlebars-helper-eachitems',
 				'<%%= config.statix.dir%>/src/helpers/helper-*.js',
-				'handlebars-helper-aggregate'
+				'handlebars-helper-aggregate',
 			],
 
 			partials: ['<%%= config.statix.dir%>/src/templates/partials/**/*.hbs'],
@@ -100,7 +100,7 @@ module.exports.tasks = {
 				cwd: './<%%= config.statix.dir%>/src/templates/views/',
 				dest: '<%%= config.statix.distDir %>',
 				expand: true,
-				src: ['**/*.hbs']
+				src: ['**/*.hbs'],
 			}]
 		}
 	}<% } %> //end of statix conditional

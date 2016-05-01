@@ -15,8 +15,7 @@ module.exports.tasks = {
 	 * Copy files
 	 * https://github.com/gruntjs/grunt-contrib-copy
 	 */
-	copy: {<%
-		if (modernizr || shims || flexboxFallback) {%>
+	copy: {
 		jsStandalone: {
 			files: [{
 				expand: true,
@@ -24,10 +23,9 @@ module.exports.tasks = {
 				src: ['./**/*.*'],
 				dest: '<%%=config.js.distDir%>/standalone'
 			}]
-		}<%
-		}
+		},<%
 
-		if (statix) {%>,
+		if (statix) {%>
 		statix: {
 			files: [
 				{
@@ -73,7 +71,7 @@ module.exports.tasks = {
 				src: ['./**/*.*'],
 				dest: '<%%= config.statix.dir%>/dist/assets/dist/js'
 			}]
-		}<% } %>
+		},<% } %>
 	},
 
 
@@ -90,9 +88,5 @@ module.exports.tasks = {
 		css: {
 			src: '<%%=config.css.distDir%>/<%%=config.css.distFile%>.css'
 		},
-
-		grunticon: {
-			src: '<%%=config.img.distDir%>/icons/icons.data.svg.css'
-		}
 	},
 };

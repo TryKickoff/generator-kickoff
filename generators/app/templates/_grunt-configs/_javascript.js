@@ -1,4 +1,5 @@
 module.exports.tasks = {
+
 	/**
 	 * Browserify
 	 * https://github.com/jmreidy/grunt-browserify
@@ -8,20 +9,21 @@ module.exports.tasks = {
 		main: {
 			src: ['<%%=config.js.srcFile%>'],
 			dest: '<%%=config.js.distDir%><%%=config.js.distFile%>',
-			options : {
-				browserifyOptions : {
+			options: {
+				transform: ['babelify'],
+				browserifyOptions: {
 					debug: true,
-					fullPaths: false
+					fullPaths: false,
 				},
 				plugin: [
 					['minifyify', {
-						output: '<%%=config.js.distDir%>script.map',
-						map: 'script.map'
-					}]
+						output: '<%%=config.js.distDir%><%%=config.js.distFile%>.map',
+						map: '<%%=config.js.distFile%>.map',
+					}],
 				],
-				watch: true
-			}
-		}
+				watch: true,
+			},
+		},
 	},<%
 
 	if (includeShims) { %>
@@ -36,8 +38,6 @@ module.exports.tasks = {
 
 		// output location (relative to your grunt.js file location)
 		dest: '<%%=config.srcDir%>/js/standalone/shims.js',
-
-		// minify the output (true or false)
-		minify: true
+		minify: true,
 	}<% } %>
 };

@@ -23,7 +23,7 @@ module.exports = {
 
 		// We are supporting the last 2 browsers, any browsers with >5% market share,
 		// and ensuring we support IE8+ with prefixes
-		autoprefixer: ['> 5%', 'last 2 versions', 'ie > 8'] // <%%=config.css.autoprefixer%>
+		autoprefixer: ['> 5%', 'last 2 versions', 'ie > 8'], // <%%=config.css.autoprefixer%>
 	},
 
 
@@ -42,13 +42,13 @@ module.exports = {
 	img : {
 		srcDir: '<%%=config.srcDir%>/img',   // <%%=config.img.srcDir%>
 		distDir: '<%%=config.distDir%>/img', // <%%=config.img.distDir%>
-	}<%
-	if (statix) {
-	%>,
+	},<%
+
+	if (statix) { %>
 
 
 	statix : {
 		dir: 'statix', // <%%= config.statix.dir%>
-		distDir: './<%%= config.statix.dir%>/dist'
+		distDir: './<%%= config.statix.dir%>/dist', // <%%= config.statix.distDir%>
 	}<% } %>
 };
