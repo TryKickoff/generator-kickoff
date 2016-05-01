@@ -367,6 +367,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 				modernizr: this.includeModernizr,
 				shims: this.includeShims,
 				styleguide: this.includeStyleguide,
+				flexboxFallback: this.flexboxFallback,
 			}
 		);
 
