@@ -12,7 +12,13 @@ var ModuleGenerator = module.exports = function ModuleGenerator(args, options) {
 		required: true
 	});
 
+	this.argument('path', {
+		type: String,
+		required: false
+	});
+
 	this.name = _.camelCase(this.name);
+	this.path = this.path || 'assets/src/js/modules';
 };
 
 util.inherits(ModuleGenerator, yeoman.generators.Base);
@@ -20,7 +26,7 @@ util.inherits(ModuleGenerator, yeoman.generators.Base);
 ModuleGenerator.prototype.writeFiles = function(args, options) {
 	this.fs.copyTpl(
 		this.templatePath('module.js'),
-		this.destinationPath('assets/src/js/modules/' + this.name + '.js'), {
+		this.destinationPath(this.path + '/' + this.name + '.js'), {
 			name: this.name
 		}
 	);
