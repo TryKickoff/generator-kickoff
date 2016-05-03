@@ -1,40 +1,40 @@
 {
-	"name": "<%= projectNameSlugified %>",
-	"title": "<%= projectName %>",
-	"description": "<%= projectDescription %>",
-	"version": "1.0.0",
-	"authors": [
-		{
-			"name": "<%= devNames %>"
-		}
-	],
-	"engines": {
-		"node": ">=4.0"
-	},
-	"dependencies": {
-		"console": "^0.5.2",
-		"lite-ready": "^1.0.4"<%
+  "name": "<%= projectNameSlugified %>",
+  "title": "<%= projectName %>",
+  "description": "<%= projectDescription %>",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "<%= devNames %>"
+    }
+  ],
+  "engines": {
+    "node": ">=4.0"
+  },
+  "dependencies": {
+    "console": "^0.5.2",
+    "lite-ready": "^1.0.4"<%
 
-		if (includeSwiftclick) {%>,
-		"swiftclick": "^1.2.0"<%
-		}
+    if (includeSwiftclick) {%>,
+    "swiftclick": "^1.2.0"<%
+    }
 
-		if (includeTrak) {%>,
-		"trak.js": "^0.5.2"<%
-		}
+    if (includeTrak) {%>,
+    "trak.js": "^0.5.2"<%
+    }
 
-		if (includeJquery && oldIE) {%>,
-		"jquery": "^1.11.1"<%
-		}
+    if (includeJquery && oldIE) {%>,
+    "jquery": "^1.11.1"<%
+    }
 
-		if (includeJquery && !oldIE) {%>,
-		"jquery": "^2.2.3"<%
-		} %>
-	},
-	"devDependencies": {
+    if (includeJquery && !oldIE) {%>,
+    "jquery": "^2.2.3"<%
+    } %>
+  },
+  "devDependencies": {
     "autoprefixer": "^6.3.6",
     "babelify": "^7.3.0",
-    "babel-plugin-transform-object-assign": "^6.3.13",
+    "babel-plugin-transform-object-assign": "^6.8.0",
     "babel-preset-es2015": "^6.3.13",
     "cssnano": "^3.5.2",
     "grunt": "^1.0.1",
@@ -43,7 +43,7 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-imagemin": "^1.0.0",
     "grunt-newer": "^1.2.0",
-    "grunt-shimly": "^1.0.1",
+    "grunt-shimly": "^1.0.2",
     "imagemin-gifsicle": "^5.0.0",
     "imagemin-jpegtran": "^5.0.0",
     "imagemin-mozjpeg": "^6.0.0",
@@ -53,15 +53,15 @@
     "load-grunt-configs": "^0.4.3",
     "load-grunt-tasks": "^3.5.0",
     "minifyify": "^7.3.3",
-    "postscss": "^1.4.0"<%
-		if (statix) {%>,
-		"grunt-assemble": "^0.4.0",
-		"handlebars-helper-aggregate": "^0.1.3"<% } %>
-	},
-	"optionalDependencies": {
+    "postscss": "^1.4.1"<%
+    if (statix) {%>,
+    "grunt-assemble": "^0.4.0",
+    "handlebars-helper-aggregate": "^0.1.3"<% } %>
+  },
+  "optionalDependencies": {
     "browser-sync": "^2.12.5",
     "eslint": "^2.8.0",
-    "eslint-config-airbnb-base": "^1.0.4",
+    "eslint-config-airbnb-base": "^2.0.0",
     "eslint-plugin-import": "^1.6.1",
     "grunt-browser-sync": "^2.1.3",
     "grunt-contrib-watch": "^1.0.0",
@@ -69,9 +69,9 @@
     "grunt-filesizegzip": "^0.2.0",
     "opn": "^4.0.1",
     "grunt-scss-lint": "^0.3.8"
-	},
-	"keywords": [],
-	"scripts": {
+  },
+  "keywords": [],
+  "scripts": {
     "test": "grunt travis --verbose",
 
     "prestart": "npm prune && npm install",
@@ -79,7 +79,7 @@
 
     "predeploy": "npm prune && npm install --no-optional",
     "deploy": "grunt compile --release"
-	},
+  },
   "babel": {
     "presets": [
       "es2015"
