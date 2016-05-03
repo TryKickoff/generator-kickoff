@@ -5,7 +5,7 @@ var chalk           = require('chalk');
 var updateNotifier  = require('update-notifier');
 var pkg             = require('../../package.json');
 var opn             = require('opn');
-var _s              = require('underscore.string');
+var _              = require('lodash');
 
 var KickoffGenerator = module.exports = function KickoffGenerator(args, options) {
 	yeoman.Base.apply(this, arguments);
@@ -152,7 +152,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		this.destinationPath('index.html'),
 		{
 			projectName: this.projectName,
-			projectNameSlugified: _s.slugify(this.projectName),
+			projectNameSlugified: _.kebabCase(this.projectName),
 			oldIE: this.oldIE,
 			modernizr: this.includeModernizr,
 			shims: this.includeShims,
@@ -166,7 +166,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 			this.destinationPath('styleguide/index.html'),
 			{
 				projectName: this.projectName,
-				projectNameSlugified: _s.slugify(this.projectName),
+				projectNameSlugified: _.kebabCase(this.projectName),
 				oldIE: this.oldIE,
 				modernizr: this.includeModernizr,
 				shims: this.includeShims,
@@ -226,7 +226,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		this.destinationPath('_grunt-configs/config.js'),
 		{
 			projectName: this.projectName,
-			projectNameSlugified: _s.slugify(this.projectName),
+			projectNameSlugified: _.kebabCase(this.projectName),
 			statix: this.includeStatix,
 		}
 	);
@@ -293,7 +293,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		this.destinationPath('package.json'),
 		{
 			projectName: this.projectName,
-			projectNameSlugified: _s.slugify(this.projectName),
+			projectNameSlugified: _.kebabCase(this.projectName),
 			projectDescription: this.projectDescription,
 			devNames: this.devNames,
 			includeSwiftclick: this.includeSwiftclick,
@@ -361,7 +361,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 			this.destinationPath('statix/src/templates/partials/html_start.hbs'),
 			{
 				projectName: this.projectName,
-				projectNameSlugified: _s.slugify(this.projectName),
+				projectNameSlugified: _.kebabCase(this.projectName),
 				projectDescription: this.projectDescription,
 				oldIE: this.oldIE,
 				modernizr: this.includeModernizr,
