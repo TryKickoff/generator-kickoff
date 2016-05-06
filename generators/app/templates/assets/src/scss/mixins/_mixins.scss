@@ -7,16 +7,10 @@
  * - hiDpi
  * - Forms */
 
-// Vendor prefixer
-@import "prefixer";
-
 // Responsive mixins
 @import "responsive";
 
-// CSS3
-@import "css3";
-@import "linear-gradient";
-@import "radial-gradient";
+// Vertical Centering
 @import "vertical-center";
 
 /**
@@ -29,9 +23,6 @@
 
 // HiDPI
 @import "hidpi";
-
-// Forms
-@import "form-helpers";
 
 // Module naming helpers
 @import "module-naming-helpers";

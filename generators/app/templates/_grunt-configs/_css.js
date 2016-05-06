@@ -30,13 +30,15 @@ module.exports = function (grunt, options) {
 				to: cssDir + '/' + cssDistFile + '.css'
 			},
 			{
-				from: scssDir + '/kickoff-old-ie.scss',
-				to: cssDir + '/' + cssDistFile + '-old-ie.css'
-			},
-			{
 				from: scssDir + '/styleguide.scss',
 				to: cssDir + '/styleguide.css'
-			}
+			}<%
+			if (oldIE) {
+			%>,
+			{
+				from: scssDir + '/kickoff-old-ie.scss',
+				to: cssDir + '/' + cssDistFile + '-old-ie.css'
+			}<% } %>
 		]).then(done).catch(function(error) {
 			console.error('\n' + error.formatted + '\n');
 		});

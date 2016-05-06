@@ -1,43 +1,33 @@
 'use strict';
-var util            = require('util');
-var yeoman          = require('yeoman-generator');
-var _s              = require('underscore.string');
+var util = require('util');
+var yeoman = require('yeoman-generator');
+var _ = require('lodash');
 
 
 var ModuleGenerator = module.exports = function ModuleGenerator(args, options) {
 	yeoman.Base.apply(this, arguments);
 
-	// this.argument('namespace', {
-	// 	type: String,
-	// 	required: true,
-	// 	description: 'Generator namespace'
-	// });
-	// this.option('module', {
-	// 	desc: 'Add a js module',
-	// 	type: String
-	// });
+	this.argument('name', {
+		type: String,
+		required: true
+	});
 
-	// this.option('component', {
-	// 	desc: 'Add a CSS component',
-	// 	type: String
-	// });
+	this.argument('path', {
+		type: String,
+		required: false
+	});
 
-	// this.env.options['module'] = this.options['module'];
-	// this.env.options['component'] = this.options['component'];
-
-	console.log(this);
-	// console.log(this.options);
+	this.name = _.camelCase(this.name);
+	this.path = this.path || 'assets/src/js/modules';
 };
 
-ModuleGenerator.prototype.writeFiles = function(args, options) {
-	// console.log(args, options);
-	var name = options.module.name; // FIXME
-	var filename = _s.slugify(name);
+util.inherits(ModuleGenerator, yeoman.generators.Base);
 
+ModuleGenerator.prototype.writeFiles = function(args, options) {
 	this.fs.copyTpl(
 		this.templatePath('module.js'),
-		this.destinationPath('assets/src/js/modules/' + filename + '.js'), {
-			name: name
+		this.destinationPath(this.path + '/' + this.name + '.js'), {
+			name: this.name
 		}
 	);
 };

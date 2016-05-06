@@ -31,7 +31,8 @@ body {
 	color: $color-text;
 
 	// Add ligatures
-	font-feature-settings: "liga","dlig";
+	font-feature-settings: "liga","dlig", "hist";
+	font-variant-ligatures: common-ligatures discretionary-ligatures historical-ligatures;
 
 	// Two ways to smoothen type, they are disabled by default
 	// Enable only one of them if you need them
@@ -230,4 +231,11 @@ hr {
 	border: 0;
 	border-top: 1px solid $hr-border;
 	border-bottom: 1px solid #fff;
+}
+
+// https://justmarkup.com/log/2015/07/dealing-with-long-words-in-css/
+.hyphenate {
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	hyphens: auto;
 }
