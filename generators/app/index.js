@@ -5,18 +5,17 @@ var chalk           = require('chalk');
 var updateNotifier  = require('update-notifier');
 var pkg             = require('../../package.json');
 var opn             = require('opn');
-var _              = require('lodash');
+var _               = require('lodash');
 
 var KickoffGenerator = module.exports = function KickoffGenerator(args, options) {
 	yeoman.Base.apply(this, arguments);
 };
 
 
-util.inherits(KickoffGenerator, yeoman.generators.Base);
+util.inherits(KickoffGenerator, yeoman.Base);
 
 
 KickoffGenerator.prototype.askFor = function () {
-	var done = this.async();
 
 	// Checks for available update and returns an instance
 	var notifier = updateNotifier({
@@ -25,11 +24,12 @@ KickoffGenerator.prototype.askFor = function () {
 		updateCheckInterval: 1000 * 60 // Every hour
 	});
 
-	var kickoffWelcome = chalk.white('\n ##  ## ######  ####  ##  ##  ') + chalk.yellow('####  ###### ######') + chalk.white('\n ## ##    ##   ##  ## ## ##  ') + chalk.yellow('##  ## ##     ##') + chalk.white('\n ####     ##   ##     ####   ') + chalk.yellow('##  ## ####   ####') + chalk.white('\n ## ##    ##   ##  ## ## ##  ') + chalk.yellow('##  ## ##     ##') + chalk.white('\n ##  ## ######  ####  ##  ##  ') + chalk.yellow('####  ##     ##') + '\n\n ' + chalk.white.bold('A Yeoman generator for the Kickoff front-end framework') + '\n\n Find out more at ' + chalk.cyan('trykickoff.com') + '\n Yeoman Generator version:  ' + pkg.version + '\n\n Kickoff is free and open-source and maintained by ' + chalk.yellow('@MrMartineau') + ',\n ' + chalk.green('@AshNolan_') + ', ' + chalk.red('@nicbell') + ' & the ' + chalk.blue('@tmwTechTeam') + '. \n';
+	var kickoffWelcome = chalk.white('\n  ##  ## ######  ####  ##  ##  ') + chalk.yellow('####  ###### ######') + chalk.white('\n  ## ##    ##   ##  ## ## ##  ') + chalk.yellow('##  ## ##     ##') + chalk.white('\n  ####     ##   ##     ####   ') + chalk.yellow('##  ## ####   ####') + chalk.white('\n  ## ##    ##   ##  ## ## ##  ') + chalk.yellow('##  ## ##     ##') + chalk.white('\n  ##  ## ######  ####  ##  ##  ') + chalk.yellow('####  ##     ##') + '\n\n  ' + chalk.white.bold('A Yeoman generator for the Kickoff front-end framework') + '\n  Find out more at ' + chalk.cyan('trykickoff.com') + '\n  ---\n  Kickoff version:  ' + pkg.kickoffVersion + '\n  Yeoman Generator version:  ' + pkg.version + '\n  ---\n  Kickoff is free & open-source, & maintained by:\n  ' + chalk.yellow('@MrMartineau') + ', ' + chalk.green('@AshNolan_') + ' & ' + chalk.red('@nicbell') + '. \n';
 
 	// Have Yeoman greet the user.
 	this.log(kickoffWelcome);
 
+	// notifier.notify();
 	if (notifier.update) {
 		// Check for npm package update and print message if needed
 		var updateMessage = chalk.yellow('   ┌────────────────────────────────────────────────┐\n   │') + ' Update available: '  + chalk.green(notifier.update.latest) + chalk.gray(' (current: ' + pkg.version + ')') + '       '+ chalk.yellow('│\n   │') + ' Run ' + chalk.cyan('npm update -g ' + pkg.name) + ' to update. ' + chalk.yellow('│\n   └────────────────────────────────────────────────┘\n');
@@ -114,7 +114,7 @@ KickoffGenerator.prototype.askFor = function () {
 		}
 	];
 
-	this.prompt(prompts, function (answers) {
+	return this.prompt(prompts).then(function (answers) {
 		for (var key in answers) {
 			this[key] = answers[key];
 		}
@@ -138,8 +138,6 @@ KickoffGenerator.prototype.askFor = function () {
 		this.includeStyleguide = hasFeature('styleguide', features);
 		this.oldIE = hasFeature('oldIE', features);
 		this.flexboxFallback = hasFeature('flexboxFallback', features);
-
-		done();
 	}.bind(this));
 };
 
