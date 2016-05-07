@@ -6,7 +6,7 @@
  * - grunt compile           : compile scss, js & compress images
  * - grunt compile --release : same as above, but compress CSS as well
  * - grunt images            : compress all non-grunticon images & then run `grunt icons`
- * - grunt checks            : run jshint and scsslint
+ * - grunt test              : run jshint and scsslint
  */
 
 module.exports = function (grunt) {
@@ -65,16 +65,16 @@ module.exports = function (grunt) {
 	grunt.registerTask('compile', [
 		'browserify',
 		'postscss',
-		'images'<%
-		if (statix) {%>,
+		'images',<%
+		if (statix) {%>
 		'copy:statix',
-		'assemble'<%
+		'assemble',<%
 		} %><%
 		if (shims) {%>,
-		'shimly'<%
+		'shimly',<%
 		} %><%
-		if (modernizr || shims) {%>,
-		'copy:jsStandalone'<%
+		if (modernizr || shims) {%>
+		'copy:jsStandalone',<%
 		} %>
 	]);
 
@@ -92,29 +92,30 @@ module.exports = function (grunt) {
 	grunt.registerTask('styleguide', [
 		'compile',
 		'browserSync:styleguide',
-		'watch'
+		'watch',
 	]);<%
 	} %>
 
 
 	// grunt images
 	grunt.registerTask('images', [
-		'newer:imagemin:images'
+		'newer:imagemin:images',
 	]);
 
 
 	/**
-	 * grunt checks
+	 * grunt test
 	 */
-	grunt.registerTask('checks', [
+	grunt.registerTask('test', [
 		'eslint',
-		'scsslint'
+		'scsslint',
 	]);
 
 
 	// grunt travis
 	grunt.registerTask('travis', [
-		'postscss'
+		'postscss',
+		'eslint',
 	]);
 
 };
