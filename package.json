@@ -1,6 +1,7 @@
 {
   "name": "generator-kickoff",
   "version": "1.5.0-rc1",
+  "kickoffVersion": "7.0.0",
   "description": "A Yeoman generator for the Kickoff front-end framework. Find out more at http://trykickoff.com",
   "keywords": [
     "yeoman-generator",
@@ -22,9 +23,7 @@
   "engines": {
     "node": ">=4.0"
   },
-  "scripts": {
-    "test": "mocha"
-  },
+  "scripts": {},
   "files": [
     "index.js",
     "generators"
@@ -34,13 +33,10 @@
     "lodash": "^4.11.2",
     "opn": "^4.0.1",
     "underscore.string": "^3.2.2",
-    "update-notifier": "^0.5.0",
+    "update-notifier": "^0.7.0",
     "update-section": "^0.3.3",
-    "yeoman-generator": "^0.21.1",
-    "yo": "^1.7.0",
+    "yeoman-generator": "^0.23.3",
     "yosay": "^1.1.1"
   },
-  "devDependencies": {
-    "mocha": "*"
-  }
+  "devDependencies": {}
 }
