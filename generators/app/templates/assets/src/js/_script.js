@@ -23,6 +23,7 @@ window.jQuery = window.$ = require('jquery');<% } %>
 
 // Bundle global libs that don't return a value
 import 'console';
+import './utils/$$';
 
 // Add your project-specific modules here
 //import moduleTest from './modules/moduleTest';
