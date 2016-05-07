@@ -3,6 +3,10 @@
   "title": "<%= projectName %>",
   "description": "<%= projectDescription %>",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "<%= repoUrl %>"
+  },
   "authors": [
     {
       "name": "<%= devNames %>"

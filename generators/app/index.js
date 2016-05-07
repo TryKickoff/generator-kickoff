@@ -50,6 +50,10 @@ KickoffGenerator.prototype.askFor = function () {
 			default: 'Project description'
 		},
 		{
+			name: 'repoUrl',
+			message: 'What is the git repo url for this project?',
+		},
+		{
 			name: 'devNames',
 			message: 'Team members',
 			default: 'Zander & Ash'
@@ -301,6 +305,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 			includeJquery: this.includeJquery,
 			statix: this.includeStatix,
 			oldIE: this.oldIE,
+			repoUrl: this.repoUrl,
 		}
 	);
 
