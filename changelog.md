@@ -1,6 +1,13 @@
 # Kickoff Yeoman generator changelog
 All latest changes are documented on our site at http://trykickoff.github.io/learn/yeoman.html
 
+## Version 1.5.0
+ - Update to be inline with [Kickoff v7.0.0](https://github.com/trykickoff/kickoff/releases/tag/7.0.0)
+ - Add new generator options:
+  - `yo kickoff:component componentName` will create a new scss file: `assets/src/scss/components/_componentName.scss` and will add a Sass import statement (`@import "components/_componentName"`) into `assets/src/scss/_dependencies.scss`
+  - `yo kickoff:module moduleName` will create a new javascript file in `assets/src/js/modules/moduleName.js`
+ - Generator questions have been updated
+
 ## Version 0.11.2
 
 Minor Bugfixes to grunt config files
