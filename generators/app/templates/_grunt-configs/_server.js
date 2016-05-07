@@ -28,10 +28,10 @@ module.exports.tasks = {
 				src: [<%
 					if (statix) { %>
 					'<%%= config.statix.dir%>/dist/assets/{js,img}/**/*.*',
-					'<%%= config.statix.dir%>/dist/**/*.html'<%
+					'<%%= config.statix.dir%>/dist/**/*.html',<%
 					} else { %>
 					'<%%=config.distDir%>/{js,img}/**/*.*',
-					'**/*.html'<%
+					'**/*.html',<%
 					} %>
 				]
 			},
@@ -39,13 +39,13 @@ module.exports.tasks = {
 				server: {<%
 					if (statix) { %>
 					baseDir: './<%%= config.statix.dir%>/dist',
-					background: true<%
+					background: true,<%
 					} else { %>
-					baseDir: './'<%
+					baseDir: './',<%
 					} %>
-				}
-			}
-		}<% if (styleguide) { %>,
+				},
+			},
+		},<% if (styleguide) { %>
 
 
 		styleguide: {
@@ -53,17 +53,15 @@ module.exports.tasks = {
 				server: {<%
 					if (statix) { %>
 					baseDir: './<%%= config.statix.dir%>/dist',
-					background: true<%
+					background: true,<%
 					} else { %>
 					baseDir: './',<%
-					} %>,
-					index: 'styleguide/index.html'
-				}
-			}
-		}<%
-		} %>
-
-	}<%
+					} %>
+					index: 'styleguide/index.html',
+				},
+			},
+		}<% } %>
+	},<%
 	if (statix) { %>,
 
 
@@ -92,7 +90,7 @@ module.exports.tasks = {
 
 			aggregate: {
 				cwd: '<%%= config.statix.dir%>/src/templates/'
-			}
+			},
 		},
 
 		default: {
@@ -101,7 +99,7 @@ module.exports.tasks = {
 				dest: '<%%= config.statix.distDir %>',
 				expand: true,
 				src: ['**/*.hbs'],
-			}]
-		}
-	}<% } %> //end of statix conditional
+			}],
+		},
+	},<% } %> //end of statix conditional
 };
