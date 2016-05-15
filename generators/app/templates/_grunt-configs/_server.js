@@ -62,7 +62,7 @@ module.exports.tasks = {
 			},
 		}<% } %>
 	},<%
-	if (statix) { %>,
+	if (statix) { %>
 
 
 	/**
