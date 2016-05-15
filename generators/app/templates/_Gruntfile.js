@@ -5,7 +5,8 @@
  * - grunt watcher           : watch files without static server
  * - grunt compile           : compile scss, js & compress images
  * - grunt compile --release : same as above, but compress CSS as well
- * - grunt images            : compress all non-grunticon images & then run `grunt icons`
+ * - grunt styleguide        : shortcut to preview the styleguide
+ * - grunt images            : compress all images
  * - grunt test              : run jshint and scsslint
  */
 
