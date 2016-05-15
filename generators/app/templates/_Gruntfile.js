@@ -68,16 +68,14 @@ module.exports = function (grunt) {
 	grunt.registerTask('compile', [
 		'browserify',
 		'postscss',
-		'images',<%
-		if (statix) {%>
+		'images',
+		'copy:jsStandalone',<%
+		if (shims) {%>
+		'shimly',<%
+		}
+		if (statix) { %>
 		'copy:statix',
 		'assemble',<%
-		} %><%
-		if (shims) {%>,
-		'shimly',<%
-		} %><%
-		if (modernizr || shims) {%>
-		'copy:jsStandalone',<%
 		} %>
 	]);
 
