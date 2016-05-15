@@ -13,7 +13,10 @@
   ],
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "trykickoff/generator-kickoff",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/trykickoff/generator-kickoff.git"
+  },
   "homepage": "https://github.com/trykickoff/generator-kickoff",
   "bugs": "https://github.com/trykickoff/generator-kickoff/issues",
   "author": {
@@ -30,13 +33,11 @@
   ],
   "dependencies": {
     "chalk": "^1.1.3",
-    "lodash": "^4.11.2",
+    "lodash": "^4.12.0",
     "opn": "^4.0.1",
-    "underscore.string": "^3.2.2",
     "update-notifier": "^0.7.0",
     "update-section": "^0.3.3",
     "yeoman-generator": "^0.23.3",
     "yosay": "^1.1.1"
-  },
-  "devDependencies": {}
+  }
 }
