@@ -199,16 +199,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		}
 	);
 	this.directory('assets/src/js/modules', 'assets/src/js/modules');
-
-	this.copy('assets/src/js/standalone/.gitkeep', 'assets/src/js/standalone/.gitkeep');
-
-	if (this.modernizr) {
-		this.copy('assets/src/js/standalone/modernizr.js', 'assets/src/js/standalone/modernizr.js');
-	}
-
-	if (this.shims) {
-		this.copy('assets/src/js/standalone/shims.js', 'assets/src/js/standalone/shims.js');
-	}
+	this.directory('assets/src/js/standalone', 'assets/src/js/standalone');
 
 
 	// Grunt configs
