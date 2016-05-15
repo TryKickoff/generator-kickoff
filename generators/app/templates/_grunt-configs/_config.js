@@ -4,7 +4,7 @@
  */
 
 module.exports = {
-	src: "./_grunt-configs/*.js",
+	src: './_grunt-configs/*.js',
 	// The current directory. It has all the Grunt tasks grouped into specific js files
 
 	srcDir: 'assets/src',   // <%%=config.srcDir%>
@@ -13,7 +13,7 @@ module.exports = {
 
 
 	// CSS-related Grunt vars
-	css : {
+	css: {
 		scssDir: '<%%=config.srcDir%>/scss', // <%%=config.css.scssDir%>
 		distDir: '<%%=config.distDir%>/css', // <%%=config.css.distDir%>
 
@@ -28,7 +28,7 @@ module.exports = {
 
 
 	// Javascript-related Grunt vars
-	js : {
+	js: {
 		srcFile: '<%%=config.srcDir%>/js/script.js', // <%%=config.js.srcFile%>
 		distDir: '<%%=config.distDir%>/js/',         // <%%=config.js.distDir%>
 
@@ -39,7 +39,7 @@ module.exports = {
 
 
 	// Image-related Grunt vars
-	img : {
+	img: {
 		srcDir: '<%%=config.srcDir%>/img',   // <%%=config.img.srcDir%>
 		distDir: '<%%=config.distDir%>/img', // <%%=config.img.distDir%>
 	},<%
@@ -47,7 +47,7 @@ module.exports = {
 	if (statix) { %>
 
 
-	statix : {
+	statix: {
 		dir: 'statix', // <%%= config.statix.dir%>
 		distDir: './<%%= config.statix.dir%>/dist', // <%%= config.statix.distDir%>
 	}<% } %>

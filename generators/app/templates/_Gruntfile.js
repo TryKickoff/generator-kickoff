@@ -12,6 +12,8 @@
 module.exports = function (grunt) {
 	'use strict';
 
+	require('time-grunt')(grunt); // Record how long tasks take
+
 	var options = {
 		pkg: require('./package'), // <%%=pkg.name%>
 		<%
@@ -110,12 +112,4 @@ module.exports = function (grunt) {
 		'eslint',
 		'scsslint',
 	]);
-
-
-	// grunt travis
-	grunt.registerTask('travis', [
-		'postscss',
-		'eslint',
-	]);
-
 };

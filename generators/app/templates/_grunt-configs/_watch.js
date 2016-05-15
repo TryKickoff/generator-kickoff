@@ -37,10 +37,10 @@ module.exports.tasks = {
 			]
 		},
 
-		images : {
+		images: {
 			files: ['<%%=config.img.srcDir%>/**/*.{svg,png,jpg,gif}'],
 			tasks: [
-				'imagemin:images',
+				'newer:imagemin:images',
 				'bsReload:all',
 			],
 		},
@@ -54,7 +54,7 @@ module.exports.tasks = {
 
 		if (statix) {%>
 
-		assemble : {
+		assemble: {
 			files: ['<%%=config.statix.dir%>/src/templates/**/*.{hbs,md}'],
 			tasks: [
 				'assemble',
