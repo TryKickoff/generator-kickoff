@@ -8,7 +8,9 @@
 'use-strict';
 
 // npm modules
-import ready from 'lite-ready';<%
+import ready from 'lite-ready';
+import $$ from 'double-dollar';
+window.$$ = $$;<%
 
 if (includeSwiftclick) {%>
 import SwiftClick from 'swiftclick';<%
@@ -19,11 +21,11 @@ import trak from 'trak.js';<%
 }
 
 if (includeJquery) {%>
-window.jQuery = window.$ = require('jquery');<% } %>
+import $ from 'jquery';
+window.jQuery = window.$ = $;<% } %>
 
 // Bundle global libs that don't return a value
 import 'console';
-import './utils/$$';
 
 // Add your project-specific modules here
 //import moduleTest from './modules/moduleTest';
@@ -37,5 +39,5 @@ if (includeSwiftclick) {%>
 	if (includeTrak) {%>
 	trak.start();<% } %>
 
-	// browserifyTest(); // this is a test, uncomment this line & the line above to try it
+	// moduleTest(); // this is a test, uncomment this line & the line above to try it
 });
