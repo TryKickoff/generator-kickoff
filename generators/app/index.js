@@ -408,6 +408,8 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		);
 
 	}
+
+	this.copy('bower.json', 'bower.json');
 };
 
 
