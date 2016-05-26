@@ -56,7 +56,7 @@ KickoffGenerator.prototype.askFor = function () {
 		{
 			name: 'devNames',
 			message: 'Team members',
-			default: 'Zander & Ash'
+			default: 'Zander and Ash'
 		},
 		{
 			name: 'features',
