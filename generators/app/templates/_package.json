@@ -125,6 +125,7 @@
     "npm-scripts-info": "^0.3.6",
     "opn": "^4.0.1"
   },
+  "license": "UNLICENSED",
   "keywords": [],
   "babel": {
     "presets": [
