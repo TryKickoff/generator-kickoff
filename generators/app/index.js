@@ -90,6 +90,30 @@ KickoffGenerator.prototype.askFor = function () {
 			message: 'Which Javascript libraries would you like to use?',
 			choices: [
 				{
+					name: 'lodash',
+					value: 'lodash'
+				},
+				{
+					name: 'lazysizes - High performance (jankfree) lazy loader for images (including responsive images)',
+					value: 'lazysizes'
+				},
+				{
+					name: 'Axios - Promise based HTTP client',
+					value: 'axios'
+				},
+				{
+					name: 'Flickity carousel - Touch, responsive, flickable galleries',
+					value: 'flickity'
+				},
+				{
+					name: 'attach.js - Attaches JavaScript to HTML without messy selectors',
+					value: 'attach'
+				},
+				{
+					name: 'dominus - Lean DOM Manipulation',
+					value: 'dominus'
+				},
+				{
 					name: 'jQuery',
 					value: 'jquery'
 				},
@@ -130,6 +154,12 @@ KickoffGenerator.prototype.askFor = function () {
 		this.includeTrak       = hasFeature('trak', jsLibs);
 		this.includeJquery     = hasFeature('jquery', jsLibs);
 		this.includeSwiftclick = hasFeature('swiftclick', jsLibs);
+		this.includeAxios = hasFeature('axios', jsLibs);
+		this.includeLodash = hasFeature('lodash', jsLibs);
+		this.includeLazysizes = hasFeature('lazysizes', jsLibs);
+		this.includeFlickity = hasFeature('flickity', jsLibs);
+		this.includeAttach = hasFeature('attach', jsLibs);
+		this.includeDominus = hasFeature('dominus', jsLibs);
 		this.includeShims      = hasFeature('shims', jsLibs);
 		this.includeModernizr  = hasFeature('modernizr', jsLibs);
 
@@ -194,6 +224,12 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 			includeSwiftclick: this.includeSwiftclick,
 			includeTrak: this.includeTrak,
 			includeJquery: this.includeJquery,
+			includeAxios: this.includeAxios,
+			includeLodash: this.includeLodash,
+			includeLazysizes: this.includeLazysizes,
+			includeFlickity: this.includeFlickity,
+			includeDominus: this.includeDominus,
+			includeAttach: this.includeAttach,
 			statix: this.includeStatix,
 			shims: this.includeShims,
 		}
@@ -292,6 +328,12 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 			includeSwiftclick: this.includeSwiftclick,
 			includeTrak: this.includeTrak,
 			includeJquery: this.includeJquery,
+			includeAxios: this.includeAxios,
+			includeLodash: this.includeLodash,
+			includeLazysizes: this.includeLazysizes,
+			includeFlickity: this.includeFlickity,
+			includeDominus: this.includeDominus,
+			includeAttach: this.includeAttach,
 			statix: this.includeStatix,
 			oldIE: this.oldIE,
 			repoUrl: this.repoUrl,

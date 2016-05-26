@@ -37,8 +37,35 @@
   },
   "dependencies": {
     "console": "^0.5.2",
-    "double-dollar": "^1.0.0",
     "lite-ready": "^1.0.4"<%
+
+    if (!includeDominus || !includeJquery) {%>,
+    "double-dollar": "^1.0.0"<%
+    }
+
+    if (includeLodash) {%>,
+    "lodash": "^4.13.1"<%
+    }
+
+    if (includeLazysizes) {%>,
+    "lazysizes": "^1.5.0"<%
+    }
+
+    if (includeAxios) {%>,
+    "axios": "^0.11.1"<%
+    }
+
+    if (includeFlickity) {%>,
+    "flickity": "^1.2.0"<%
+    }
+
+    if (includeAttach) {%>,
+    "attach.js": "^1.0.5"<%
+    }
+
+    if (includeDominus) {%>,
+    "dominus": "^5.0.6"<%
+    }
 
     if (includeSwiftclick) {%>,
     "swiftclick": "^1.2.0"<%
@@ -48,11 +75,11 @@
     "trak.js": "^0.5.2"<%
     }
 
-    if (includeJquery && oldIE) {%>,
+    if (includeJquery && oldIE && !includeDominus) {%>,
     "jquery": "^1.11.1"<%
     }
 
-    if (includeJquery && !oldIE) {%>,
+    if (includeJquery && !oldIE && !includeDominus) {%>,
     "jquery": "^2.2.3"<%
     } %>
   },
