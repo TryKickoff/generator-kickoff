@@ -28,7 +28,7 @@ var ComponentGenerator = module.exports = function ComponentGenerator(args, opti
 	var depsContent = fs.readFileSync(this.path + '/_dependencies.scss', {
 		encoding: 'utf-8'
 	});
-	var update = '@import "components/' + this.name +'"\n// YEOMANSTART -- COMPONENT\n// YEOMANEND -- COMPONENT';
+	var update = '@import "components/' + this.name +'";\n// YEOMANSTART -- COMPONENT\n// YEOMANEND -- COMPONENT';
 	var updated = updateSection(depsContent, update, matchesStart, matchesEnd);
 	fs.writeFileSync(this.path + '/_dependencies.scss', updated, {
 		encoding: 'utf-8'
