@@ -70,9 +70,6 @@ module.exports = function (grunt) {
 		'postscss',
 		'images',
 		'copy:jsStandalone',<%
-		if (shims) {%>
-		'shimly',<%
-		}
 		if (statix) { %>
 		'copy:statix',
 		'assemble',<%
