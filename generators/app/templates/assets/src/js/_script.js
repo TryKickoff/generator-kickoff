@@ -1,8 +1,9 @@
 /**
- * Project Name: <%= projectName %>
- * Client:
- * Author: <%= devNames %>
- * Company:
+ * <%= projectName %>
+ * @description
+ * @author <%= devNames %>
+ *
+ * Need help using JSDoc? Find out more at http://usejsdoc.org/
  */
 
 'use-strict';
