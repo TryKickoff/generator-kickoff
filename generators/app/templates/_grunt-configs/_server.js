@@ -18,9 +18,9 @@ module.exports.tasks = {
 					'text-align: center',
 					'background-color: #181830',
 					'color: #fff',
-					'padding: 15px'
-				]
-			}
+					'padding: 15px',
+				],
+			},
 		},
 
 		serve: {
@@ -28,10 +28,10 @@ module.exports.tasks = {
 				src: [<%
 					if (statix) { %>
 					'<%%= config.statix.dir%>/dist/assets/{js,img}/**/*.*',
-					'<%%= config.statix.dir%>/dist/**/*.html'<%
+					'<%%= config.statix.dir%>/dist/**/*.html',<%
 					} else { %>
 					'<%%=config.distDir%>/{js,img}/**/*.*',
-					'**/*.html'<%
+					'**/*.html',<%
 					} %>
 				]
 			},
@@ -39,13 +39,13 @@ module.exports.tasks = {
 				server: {<%
 					if (statix) { %>
 					baseDir: './<%%= config.statix.dir%>/dist',
-					background: true<%
+					background: true,<%
 					} else { %>
-					baseDir: './'<%
+					baseDir: './',<%
 					} %>
-				}
-			}
-		}<% if (styleguide) { %>,
+				},
+			},
+		},<% if (styleguide) { %>
 
 
 		styleguide: {
@@ -53,18 +53,16 @@ module.exports.tasks = {
 				server: {<%
 					if (statix) { %>
 					baseDir: './<%%= config.statix.dir%>/dist',
-					background: true<%
+					background: true,<%
 					} else { %>
 					baseDir: './',<%
-					} %>,
-					index: 'styleguide/index.html'
-				}
-			}
-		}<%
-		} %>
-
-	}<%
-	if (statix) { %>,
+					} %>
+					index: 'styleguide/index.html',
+				},
+			},
+		}<% } %>
+	},<%
+	if (statix) { %>
 
 
 	/**
@@ -81,7 +79,7 @@ module.exports.tasks = {
 				'helper-moment',
 				'handlebars-helper-eachitems',
 				'<%%= config.statix.dir%>/src/helpers/helper-*.js',
-				'handlebars-helper-aggregate'
+				'handlebars-helper-aggregate',
 			],
 
 			partials: ['<%%= config.statix.dir%>/src/templates/partials/**/*.hbs'],
@@ -92,7 +90,7 @@ module.exports.tasks = {
 
 			aggregate: {
 				cwd: '<%%= config.statix.dir%>/src/templates/'
-			}
+			},
 		},
 
 		default: {
@@ -100,8 +98,8 @@ module.exports.tasks = {
 				cwd: './<%%= config.statix.dir%>/src/templates/views/',
 				dest: '<%%= config.statix.distDir %>',
 				expand: true,
-				src: ['**/*.hbs']
-			}]
-		}
-	}<% } %> //end of statix conditional
+				src: ['**/*.hbs'],
+			}],
+		},
+	},<% } %> //end of statix conditional
 };

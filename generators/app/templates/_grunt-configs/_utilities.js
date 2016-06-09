@@ -5,35 +5,17 @@ module.exports.tasks = {
 	 * https://github.com/gruntjs/grunt-contrib-clean
 	 * Clean some files
 	 */
-	clean: {
-		icons   : ['<%%=config.distDir%>/img/icons', '<%%=config.tempDir%>/icons'],
-		tempCSS : ['<%%=config.tempDir%>/css']<%
-			if (statix) {
-		%>,
-		all: ['<%%= config.statix.dir%>/dist/**/*.html']<%
-			} %>
-	},<%
-	if (!browserify) {%>
-
-
-	/**
-	 * Chotto
-	 * Checks for the existence of files and halts the Grunt build if they don't exist
-	 * https://www.npmjs.com/package/chotto
-	 */
-	chotto : {
-		js : {
-			filePaths: '<%%=config.js.fileList%>'
-		}
-	},<% } %>
+	clean: {<%
+		if (statix) { %>
+		all: ['<%%= config.statix.dir%>/dist/**/*.html']<% } %>
+	},
 
 
 	/**
 	 * Copy files
 	 * https://github.com/gruntjs/grunt-contrib-copy
 	 */
-	copy: {<%
-		if (modernizr || shims) {%>
+	copy: {
 		jsStandalone: {
 			files: [{
 				expand: true,
@@ -41,10 +23,9 @@ module.exports.tasks = {
 				src: ['./**/*.*'],
 				dest: '<%%=config.js.distDir%>/standalone'
 			}]
-		}<%
-		}
+		},<%
 
-		if (statix) {%>,
+		if (statix) {%>
 		statix: {
 			files: [
 				{
@@ -90,7 +71,7 @@ module.exports.tasks = {
 				src: ['./**/*.*'],
 				dest: '<%%= config.statix.dir%>/dist/assets/dist/js'
 			}]
-		}<% } %>
+		},<% } %>
 	},
 
 
@@ -107,9 +88,5 @@ module.exports.tasks = {
 		css: {
 			src: '<%%=config.css.distDir%>/<%%=config.css.distFile%>.css'
 		},
-
-		grunticon: {
-			src: '<%%=config.img.distDir%>/icons/icons.data.svg.css'
-		}
 	},
 };

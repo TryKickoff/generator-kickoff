@@ -8,74 +8,58 @@ module.exports.tasks = {
 	watch: {
 		options: {
 			interrupt: true,
-			spawn: false
+			spawn: false,
 		},
 
 		scss: {
 			files: ['<%%=config.css.scssDir%>/**/*.scss'],
 			tasks: [
 				'bsNotify:sassStart',
-				// 'scsslint', // uncomment this line if you want to run linting checks on your SCSS as part of your watch build
-				'postscss'<%
-				if (statix) {%>,
-				'copy:css'<%
-				} %>,
+				'postscss',<%
+				if (statix) {%>
+				'copy:css',<%
+				} %>
 				'bsReload:css',
-				'filesizegzip:css'
+				'filesizegzip:css',
 			]
 		},
 
 		js: {
-			files: [<%
-				if (browserify) { %>
-				'<%%=config.js.distDir%>/**/*.js'<%
-				} else { %>
-				'<%%=config.js.fileList%>'<% } %>
+			files: [
+				'<%%=config.js.distDir%>/**/*.js',
 			],
-			tasks: [
-				/* 'jshint:project', / uncomment this line if you want to run linting checks on your JS as part of your watch build*/<%
-				if (!browserify) { %>
-				'uglify',
-				'newer:copy:modernizr'<%
-				} %><%
-				if (statix) {%>,
-				'copy:js'<%
-				} %>,
+			tasks: [<%
+				if (statix) {%>
+				'copy:js',<%
+				} %>
 				'bsReload:all',
-				'filesizegzip:js'
+				'filesizegzip:js',
 			]
 		},
 
-		images : {
+		images: {
 			files: ['<%%=config.img.srcDir%>/**/*.{svg,png,jpg,gif}'],
 			tasks: [
-				'imagemin:images',
-				'bsReload:all'
-			]
-		},<% if (grunticon) {%>
-
-		grunticon : {
-			files: ['<%%=config.img.grunticonDir%>/**/*.{svg,png,jpg,gif}'],
-			tasks: [
-				'icons',
+				'newer:imagemin:images',
 				'bsReload:all',
-				'filesizegzip:grunticon'
-			]
-		},<% } %>
+			],
+		},
 
 		grunt: {
 			files: ['_grunt-configs/*.js', 'Gruntfile.js'],
 			options: {
-				reload: true
-			}
-		}<% if (statix) {%>,
+				reload: true,
+			},
+		},<%
 
-		assemble : {
+		if (statix) {%>
+
+		assemble: {
 			files: ['<%%=config.statix.dir%>/src/templates/**/*.{hbs,md}'],
 			tasks: [
 				'assemble',
 				'newer:copy:statix',
-				'bsReload:all'
+				'bsReload:all',
 			]
 		},<% } %>
 	},
@@ -83,17 +67,17 @@ module.exports.tasks = {
 	// Browsersync reload
 	bsReload: {
 		css: {
-			reload: '<%%=config.distDir%>/css/*.css'
+			reload: '<%%=config.distDir%>/css/*.css',
 		},
 		all: {
-			reload: true
-		}
+			reload: true,
+		},
 	},
 
 	// Browsersync notify
 	bsNotify: {
 		sassStart: {
-			notify: 'Please wait, compiling Sass!'
-		}
-	}
+			notify: 'Please wait, compiling Sass!',
+		},
+	},
 };
