@@ -32,7 +32,7 @@ KickoffGenerator.prototype.askFor = function () {
 	// notifier.notify();
 	if (notifier.update) {
 		// Check for npm package update and print message if needed
-		var updateMessage = chalk.yellow('   ┌────────────────────────────────────────────────┐\n   │') + ' Update available: '  + chalk.green(notifier.update.latest) + chalk.gray(' (current: ' + pkg.version + ')') + '       '+ chalk.yellow('│\n   │') + ' Run ' + chalk.cyan('npm update -g ' + pkg.name) + ' to update. ' + chalk.yellow('│\n   └────────────────────────────────────────────────┘\n');
+		var updateMessage = chalk.yellow('   ╭────────────────────────────────────────────────╮\n   │') + ' Update available: '  + chalk.green(notifier.update.latest) + chalk.gray(' (current: ' + pkg.version + ')') + '       '+ chalk.yellow('│\n   │') + ' Run ' + chalk.cyan('npm update -g ' + pkg.name) + ' to update. ' + chalk.yellow('│\n   ╰────────────────────────────────────────────────╯\n');
 
 		this.log(updateMessage);
 	}
