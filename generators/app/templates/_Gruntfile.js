@@ -105,7 +105,6 @@ module.exports = function (grunt) {
 	 * grunt test
 	 */
 	grunt.registerTask('test', [
-		'eslint',
 		'scsslint',
 	]);
 };

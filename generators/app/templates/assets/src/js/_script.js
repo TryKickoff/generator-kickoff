@@ -8,7 +8,7 @@
 
 'use-strict';
 
-// npm modules
+// their code e.g. npm modules
 import ready from 'lite-ready'; /* DOM ready */<%
 
 if (includeAttach) {%>
@@ -36,21 +36,16 @@ import flickity from 'flickity'; /* http://flickity.metafizzy.co */<%
 }
 
 if (!includeDominus || !includeJquery) {%>
-import $$ from 'double-dollar'; /* https://github.com/mrmartineau/double-dollar */
-window.$$ = $$;<%
+import $$ from 'double-dollar'; /* https://github.com/mrmartineau/double-dollar */<%
 }
 
 if (includeDominus) {%>
-import $ from 'dominus'; /* https://github.com/bevacqua/dominus */
-window.$ = $;<%
+import $ from 'dominus'; /* https://github.com/bevacqua/dominus */<%
 }
 
 if (includeJquery && !includeDominus) {%>
-import $ from 'jquery'; /* https://jquery.com/ */
-window.jQuery = window.$ = $;<%
+import $ from 'jquery'; /* https://jquery.com/ */<%
 }%>
-
-
 
 // Bundle global libs that don't return a value
 import 'console';
@@ -60,18 +55,23 @@ import 'console';
 // import 'lazysizes/plugins/bgset/ls.bgset';
 import 'lazysizes';<%
 } %>
-
-// Add your project-specific modules here
-// import moduleTest from './modules/moduleTest';
+// our code
+// this is a test, uncomment the line below to try it
+// import moduleTest from './modules/module-test';
+<% if (!includeDominus || !includeJquery) {%>
+window.$$ = $$;<%
+} if (includeJquery && !includeDominus) {%>
+window.jQuery = window.$ = $;<%
+}%>
 
 // DOM ready code goes in here
-ready(function () {<%
+ready(() => {<%
 if (includeSwiftclick) {%>
 	const swiftclick = SwiftClick.attach(document.body);
 	swiftclick.useCssParser(true);<% }
 
 	if (includeTrak) {%>
-	trak.start();<% } %>
-
+	trak.start();<% }
+%>
 	// moduleTest(); // this is a test, uncomment this line & the line above to try it
 });

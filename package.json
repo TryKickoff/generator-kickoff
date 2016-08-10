@@ -1,7 +1,7 @@
 {
   "name": "generator-kickoff",
   "version": "1.6.2",
-  "kickoffVersion": "7.0.2",
+  "kickoffVersion": "7.1.0",
   "description": "A Yeoman generator for the Kickoff front-end framework. Find out more at http://trykickoff.com",
   "keywords": [
     "yeoman-generator",
@@ -11,7 +11,8 @@
     "trykickoff",
     "css",
     "framework",
-    "front-end"
+    "front-end",
+    "⚽"
   ],
   "license": "MIT",
   "main": "app/index.js",
