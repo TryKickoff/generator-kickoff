@@ -24,13 +24,13 @@ var ComponentGenerator = module.exports = function ComponentGenerator(args, opti
 
 	console.log('path', this.path);
 
-	// Write new file @import to _dependencies.scss
-	var depsContent = fs.readFileSync(this.path + '/_dependencies.scss', {
+	// Write new file @import to kickoff.scss
+	var depsContent = fs.readFileSync(this.path + '/kickoff.scss', {
 		encoding: 'utf-8'
 	});
-	var update = '@import "components/' + this.name +'";\n// YEOMANSTART -- COMPONENT\n// YEOMANEND -- COMPONENT';
+	var update = '@import "views/' + this.name +'";\n// yo:start -- view\n// yo:end -- view';
 	var updated = updateSection(depsContent, update, matchesStart, matchesEnd);
-	fs.writeFileSync(this.path + '/_dependencies.scss', updated, {
+	fs.writeFileSync(this.path + '/kickoff.scss', updated, {
 		encoding: 'utf-8'
 	});
 };
@@ -39,17 +39,17 @@ util.inherits(ComponentGenerator, yeoman.generators.Base);
 
 ComponentGenerator.prototype.writeFiles = function(args, options) {
 	this.fs.copyTpl(
-		this.templatePath('_component.scss'),
-		this.destinationPath(this.path + '/components/_' + this.name + '.scss'), {
+		this.templatePath('_view.scss'),
+		this.destinationPath(this.path + '/views/_' + this.name + '.scss'), {
 			name: this.name
 		}
 	);
 };
 
 function matchesStart(line) {
-  return (/\/ YEOMANSTART -- COMPONENT/).test(line);
+  return (/\/ yo:start -- view/).test(line);
 }
 
 function matchesEnd(line) {
-  return (/\/ YEOMANEND -- COMPONENT/).test(line);
+  return (/\/ yo:end -- view/).test(line);
 }
