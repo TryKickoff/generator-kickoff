@@ -1,5 +1,5 @@
 var pngquant = require('imagemin-pngquant');
-var mozjpeg = require('imagemin-mozjpeg');
+var svgo = require('imagemin-svgo');
 
 module.exports.tasks = {
 
@@ -13,18 +13,32 @@ module.exports.tasks = {
 			options: {
 				optimizationLevel: 3,
 				progressive: true,
+				svgoPlugins: [
+					{ cleanupAttrs: true },
+					{ removeComments: true },
+					{ removeDoctype: true },
+					{ removeMetadata: true },
+					{ removeXMLProcInst: true },
+					{ removeEditorsNSData: true },
+					{ cleanupNumericValues: true },
+					{ collapseGroups: true },
+					{ sortAttrs: true },
+					{ removeViewBox: false },
+					{ removeUselessStrokeAndFill: false },
+					{ removeEmptyAttrs: false },
+				],
 				use: [
 					pngquant({ quality: '40-50', speed: 4 }),
-					mozjpeg({ quality: 70 }),
+					svgo(),
 				],
 			},
 
 			files: [{
 				expand: true,
 				cwd: '<%%=config.img.srcDir%>/',
-				src: ['**/*.{svg,png,jpg,gif}'],
-				dest: '<%%=config.img.distDir%>'
-			}]
-		}
-	}
+				src: ['**/*.*'],
+				dest: '<%%=config.img.distDir%>',
+			}],
+		},
+	},
 };
