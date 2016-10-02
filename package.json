@@ -30,7 +30,11 @@
     "node": ">=4.0"
   },
   "scripts": {
-    "beta": "npm publish --tag beta"
+    "beta": "npm publish --tag beta",
+    "release-patch": "release-it --non-interactive patch",
+    "release-minor": "release-it --non-interactive minor",
+    "release-major": "release-it --non-interactive major",
+    "release-premajor": "release-it premajor --prereleaseId='beta'"
   },
   "files": [
     "index.js",
@@ -44,5 +48,8 @@
     "update-section": "^0.3.3",
     "yeoman-generator": "^0.24.1",
     "yosay": "^1.2.0"
+  },
+  "devDependencies": {
+    "release-it": "^2.4.3"
   }
 }
