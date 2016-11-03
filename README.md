@@ -68,6 +68,12 @@ The repo and more information can be found at [github.com/TryKickoff/generator-k
 
 If you'd like to get to know Yeoman better check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
 
+## Generator sub-commands (new in version 2)
+- `yo kickoff:sass:component fooBar` - adds a new Sass component as `components/_foo-bar.scss` and adds an import to the kickoff.scss
+- `yo kickoff:sass:view fooBar` - adds a new Sass view as `views/_foo-bar.scss` and adds an import to the kickoff.scss
+- `yo kickoff:sass:partial fooBar` - adds a new Sass partial as `partials/_foo-bar.scss` and adds an import to the kickoff.scss
+- `yo kickoff:js:module fooBar` - adds a new Javascript module as `js/modules/fooBar.js`
+- `yo kickoff:js:util fooBar` - adds a new Javascript util as `js/utils/fooBar.js`
 
 ## License
 
