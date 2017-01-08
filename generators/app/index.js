@@ -64,21 +64,12 @@ KickoffGenerator.prototype.askFor = function () {
 			message: 'Which features would you like?',
 			choices: [
 				{
-					name: 'Include Kickoff\'s styleguide?',
-					value: 'styleguide'
-				},
-				{
 					name: 'Use Kickoff Statix for static templating and rapid prototyping?',
 					value: 'statix'
 				},
 				{
 					name: 'Provide Flexbox feature-detect? Needed if you use our grid in non-flexbox supporting browsers',
 					value: 'flexboxFallback',
-					default: false,
-				},
-				{
-					name: 'Support IE8?',
-					value: 'oldIE',
 					default: false,
 				},
 			],
