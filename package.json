@@ -50,6 +50,6 @@
     "yosay": "^1.2.0"
   },
   "devDependencies": {
-    "release-it": "^2.4.3"
+    "release-it": "^2.5.3"
   }
 }

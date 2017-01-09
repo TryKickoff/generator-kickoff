@@ -109,7 +109,7 @@
     "gulp-imagemin": "3.1.1",
     "gulp-postcss": "6.2.0",
     "gulp-sass": "2.3.2",
-    "gulp-sourcemaps": "2.2.1",
+    "gulp-sourcemaps": "2.2.2",
     "gulp-stylelint": "3.7.0",
     "gulp-svgmin": "1.2.3",
     "gulp-svgstore": "6.1.0",

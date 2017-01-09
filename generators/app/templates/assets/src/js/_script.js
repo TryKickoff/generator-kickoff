@@ -6,45 +6,40 @@
  * Need help using JSDoc? Find out more at http://usejsdoc.org/
  */
 
-'use-strict';
-
 // their code e.g. npm modules
-import ready from 'lite-ready'; /* DOM ready */<%
+import ready from 'lite-ready'; // DOM readyhttps://github.com/nicbell/liteready
+import svg4everybody from 'svg4everybody';<% // https://github.com/jonathantneal/svg4everybody
 
 if (includeAttach) {%>
-import attach from 'attach.js'; /* http://nicbell.github.io/attach.js/ */<%
+import attach from 'attach.js';<% // http://nicbell.github.io/attach.js/
 }
 
 if (includeAxios) {%>
-import axios from 'axios'; /* https://github.com/mzabriskie/axios */<%
+import axios from 'axios';<% // https://github.com/mzabriskie/axios
 }
 
 if (includeLodash) {%>
-import _ from 'lodash'; /* https://lodash.com/ */<%
+import _ from 'lodash';<% // https://lodash.com/
 }
 
 if (includeSwiftclick) {%>
-import SwiftClick from 'swiftclick'; /* https://github.com/munkychop/swiftclick */<%
+import SwiftClick from 'swiftclick';<% // https://github.com/munkychop/swiftclick
 }
 
 if (includeTrak) {%>
-import trak from 'trak.js'; /* https://github.com/mrmartineau/trak.js */<%
+import trak from 'trak.js';<% // https://github.com/mrmartineau/trak.js
 }
 
 if (includeFlickity) {%>
-import flickity from 'flickity'; /* http://flickity.metafizzy.co */<%
-}
-
-if (!includeDominus || !includeJquery) {%>
-import $$ from 'double-dollar'; /* https://github.com/mrmartineau/double-dollar */<%
+import flickity from 'flickity';<% // http://flickity.metafizzy.co
 }
 
 if (includeDominus) {%>
-import $ from 'dominus'; /* https://github.com/bevacqua/dominus */<%
+import $ from 'dominus';<% // https://github.com/bevacqua/dominus
 }
 
 if (includeJquery && !includeDominus) {%>
-import $ from 'jquery'; /* https://jquery.com/ */<%
+import $ from 'jquery';<% // https://jquery.com/
 }%>
 
 // Bundle global libs that don't return a value
@@ -58,11 +53,6 @@ import 'lazysizes';<%
 // our code
 // this is a test, uncomment the line below to try it
 // import moduleTest from './modules/module-test';
-<% if (!includeDominus || !includeJquery) {%>
-window.$$ = $$;<%
-} if (includeJquery && !includeDominus) {%>
-window.jQuery = window.$ = $;<%
-}%>
 
 // DOM ready code goes in here
 ready(() => {<%
@@ -73,5 +63,9 @@ if (includeSwiftclick) {%>
 	if (includeTrak) {%>
 	trak.start();<% }
 %>
+	svg4everybody({
+		polyfill: true, // polyfill <use> elements for External Content
+	});
+
 	// moduleTest(); // this is a test, uncomment this line & the line above to try it
 });

@@ -24,7 +24,7 @@ KickoffGenerator.prototype.askFor = function () {
 		updateCheckInterval: 1000 * 60 // Every hour
 	});
 
-	var kickoffWelcome = chalk.white('\n  ##  ## ######  ####  ##  ##  ') + chalk.yellow('####  ###### ######') + chalk.white('\n  ## ##    ##   ##  ## ## ##  ') + chalk.yellow('##  ## ##     ##') + chalk.white('\n  ####     ##   ##     ####   ') + chalk.yellow('##  ## ####   ####') + chalk.white('\n  ## ##    ##   ##  ## ## ##  ') + chalk.yellow('##  ## ##     ##') + chalk.white('\n  ##  ## ######  ####  ##  ##  ') + chalk.yellow('####  ##     ##') + '\n\n  ' + chalk.white.bold('A Yeoman generator for the Kickoff front-end framework') + '\n  Find out more at ' + chalk.cyan('trykickoff.com') + '\n  ---\n  Kickoff version:  ' + pkg.kickoffVersion + '\n  Yeoman Generator version:  ' + pkg.version + '\n  ---\n  Kickoff is free & open-source, & maintained by:\n  ' + chalk.yellow('@MrMartineau') + ', ' + chalk.green('@AshNolan_') + ' & ' + chalk.red('@nicbell') + '. \n';
+	var kickoffWelcome = chalk.white('\n  ██╗  ██╗██╗ ██████╗██╗  ██╗ ') + chalk.yellow('██████╗ ███████╗███████╗') + chalk.white('\n  ██║ ██╔╝██║██╔════╝██║ ██╔╝') + chalk.yellow('██╔═══██╗██╔════╝██╔════╝') + chalk.white('\n  █████╔╝ ██║██║     █████╔╝ ') + chalk.yellow('██║   ██║█████╗  █████╗') + chalk.white('\n  ██╔═██╗ ██║██║     ██╔═██╗ ') + chalk.yellow('██║   ██║██╔══╝  ██╔══╝') + chalk.white('\n  ██║  ██╗██║╚██████╗██║  ██╗') + chalk.yellow('╚██████╔╝██║     ██║') + chalk.white('\n  ╚═╝  ╚═╝╚═╝ ╚═════╝╚═╝  ╚═╝ ') + chalk.yellow('╚═════╝ ╚═╝     ╚═╝') + '\n\n  ' + chalk.white.bold('A Yeoman generator for the Kickoff front-end framework') + '\n  Find out more at ' + chalk.cyan('trykickoff.com') + '\n  ---\n  Kickoff version:  ' + pkg.kickoffVersion + '\n  Yeoman Generator version:  ' + pkg.version + '\n  ---\n  Kickoff is free & open-source, & maintained by:\n  ' + chalk.yellow('@MrMartineau') + ', ' + chalk.green('@AshNolan_') + ' & ' + chalk.red('@nicbell') + '. \n';
 
 	// Have Yeoman greet the user.
 	this.log(kickoffWelcome);
@@ -151,9 +151,7 @@ KickoffGenerator.prototype.askFor = function () {
 
 		// Features
 		this.includeStatix     = hasFeature('statix', features);
-		this.includeStyleguide = hasFeature('styleguide', features);
-		this.oldIE = hasFeature('oldIE', features);
-		this.flexboxFallback = hasFeature('flexboxFallback', features);
+		this.flexboxFallback   = hasFeature('flexboxFallback', features);
 	}.bind(this));
 };
 
@@ -171,20 +169,18 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		{
 			projectName: this.projectName,
 			projectNameSlugified: _.kebabCase(this.projectName),
-			oldIE: this.oldIE,
 			modernizr: this.includeModernizr,
 			flexboxFallback: this.flexboxFallback,
 		}
 	);
 
-	if (this.includeStyleguide && !this.includeStatix) {
+	if (!this.includeStatix) {
 		this.fs.copyTpl(
 			this.templatePath('styleguide/_index.html'),
 			this.destinationPath('styleguide/index.html'),
 			{
 				projectName: this.projectName,
 				projectNameSlugified: _.kebabCase(this.projectName),
-				oldIE: this.oldIE,
 				modernizr: this.includeModernizr,
 				flexboxFallback: this.flexboxFallback,
 			}
@@ -196,6 +192,7 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 	this.directory('assets/dist/css', 'assets/dist/css');
 	this.directory('assets/src/scss', 'assets/src/scss');
 	this.directory('assets/src/img', 'assets/src/img');
+	this.directory('assets/src/svg', 'assets/src/svg');
 
 
 	// Javascript
@@ -217,85 +214,113 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 			statix: this.includeStatix,
 		}
 	);
+	this.fs.copyTpl(
+		this.templatePath('assets/src/js/styleguide.js'),
+		this.destinationPath('assets/src/js/styleguide.js'),
+		{}
+	);
+	this.fs.copyTpl(
+		this.templatePath('assets/src/js/README.md'),
+		this.destinationPath('assets/src/js/README.md'),
+		{}
+	);
 	this.directory('assets/src/js/modules', 'assets/src/js/modules');
 	this.directory('assets/src/js/standalone', 'assets/src/js/standalone');
+	this.directory('assets/src/js/utils', 'assets/src/js/utils');
 
-
-	// Grunt configs
+	// TOOLING FILES
+	this.copy('gulpfile.js', 'gulpfile.js');
 	this.fs.copyTpl(
-		this.templatePath('_Gruntfile.js'),
-		this.destinationPath('Gruntfile.js'),
+		this.templatePath('.kickoff/config.js'),
+		this.destinationPath('.kickoff/config.js'),
 		{
-			modernizr: this.includeModernizr,
-			statix: this.includeStatix,
-			styleguide: this.includeStyleguide,
-		}
-	);
-
-	this.fs.copyTpl(
-		this.templatePath('_grunt-configs/_config.js'),
-		this.destinationPath('_grunt-configs/config.js'),
-		{
-			projectName: this.projectName,
-			projectNameSlugified: _.kebabCase(this.projectName),
 			statix: this.includeStatix,
 		}
 	);
-
 	this.fs.copyTpl(
-		this.templatePath('_grunt-configs/_css.js'),
-		this.destinationPath('_grunt-configs/css.js'),
+		this.templatePath('.kickoff/index.js'),
+		this.destinationPath('.kickoff/index.js'),
+		{}
+	);
+	this.fs.copyTpl(
+		this.templatePath('.kickoff/readme.md'),
+		this.destinationPath('.kickoff/readme.md'),
+		{}
+	);
+	// Gulp + webpack tasks
+	this.fs.copyTpl(
+		this.templatePath('.kickoff/tasks/clean.js'),
+		this.destinationPath('.kickoff/tasks/clean.js'),
 		{
-			oldIE: this.oldIE,
+			statix: this.includeStatix,
 		}
 	);
-
 	this.fs.copyTpl(
-		this.templatePath('_grunt-configs/_images.js'),
-		this.destinationPath('_grunt-configs/images.js'),
+		this.templatePath('.kickoff/tasks/compile.js'),
+		this.destinationPath('.kickoff/tasks/compile.js'),
+		{
+			statix: this.includeStatix,
+		}
+	);
+	this.fs.copyTpl(
+		this.templatePath('.kickoff/tasks/copy.js'),
+		this.destinationPath('.kickoff/tasks/copy.js'),
+		{
+			statix: this.includeStatix,
+		}
+	);
+	this.fs.copyTpl(
+		this.templatePath('.kickoff/tasks/css.js'),
+		this.destinationPath('.kickoff/tasks/css.js'),
+		{}
+	);
+	this.fs.copyTpl(
+		this.templatePath('.kickoff/tasks/default.js'),
+		this.destinationPath('.kickoff/tasks/default.js'),
+		{}
+	);
+	this.fs.copyTpl(
+		this.templatePath('.kickoff/tasks/images.js'),
+		this.destinationPath('.kickoff/tasks/images.js'),
+		{}
+	);
+	this.fs.copyTpl(
+		this.templatePath('.kickoff/tasks/javascript.js'),
+		this.destinationPath('.kickoff/tasks/javascript.js'),
+		{}
+	);
+	this.fs.copyTpl(
+		this.templatePath('.kickoff/tasks/serve.js'),
+		this.destinationPath('.kickoff/tasks/serve.js'),
+		{
+			statix: this.includeStatix,
+		}
+	);
+	this.fs.copyTpl(
+		this.templatePath('.kickoff/tasks/svg.js'),
+		this.destinationPath('.kickoff/tasks/svg.js'),
+		{}
+	);
+	this.fs.copyTpl(
+		this.templatePath('.kickoff/tasks/test.js'),
+		this.destinationPath('.kickoff/tasks/test.js'),
+		{}
+	);
+	this.fs.copyTpl(
+		this.templatePath('.kickoff/tasks/watch.js'),
+		this.destinationPath('.kickoff/tasks/watch.js'),
+		{
+			statix: this.includeStatix,
+		}
+	);
+	this.fs.copyTpl(
+		this.templatePath('.kickoff/tasks/webpack.config.js'),
+		this.destinationPath('.kickoff/tasks/webpack.config.js'),
 		{}
 	);
 
-	this.fs.copyTpl(
-		this.templatePath('_grunt-configs/_javascript.js'),
-		this.destinationPath('_grunt-configs/javascript.js'),
-		{}
-	);
 
-	this.fs.copyTpl(
-		this.templatePath('_grunt-configs/_server.js'),
-		this.destinationPath('_grunt-configs/server.js'),
-		{
-			statix: this.includeStatix,
-			styleguide: this.includeStyleguide,
-		}
-	);
-
-	this.fs.copyTpl(
-		this.templatePath('_grunt-configs/_utilities.js'),
-		this.destinationPath('_grunt-configs/utilities.js'),
-		{
-			statix: this.includeStatix,
-			modernizr: this.includeModernizr,
-			flexboxFallback: this.flexboxFallback,
-		}
-	);
-
-	this.fs.copyTpl(
-		this.templatePath('_grunt-configs/_watch.js'),
-		this.destinationPath('_grunt-configs/watch.js'),
-		{
-			statix: this.includeStatix,
-		}
-	);
-
-	this.fs.copyTpl(
-		this.templatePath('_grunt-configs/_tests.js'),
-		this.destinationPath('_grunt-configs/tests.js'),
-		{}
-	);
-
-
+	// Package.json
 	this.fs.copyTpl(
 		this.templatePath('_package.json'),
 		this.destinationPath('package.json'),
@@ -314,7 +339,6 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 			includeDominus: this.includeDominus,
 			includeAttach: this.includeAttach,
 			statix: this.includeStatix,
-			oldIE: this.oldIE,
 			repoUrl: this.repoUrl,
 		}
 	);
@@ -339,11 +363,10 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 		}
 	);
 
-	this.copy('eslintrc.js', '.eslintrc.js');
+	this.copy('npmrc', '.npmrc');
 	this.copy('editorconfig', '.editorconfig');
 	this.copy('gitignore', '.gitignore');
 	this.copy('gitattributes', '.gitattributes');
-	this.copy('scss-lint.yml', '.scss-lint.yml');
 	this.copy('robots.txt', 'robots.txt');
 
 	if (this.includeStatix) {
@@ -354,21 +377,6 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 
 		this.directory('statix/src/templates/views', 'statix/src/templates/views');
 		this.directory('statix/src/templates/layouts', 'statix/src/templates/layouts');
-
-		if (this.includeStyleguide) {
-			this.directory('statix/src/templates/layouts', 'statix/src/templates/layouts');
-
-			this.fs.copyTpl(
-				this.templatePath('statix/src/templates/_index.hbs'),
-				this.destinationPath('statix/src/templates/views/styleguide/index.hbs'),
-				{
-					projectName: this.projectName,
-				}
-			);
-
-			this.copy('statix/src/templates/styleguide-layout.hbs', 'statix/src/templates/layouts/styleguide.hbs');
-		}
-
 		this.directory('statix/src/templates/partials', 'statix/src/templates/partials');
 
 		this.fs.copyTpl(
@@ -378,13 +386,20 @@ KickoffGenerator.prototype.packageFiles = function packageFiles() {
 				projectName: this.projectName,
 				projectNameSlugified: _.kebabCase(this.projectName),
 				projectDescription: this.projectDescription,
-				oldIE: this.oldIE,
 				modernizr: this.includeModernizr,
-				styleguide: this.includeStyleguide,
 				flexboxFallback: this.flexboxFallback,
 			}
 		);
 
+		// Styleguide
+		this.fs.copyTpl(
+			this.templatePath('statix/src/templates/_index.hbs'),
+			this.destinationPath('statix/src/templates/views/styleguide/index.hbs'),
+			{
+				projectName: this.projectName,
+			}
+		);
+		this.copy('statix/src/templates/styleguide-layout.hbs', 'statix/src/templates/layouts/styleguide.hbs');
 	}
 
 	this.copy('bower.json', 'bower.json');
