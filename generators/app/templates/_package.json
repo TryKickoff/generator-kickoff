@@ -84,11 +84,11 @@
     "trak.js": "^0.5.2"<%
     }
 
-    if (includeJquery && oldIE && !includeDominus) {%>,
+    if (includeJquery && !includeDominus) {%>,
     "jquery": "^1.11.1"<%
     }
 
-    if (includeJquery && !oldIE && !includeDominus) {%>,
+    if (includeJquery && !includeDominus) {%>,
     "jquery": "^3.1.0"<%
     } %>
   },
