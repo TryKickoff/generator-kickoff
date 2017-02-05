@@ -40,10 +40,6 @@ const ConfigOptions = function () {
 		},
 
 		distDir: `${config.distDir}/js`, // config.js.distDir
-
-		// Renaming this changes the name of the generated JS file
-		// Make sure you update your template file
-		distFile: 'kickoff.js', // config.js.distFile
 	};
 
 	// Image-related vars
@@ -90,6 +86,7 @@ const ConfigOptions = function () {
  * ╚═╝  ╚═╝╚═╝ ╚═════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝
  * ${pkg.title} v${pkg.version}
  * ${pkg.homepage}
+ * ${pkg.repo}
  */
 `,
 
